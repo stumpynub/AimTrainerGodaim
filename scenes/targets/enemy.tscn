@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://b7kjocjqbgukd"]
+[gd_scene load_steps=4 format=3]
 
-[ext_resource type="Script" path="res://enemy.gd" id="1_3arsa"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_3arsa"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_v0v0s"]
 
