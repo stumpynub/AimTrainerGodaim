@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bxr043ybjedfc"]
+[gd_scene load_steps=8 format=3 uid="uid://cpkq4dij3d6vf"]
 
-[ext_resource type="PackedScene" uid="uid://d4d0k04onmg43" path="res://box_area.tscn" id="1_e0fdt"]
-[ext_resource type="PackedScene" uid="uid://c0wui0ddu3csn" path="res://player.tscn" id="1_ofwuf"]
-[ext_resource type="PackedScene" uid="uid://bcqg276xgtikn" path="res://Hud.tscn" id="3_g4ask"]
-[ext_resource type="PackedScene" uid="uid://b7kjocjqbgukd" path="res://enemy.tscn" id="4_2bcin"]
+[ext_resource type="PackedScene" uid="uid://dppd4tadbg6jh" path="res://scenes/player.tscn" id="1_rm1mj"]
+[ext_resource type="PackedScene" uid="uid://d4d0k04onmg43" path="res://scenes/box_area.tscn" id="2_p32s3"]
+[ext_resource type="PackedScene" uid="uid://bcqg276xgtikn" path="res://scenes/Hud.tscn" id="3_bnvg8"]
+[ext_resource type="PackedScene" path="res://scenes/targets/enemy.tscn" id="4_trrxo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bvnyn"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -23,13 +23,13 @@ glow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_70xyv")
 
-[node name="Node3D" parent="." instance=ExtResource("1_ofwuf")]
+[node name="Node3D" parent="." instance=ExtResource("1_rm1mj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.00934)
 
-[node name="box" parent="." instance=ExtResource("1_e0fdt")]
+[node name="box" parent="." instance=ExtResource("2_p32s3")]
 
-[node name="Control" parent="." instance=ExtResource("3_g4ask")]
+[node name="Control" parent="." instance=ExtResource("3_bnvg8")]
 
-[node name="enemy_box" parent="." instance=ExtResource("4_2bcin")]
+[node name="enemy_box" parent="." instance=ExtResource("4_trrxo")]
 unique_name_in_owner = true
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.571763, 0.669174, -0.895487)
