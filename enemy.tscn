@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7kjocjqbgukd"]
+
+[ext_resource type="Script" path="res://enemy.gd" id="1_3arsa"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_v0v0s"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_esmvl"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_3arsa")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_v0v0s")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_esmvl")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
