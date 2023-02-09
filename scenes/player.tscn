@@ -1,26 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://dppd4tadbg6jh"]
+[gd_scene load_steps=3 format=3 uid="uid://dppd4tadbg6jh"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ntsen"]
 
-[node name="Node3D" type="Node3D"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_0gohi"]
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera")]
 script = ExtResource("1_ntsen")
+camera = NodePath("Camera3D")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
-shadow_enabled = true
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_0gohi")
 
-[node name="neck" type="MeshInstance3D" parent="."]
-unique_name_in_owner = true
-
-[node name="camera" type="Camera3D" parent="neck"]
-unique_name_in_owner = true
-
-[node name="Ray" type="RayCast3D" parent="neck/camera"]
-unique_name_in_owner = true
-process_mode = 3
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-exclude_parent = false
-target_position = Vector3(0, -10, 0)
-hit_from_inside = true
-collide_with_areas = true
-collide_with_bodies = false
+[node name="Camera3D" type="Camera3D" parent="."]
