@@ -7,4 +7,4 @@ class_name Enemy
 
 
 func hit():
-	position = Vector3(randf_range(-.8, .8), randf_range(-.8, .8), start.z)
+	position = Vector3(randf_range(-6, 6), randf_range(-2, 3), start.z)

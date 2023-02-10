@@ -71,7 +71,6 @@ _data = {
 script = ExtResource("1_ntsen")
 camera = NodePath("Camera3D")
 enable_movement = true
-mouse_sensitiviy = 0.133
 
 [node name="Control" parent="." instance=ExtResource("2_30vct")]
 

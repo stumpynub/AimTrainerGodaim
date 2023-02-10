@@ -1,10 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://cpkq4dij3d6vf"]
+[gd_scene load_steps=15 format=3 uid="uid://cpkq4dij3d6vf"]
 
 [ext_resource type="Texture2D" uid="uid://bjt71rlmshtio" path="res://assets/src/logo.png" id="1_wua64"]
 [ext_resource type="PackedScene" uid="uid://b7y5xmt660wt3" path="res://scenes/player.tscn" id="2_qww2c"]
 [ext_resource type="PackedScene" uid="uid://dd1inopnm13m3" path="res://scenes/ui/news.tscn" id="2_yw2j2"]
 [ext_resource type="Texture2D" uid="uid://bcx7gh8xiduk2" path="res://assets/backgrounds/night.exr" id="3_5bdqe"]
-[ext_resource type="PackedScene" uid="uid://d4d0k04onmg43" path="res://scenes/box_area.tscn" id="3_63tcw"]
 [ext_resource type="PackedScene" path="res://scenes/targets/enemy.tscn" id="4_widby"]
 [ext_resource type="Material" uid="uid://cgdkqar5mvrvw" path="res://assets/materials/grid_transparent.tres" id="5_3omwl"]
 [ext_resource type="PackedScene" uid="uid://sv1sf2eij0jh" path="res://scenes/targets/spawner.tscn" id="7_hc76a"]
@@ -73,12 +72,9 @@ shadow_blur = 0.944
 [node name="Node3D" parent="." instance=ExtResource("2_qww2c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.00934)
 
-[node name="box" parent="." instance=ExtResource("3_63tcw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.69519)
-
 [node name="enemy_box" parent="." instance=ExtResource("4_widby")]
 unique_name_in_owner = true
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.571763, 0.669174, -0.895487)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.571763, 0.669174, -8.9295)
 
 [node name="Spawner" parent="." instance=ExtResource("7_hc76a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87833, -0.288894, 2.41498)

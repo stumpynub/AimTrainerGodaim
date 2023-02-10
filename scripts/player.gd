@@ -15,7 +15,7 @@ enum e_movement_state {
 @export var camera: Camera3D
 @export var player_area: Area3D
 @export var enable_movement = false
-@export_range(0.01, 5.0) var mouse_sensitiviy = 0.5
+@export_range(0.01, 2.0) var mouse_sensitivity = 0.5
 
 var ui_locked = false
 
@@ -68,10 +68,11 @@ func _process(delta):
 		# add an offset with the collision normal
 		# helps when placing things such as lights 
 		if interaction_ray.is_colliding():
-			if interaction_ray.get_collider().has_method("hit"):
-				interaction_ray.get_collider().hit()
-			if interaction_ray.get_collider().get_parent().has_method("hit"):
-				interaction_ray.get_collider().get_parent().hit()
+			if is_instance_valid(interaction_ray.get_collider()): 
+				if interaction_ray.get_collider().has_method("hit"):
+					interaction_ray.get_collider().hit()
+				if interaction_ray.get_collider().get_parent().has_method("hit"):
+					interaction_ray.get_collider().get_parent().hit()
 		
 		var place_offset = (interaction_ray.get_collision_normal() * delta)
 		emit_signal("action", interaction_ray.get_collision_point() + place_offset )
@@ -208,8 +209,8 @@ func apply_gravity():
 func _input(event):
 	if event is InputEventMouseMotion: 
 		if !ui_locked:
-			rotate_object_local(Vector3.UP, -event.relative.x * (mouse_sensitiviy / 100))
-			camera.rotate_object_local(Vector3.RIGHT, -event.relative.y * ( mouse_sensitiviy / 100))
+			rotate_object_local(Vector3.UP, -event.relative.x * (mouse_sensitivity / 100))
+			camera.rotate_object_local(Vector3.RIGHT, -event.relative.y * ( mouse_sensitivity / 100))
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		else: 
 			Input.mouse_mode = Input.MOUSE_MODE_CONFINED

@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://dyf4miwqnxqil"]
+
+[ext_resource type="PackedScene" path="res://scenes/targets/enemy.tscn" id="1_4yyky"]
+[ext_resource type="Material" uid="uid://cgdkqar5mvrvw" path="res://assets/materials/grid_transparent.tres" id="1_gl53d"]
+[ext_resource type="PackedScene" uid="uid://b7y5xmt660wt3" path="res://scenes/player.tscn" id="2_tckui"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5qu6x"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_tk2dy"]
+sky_material = SubResource("ProceduralSkyMaterial_5qu6x")
+
+[sub_resource type="Environment" id="Environment_aa580"]
+background_mode = 2
+sky = SubResource("Sky_tk2dy")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="CrazyCubes" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_aa580")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Node3D" parent="." instance=ExtResource("1_4yyky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="Node3D2" parent="." instance=ExtResource("1_4yyky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1.57928, -2)
+
+[node name="Node3D3" parent="." instance=ExtResource("1_4yyky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.57928, -2)
+
+[node name="Player" parent="." instance=ExtResource("2_tckui")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.00216, 7)
+enable_movement = false
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+material_override = ExtResource("1_gl53d")
+flip_faces = true
+size = Vector3(16, 16, 16)
