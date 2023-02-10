@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cpkq4dij3d6vf"]
+[gd_scene load_steps=7 format=3 uid="uid://cpkq4dij3d6vf"]
 
 [ext_resource type="PackedScene" uid="uid://dppd4tadbg6jh" path="res://scenes/player.tscn" id="1_rm1mj"]
 [ext_resource type="PackedScene" uid="uid://d4d0k04onmg43" path="res://scenes/box_area.tscn" id="2_p32s3"]
-[ext_resource type="PackedScene" uid="uid://bcqg276xgtikn" path="res://scenes/Hud.tscn" id="3_bnvg8"]
-[ext_resource type="PackedScene" uid="uid://ig31frwu1h8l" path="res://scenes/targets/enemy.tscn" id="4_trrxo"]
+[ext_resource type="PackedScene" path="res://scenes/targets/enemy.tscn" id="4_trrxo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bvnyn"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -29,11 +28,15 @@ environment = SubResource("Environment_70xyv")
 
 [node name="Node3D" parent="." instance=ExtResource("1_rm1mj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.00934)
+enable_gravity = true
 
 [node name="box" parent="." instance=ExtResource("2_p32s3")]
-
-[node name="Control" parent="." instance=ExtResource("3_bnvg8")]
 
 [node name="enemy_box" parent="." instance=ExtResource("4_trrxo")]
 unique_name_in_owner = true
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.571763, 0.669174, -0.895487)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.946815, 0.961725)
+use_collision = true
+size = Vector3(5.4793, 0.110761, 3.63826)
