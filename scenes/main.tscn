@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dppd4tadbg6jh" path="res://scenes/player.tscn" id="1_rm1mj"]
 [ext_resource type="PackedScene" uid="uid://d4d0k04onmg43" path="res://scenes/box_area.tscn" id="2_p32s3"]
 [ext_resource type="PackedScene" uid="uid://bcqg276xgtikn" path="res://scenes/Hud.tscn" id="3_bnvg8"]
-[ext_resource type="PackedScene" path="res://scenes/targets/enemy.tscn" id="4_trrxo"]
+[ext_resource type="PackedScene" uid="uid://ig31frwu1h8l" path="res://scenes/targets/enemy.tscn" id="4_trrxo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bvnyn"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -19,6 +19,10 @@ tonemap_mode = 2
 glow_enabled = true
 
 [node name="Node3D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0.408749, -0.325156, 0.852759, -0.287967, 0.840698, 0.458587, 0, 0, 0)
+shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_70xyv")

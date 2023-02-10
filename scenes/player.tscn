@@ -7,6 +7,7 @@
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera")]
 script = ExtResource("1_ntsen")
 camera = NodePath("Camera3D")
+mouse_sensitiviy = 0.133
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_0gohi")

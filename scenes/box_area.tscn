@@ -1,32 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://d4d0k04onmg43"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_uw5v8"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_36lqh"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_itssh"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_sjc5i"]
+[gd_scene load_steps=2 format=3 uid="uid://d4d0k04onmg43"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_e42gd"]
 
 [node name="Node3D" type="Node3D"]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 1, 0)
-mesh = SubResource("PlaneMesh_uw5v8")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-mesh = SubResource("PlaneMesh_36lqh")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -1, 0, 0)
-mesh = SubResource("PlaneMesh_itssh")
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 1, 0, 0)
-mesh = SubResource("PlaneMesh_sjc5i")
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -1)

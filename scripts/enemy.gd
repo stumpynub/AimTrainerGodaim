@@ -1,5 +1,5 @@
 extends Node3D
-
+@onready var start = position
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,3 +17,6 @@ func _input(event):
 
 func _on_area_3d_area_entered(area):
 	pass
+	
+func hit():
+	position = Vector3(randf_range(-.8, .8), randf_range(-.8, .8), start.z)

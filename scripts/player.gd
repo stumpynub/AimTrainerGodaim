@@ -61,6 +61,12 @@ func _process(delta):
 	if Input.is_action_just_pressed("action") and !ui_locked: 
 		# add an offset with the collision normal
 		# helps when placing things such as lights 
+		if interaction_ray.is_colliding():
+			print("hit")
+			interaction_ray.get_collider().get_parent().position = Vector3(randf_range(-.8, .8), 0, 0)
+			if interaction_ray.get_collider().get_parent().has_method("hit"):
+				interaction_ray.get_collider().get_parent().hit()
+		
 		var place_offset = (interaction_ray.get_collision_normal() * delta)
 		emit_signal("action", interaction_ray.get_collision_point() + place_offset )
 	
@@ -203,7 +209,8 @@ func _init_rays():
 	camera.add_child(interaction_ray)
 	camera.add_child(head_ray)
 	
-	interaction_ray.target_position = Vector3(0,0,-5)
+	interaction_ray.target_position = Vector3(0,0,-50)
+	interaction_ray.collide_with_areas = true
 	ground_ray.target_position = Vector3(0, -STANDING_HEIGHT, 0)
 
 func can_climb() -> bool: 
