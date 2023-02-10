@@ -1,4 +1,8 @@
-[gd_scene format=3 uid="uid://bcqg276xgtikn"]
+[gd_scene load_steps=4 format=3 uid="uid://bcqg276xgtikn"]
+
+[ext_resource type="Texture2D" uid="uid://cjheknmnawhfq" path="res://assets/reticles/dot.png" id="1_348ev"]
+[ext_resource type="Script" path="res://scripts/ui/ui_hud.gd" id="1_pcgne"]
+[ext_resource type="Theme" uid="uid://3xdqjemx3iml" path="res://assets/theme.tres" id="1_swum2"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -8,23 +12,28 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("1_swum2")
+script = ExtResource("1_pcgne")
 
-[node name="Label" type="Label" parent="."]
+[node name="Reticle" type="TextureRect" parent="."]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -575.0
-offset_top = -323.0
-offset_right = 577.0
-offset_bottom = 293.0
+offset_left = -12.5
+offset_top = -12.5
+offset_right = 12.5
+offset_bottom = 12.5
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(-0.5, 67)
-theme_override_colors/font_color = Color(0.870588, 0, 0, 1)
-theme_override_font_sizes/font_size = 50
-text = "."
-horizontal_alignment = 1
-vertical_alignment = 1
+pivot_offset = Vector2(12, 12)
+texture = ExtResource("1_348ev")
+
+[node name="FPSLabel" type="Label" parent="."]
+layout_mode = 1
+offset_right = 1.0
+offset_bottom = 19.0
+theme = ExtResource("1_swum2")

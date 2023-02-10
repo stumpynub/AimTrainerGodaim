@@ -46,7 +46,8 @@ var coyote_time = 0.2
 signal action
 
 func _ready(): 
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	Global.player = self
+	
 	_init_rays()
 
 func _process(delta):
@@ -79,10 +80,7 @@ func _physics_process(delta):
 	var input_vec = Input.get_vector("left", "right", "up", "down")
 	var direction = (transform.basis * Vector3(input_vec.x, 0, input_vec.y)).normalized()
 	
-	
-	if Input.is_action_just_pressed("flashlight"): 
-		$Camera3D/SpotLight3D.visible = !$Camera3D/SpotLight3D.visible
-	
+
 	_crouch_move()
 	
 	match get_movement_state(): 
@@ -203,7 +201,10 @@ func _input(event):
 		if !ui_locked:
 			rotate_object_local(Vector3.UP, -event.relative.x * (get_process_delta_time() * mouse_sensitiviy))
 			camera.rotate_object_local(Vector3.RIGHT, -event.relative.y * get_process_delta_time() * mouse_sensitiviy)
-
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		else: 
+			Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+			
 func _init_rays(): 
 	add_child(ground_ray)
 	camera.add_child(interaction_ray)
