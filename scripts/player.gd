@@ -68,8 +68,8 @@ func _process(delta):
 		# add an offset with the collision normal
 		# helps when placing things such as lights 
 		if interaction_ray.is_colliding():
-			print("hit")
-			interaction_ray.get_collider().get_parent().position = Vector3(randf_range(-.8, .8), 0, 0)
+			if interaction_ray.get_collider().has_method("hit"):
+				interaction_ray.get_collider().hit()
 			if interaction_ray.get_collider().get_parent().has_method("hit"):
 				interaction_ray.get_collider().get_parent().hit()
 		
