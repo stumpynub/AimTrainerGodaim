@@ -32,3 +32,14 @@ func _on_color_picker_button_color_changed(color):
 
 func _on_quit_button_pressed():
 	get_tree().quit()
+
+
+func _on_sensitivity_slider_value_changed(value):
+	Global.player.mouse_sensitivity = value
+
+
+func _on_vsync_check_box_toggled(button_pressed):
+	if button_pressed == true: 
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
+	else: 
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)

@@ -28,6 +28,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Game" type="CenterContainer" parent="TabContainer"]
+visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Game"]
@@ -38,7 +39,6 @@ layout_mode = 2
 text = "Quit"
 
 [node name="Settings" type="CenterContainer" parent="TabContainer"]
-visible = false
 layout_mode = 2
 
 [node name="SettingsContainer" type="HBoxContainer" parent="TabContainer/Settings"]
@@ -145,11 +145,12 @@ layout_mode = 2
 text = "Mouse Sensitivity
 "
 
-[node name="HSlider" type="HSlider" parent="TabContainer/Settings/SettingsContainer/PlayerSettingsVContainer/SensitivityVContainer"]
+[node name="SensitivitySlider" type="HSlider" parent="TabContainer/Settings/SettingsContainer/PlayerSettingsVContainer/SensitivityVContainer"]
 layout_mode = 2
-max_value = 3.0
-step = 0.1
-value = 1.0
+min_value = 0.01
+max_value = 2.0
+step = 0.01
+value = 1.01
 
 [node name="GraphicsSettingsVContainer" type="VBoxContainer" parent="TabContainer/Settings/SettingsContainer"]
 layout_mode = 2
@@ -162,7 +163,7 @@ text = "GraphicSettings"
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/Settings/SettingsContainer/GraphicsSettingsVContainer"]
 layout_mode = 2
 
-[node name="CheckBox" type="CheckBox" parent="TabContainer/Settings/SettingsContainer/GraphicsSettingsVContainer"]
+[node name="VsyncCheckBox" type="CheckBox" parent="TabContainer/Settings/SettingsContainer/GraphicsSettingsVContainer"]
 layout_mode = 2
 text = "V-Sync"
 icon_alignment = 1
@@ -172,3 +173,5 @@ icon_alignment = 1
 [connection signal="color_changed" from="TabContainer/Settings/SettingsContainer/ReticleSettingsVContainer/ReticleColorPickerVContainer/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
 [connection signal="value_changed" from="TabContainer/Settings/SettingsContainer/ReticleSettingsVContainer/ReticleScaleVContainer2/HSlider" to="." method="_on_h_slider_value_changed"]
 [connection signal="value_changed" from="TabContainer/Settings/SettingsContainer/ReticleSettingsVContainer/ReticleScaleVContainer/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="TabContainer/Settings/SettingsContainer/PlayerSettingsVContainer/SensitivityVContainer/SensitivitySlider" to="." method="_on_sensitivity_slider_value_changed"]
+[connection signal="toggled" from="TabContainer/Settings/SettingsContainer/GraphicsSettingsVContainer/VsyncCheckBox" to="." method="_on_vsync_check_box_toggled"]
