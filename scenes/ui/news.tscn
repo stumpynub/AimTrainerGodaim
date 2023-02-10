@@ -1,0 +1,54 @@
+[gd_scene load_steps=2 format=3 uid="uid://dd1inopnm13m3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j0gkq"]
+bg_color = Color(0, 0, 0, 0.760784)
+
+[node name="News" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+anchor_right = 1.00087
+anchor_bottom = 1.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_j0gkq")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_top = 621.0
+offset_right = 42.0
+offset_bottom = 647.0
+text = "V0.01
+"
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -561.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "NEWS"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Hello World! 
+"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 481

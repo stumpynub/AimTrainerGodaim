@@ -14,7 +14,7 @@ enum e_movement_state {
 
 @export var camera: Camera3D
 @export var player_area: Area3D
-@export var enable_gravity = false
+@export var enable_movement = false
 @export_range(0.01, 5.0) var mouse_sensitiviy = 0.5
 
 var ui_locked = false
@@ -59,6 +59,11 @@ func _process(delta):
 	if get_slide_collision_count() > 0: 
 		velocity += get_last_slide_collision().get_normal() * 2
 	
+	if Input.is_action_just_pressed("ads"): 
+		$Camera3D/glock/GlockAnim.play("ads")
+	elif Input.is_action_just_released("ads"):
+		$Camera3D/glock/GlockAnim.play_backwards("ads")
+		
 	if Input.is_action_just_pressed("action") and !ui_locked: 
 		# add an offset with the collision normal
 		# helps when placing things such as lights 
@@ -80,14 +85,18 @@ func _physics_process(delta):
 	var input_vec = Input.get_vector("left", "right", "up", "down")
 	var direction = (transform.basis * Vector3(input_vec.x, 0, input_vec.y)).normalized()
 	
-
+	
+	if !enable_movement: 
+		return
+	
 	_crouch_move()
 	
 	match get_movement_state(): 
 		e_movement_state["air"]: 
-			if enable_gravity:
-				apply_gravity()
-				coyote_time -= delta
+		
+			apply_gravity()
+			coyote_time -= delta
+				
 		e_movement_state["ground_walk"]: 
 			_ground_move(direction)
 			_ground_stick()
@@ -199,12 +208,12 @@ func apply_gravity():
 func _input(event):
 	if event is InputEventMouseMotion: 
 		if !ui_locked:
-			rotate_object_local(Vector3.UP, -event.relative.x * (get_process_delta_time() * mouse_sensitiviy))
-			camera.rotate_object_local(Vector3.RIGHT, -event.relative.y * get_process_delta_time() * mouse_sensitiviy)
+			rotate_object_local(Vector3.UP, -event.relative.x * (mouse_sensitiviy / 100))
+			camera.rotate_object_local(Vector3.RIGHT, -event.relative.y * ( mouse_sensitiviy / 100))
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		else: 
 			Input.mouse_mode = Input.MOUSE_MODE_CONFINED
-			
+		
 func _init_rays(): 
 	add_child(ground_ray)
 	camera.add_child(interaction_ray)
