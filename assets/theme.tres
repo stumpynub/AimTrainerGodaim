@@ -1,6 +1,6 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://3xdqjemx3iml"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://bsxf0otie5016"]
 
-[ext_resource type="FontFile" uid="uid://bo7dby5evgex7" path="res://assets/Anita semi square.ttf" id="1_gm22n"]
+[ext_resource type="FontFile" uid="uid://bo7dby5evgex7" path="res://assets/fonts/Anita semi square.ttf" id="1_gm22n"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0pre6"]
 

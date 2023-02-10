@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bvxiq1xo1p1j5"]
+[gd_scene load_steps=7 format=3 uid="uid://bvxiq1xo1p1j5"]
 
-[ext_resource type="Theme" uid="uid://3xdqjemx3iml" path="res://assets/theme.tres" id="1_amped"]
+[ext_resource type="Theme" uid="uid://bsxf0otie5016" path="res://assets/theme.tres" id="1_amped"]
 [ext_resource type="Script" path="res://scripts/ui/ui_settings.gd" id="2_3thbb"]
 [ext_resource type="Texture2D" uid="uid://cjheknmnawhfq" path="res://assets/reticles/dot.png" id="2_ji1vt"]
 [ext_resource type="Texture2D" uid="uid://fq2lt45t4ph" path="res://assets/reticles/cross.png" id="4_kupv1"]
 [ext_resource type="Texture2D" uid="uid://da542fl87vpfk" path="res://assets/reticles/chevron.png" id="5_qntyo"]
+[ext_resource type="Texture2D" uid="uid://dusx8uygtsa3u" path="res://assets/reticles/hollow_dot.png" id="6_0f4bp"]
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -69,7 +70,7 @@ unique_name_in_owner = true
 layout_mode = 2
 flat = true
 alignment = 1
-item_count = 3
+item_count = 4
 selected = 0
 popup/item_0/text = "Circle"
 popup/item_0/icon = ExtResource("2_ji1vt")
@@ -80,6 +81,9 @@ popup/item_1/id = 1
 popup/item_2/text = "Chevron"
 popup/item_2/icon = ExtResource("5_qntyo")
 popup/item_2/id = 2
+popup/item_3/text = "Hollow Circle"
+popup/item_3/icon = ExtResource("6_0f4bp")
+popup/item_3/id = 3
 
 [node name="ReticleColorPickerVContainer" type="VBoxContainer" parent="TabContainer/Settings/SettingsContainer/ReticleSettingsVContainer"]
 layout_mode = 2
