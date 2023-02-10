@@ -5,7 +5,6 @@ class_name Enemy
 @onready var start = position
 @export var health: int
 
-signal hit 
 
 func hit():
 	position = Vector3(randf_range(-.8, .8), randf_range(-.8, .8), start.z)

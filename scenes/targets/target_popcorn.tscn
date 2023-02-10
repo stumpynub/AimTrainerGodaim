@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8sal0moppk73"]
+
+[ext_resource type="Script" path="res://scripts/targets/target_popcorn.gd" id="1_g4vi8"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_cyp1s"]
+
+[node name="TargetPopcorn" type="RigidBody3D"]
+gravity_scale = 3.0
+script = ExtResource("1_g4vi8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.39612, 0, 0, 0, 0.39612, 0, 0, 0, 0.39612, 0, 0, 0)
+shape = SubResource("SphereShape3D_cyp1s")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="CollisionShape3D"]
