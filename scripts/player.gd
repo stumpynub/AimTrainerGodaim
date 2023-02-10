@@ -45,9 +45,10 @@ var coyote_time = 0.2
 
 signal action
 
-func _ready(): 
+func _enter_tree():
 	Global.player = self
-	
+
+func _ready(): 
 	_init_rays()
 
 func _process(delta):
