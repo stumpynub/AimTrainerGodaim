@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bvxiq1xo1p1j5"]
+[gd_scene load_steps=8 format=3 uid="uid://bvxiq1xo1p1j5"]
 
 [ext_resource type="Theme" uid="uid://bsxf0otie5016" path="res://assets/theme.tres" id="1_amped"]
 [ext_resource type="Script" path="res://scripts/ui/ui_settings.gd" id="2_3thbb"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://fq2lt45t4ph" path="res://assets/reticles/cross.png" id="4_kupv1"]
 [ext_resource type="Texture2D" uid="uid://da542fl87vpfk" path="res://assets/reticles/chevron.png" id="5_qntyo"]
 [ext_resource type="Texture2D" uid="uid://dusx8uygtsa3u" path="res://assets/reticles/hollow_dot.png" id="6_0f4bp"]
+[ext_resource type="Script" path="res://scenes/util/ezcfg.gd" id="7_k8bej"]
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -94,23 +95,10 @@ text = "Reticle Color
 "
 
 [node name="ColorPickerButton" type="ColorPickerButton" parent="TabContainer/Settings/SettingsContainer/ReticleSettingsVContainer/ReticleColorPickerVContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("1_amped")
 text = "dfasdf"
-
-[node name="ReticleScaleVContainer2" type="VBoxContainer" parent="TabContainer/Settings/SettingsContainer/ReticleSettingsVContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="TabContainer/Settings/SettingsContainer/ReticleSettingsVContainer/ReticleScaleVContainer2"]
-layout_mode = 2
-text = "Reticle Scale
-"
-
-[node name="HSlider" type="HSlider" parent="TabContainer/Settings/SettingsContainer/ReticleSettingsVContainer/ReticleScaleVContainer2"]
-layout_mode = 2
-max_value = 3.0
-step = 0.1
-value = 1.0
 
 [node name="ReticleScaleVContainer" type="VBoxContainer" parent="TabContainer/Settings/SettingsContainer/ReticleSettingsVContainer"]
 layout_mode = 2
@@ -120,7 +108,8 @@ layout_mode = 2
 text = "Reticle Scale
 "
 
-[node name="HSlider" type="HSlider" parent="TabContainer/Settings/SettingsContainer/ReticleSettingsVContainer/ReticleScaleVContainer"]
+[node name="ReticleScaleSlider" type="HSlider" parent="TabContainer/Settings/SettingsContainer/ReticleSettingsVContainer/ReticleScaleVContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 max_value = 3.0
 step = 0.1
@@ -146,6 +135,7 @@ text = "Mouse Sensitivity
 "
 
 [node name="SensitivitySlider" type="HSlider" parent="TabContainer/Settings/SettingsContainer/PlayerSettingsVContainer/SensitivityVContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 min_value = 0.01
 max_value = 2.0
@@ -164,14 +154,17 @@ text = "GraphicSettings"
 layout_mode = 2
 
 [node name="VsyncCheckBox" type="CheckBox" parent="TabContainer/Settings/SettingsContainer/GraphicsSettingsVContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "V-Sync"
 icon_alignment = 1
 
+[node name="EzCfg" type="Node" parent="."]
+script = ExtResource("7_k8bej")
+
 [connection signal="pressed" from="TabContainer/Game/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="item_selected" from="TabContainer/Settings/SettingsContainer/ReticleSettingsVContainer/ReticleImagesOptionVContainer/ReticleImagesOption" to="." method="_on_reticle_images_option_item_selected"]
 [connection signal="color_changed" from="TabContainer/Settings/SettingsContainer/ReticleSettingsVContainer/ReticleColorPickerVContainer/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
-[connection signal="value_changed" from="TabContainer/Settings/SettingsContainer/ReticleSettingsVContainer/ReticleScaleVContainer2/HSlider" to="." method="_on_h_slider_value_changed"]
-[connection signal="value_changed" from="TabContainer/Settings/SettingsContainer/ReticleSettingsVContainer/ReticleScaleVContainer/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="TabContainer/Settings/SettingsContainer/ReticleSettingsVContainer/ReticleScaleVContainer/ReticleScaleSlider" to="." method="_on_h_slider_value_changed"]
 [connection signal="value_changed" from="TabContainer/Settings/SettingsContainer/PlayerSettingsVContainer/SensitivityVContainer/SensitivitySlider" to="." method="_on_sensitivity_slider_value_changed"]
 [connection signal="toggled" from="TabContainer/Settings/SettingsContainer/GraphicsSettingsVContainer/VsyncCheckBox" to="." method="_on_vsync_check_box_toggled"]
