@@ -23,7 +23,6 @@ theme = ExtResource("1_amped")
 script = ExtResource("2_3thbb")
 
 [node name="TabContainer" type="TabContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,44 +32,11 @@ offset_right = -175.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Game" type="CenterContainer" parent="TabContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Game"]
-layout_mode = 2
-
-[node name="QuitButton" type="Button" parent="TabContainer/Game/VBoxContainer"]
-layout_mode = 2
-text = "Quit"
-
-[node name="SettingsContainer" type="HBoxContainer" parent="TabContainer"]
-visible = false
-layout_mode = 2
-theme_override_constants/separation = 100
-alignment = 1
-
-[node name="GraphicsSettingsVContainer" type="VBoxContainer" parent="TabContainer/SettingsContainer"]
-layout_mode = 2
-theme_override_constants/separation = 32
-
-[node name="Label" type="Label" parent="TabContainer/SettingsContainer/GraphicsSettingsVContainer"]
-layout_mode = 2
-text = "GraphicSettings"
-
-[node name="MarginContainer" type="MarginContainer" parent="TabContainer/SettingsContainer/GraphicsSettingsVContainer"]
-layout_mode = 2
-
-[node name="VsyncCheckBox" type="CheckBox" parent="TabContainer/SettingsContainer/GraphicsSettingsVContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "V-Sync"
-icon_alignment = 1
-
 [node name="Scenerios" type="ScrollContainer" parent="TabContainer"]
-visible = false
 layout_mode = 2
 
 [node name="SceneriosVContainer" type="VBoxContainer" parent="TabContainer/Scenerios"]
+visible = false
 custom_minimum_size = Vector2(500, 1000)
 layout_mode = 2
 size_flags_horizontal = 6
@@ -233,8 +199,6 @@ offset_right = 442.0
 offset_bottom = 35.0
 text = "CONTROLS"
 
-[connection signal="pressed" from="TabContainer/Game/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="toggled" from="TabContainer/SettingsContainer/GraphicsSettingsVContainer/VsyncCheckBox" to="." method="_on_vsync_check_box_toggled"]
 [connection signal="item_selected" from="ReticlePanel/ReticleSettingsVContainer/ReticleImagesOptionVContainer/ReticleImagesOption" to="." method="_on_reticle_images_option_item_selected"]
 [connection signal="color_changed" from="ReticlePanel/ReticleSettingsVContainer/ReticleColorPickerVContainer/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
 [connection signal="value_changed" from="ReticlePanel/ReticleSettingsVContainer/ReticleScaleVContainer/ReticleScaleSlider" to="." method="_on_h_slider_value_changed"]
