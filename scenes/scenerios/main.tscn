@@ -1,0 +1,87 @@
+[gd_scene load_steps=15 format=3 uid="uid://cum0c4g01kk68"]
+
+[ext_resource type="Texture2D" uid="uid://bjt71rlmshtio" path="res://assets/src/logo.png" id="1_i3pyv"]
+[ext_resource type="PackedScene" uid="uid://dd1inopnm13m3" path="res://scenes/ui/news.tscn" id="2_vgxuv"]
+[ext_resource type="Texture2D" uid="uid://bcx7gh8xiduk2" path="res://assets/backgrounds/night.exr" id="3_5c8i8"]
+[ext_resource type="PackedScene" uid="uid://b7y5xmt660wt3" path="res://scenes/player.tscn" id="4_4p7xv"]
+[ext_resource type="PackedScene" uid="uid://ig31frwu1h8l" path="res://scenes/targets/enemy.tscn" id="5_vwki0"]
+[ext_resource type="PackedScene" uid="uid://c6sn1dsp2w22a" path="res://scenes/targets/spawner.tscn" id="6_cskkp"]
+[ext_resource type="PackedScene" uid="uid://b8sal0moppk73" path="res://scenes/targets/target_popcorn.tscn" id="7_j7ixt"]
+[ext_resource type="Material" uid="uid://cgdkqar5mvrvw" path="res://assets/materials/grid_transparent.tres" id="8_wyy1l"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_nmn16"]
+viewport_path = NodePath("NewZone/MeshInstance3D/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ak1r"]
+resource_local_to_scene = true
+transparency = 1
+albedo_texture = SubResource("ViewportTexture_nmn16")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_15rcq"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_6ak1r")
+size = Vector2(16, 9)
+orientation = 2
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_frcbd"]
+panorama = ExtResource("3_5c8i8")
+
+[sub_resource type="Sky" id="Sky_yr1fm"]
+sky_material = SubResource("PanoramaSkyMaterial_frcbd")
+
+[sub_resource type="Environment" id="Environment_70xyv"]
+background_mode = 2
+background_energy_multiplier = 0.25
+sky = SubResource("Sky_yr1fm")
+sky_rotation = Vector3(0, 4.79442, 0)
+tonemap_mode = 2
+ssao_enabled = true
+glow_enabled = true
+
+[node name="Node3D" type="Node3D"]
+
+[node name="NewZone" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.769444, -4.42732)
+
+[node name="Sprite3D" type="Sprite3D" parent="NewZone"]
+transform = Transform3D(1, 0, 0, 0, 0.999948, -0.0101751, 0, 0.0101751, 0.999948, 0, 1.5335, 0)
+texture_filter = 1
+texture = ExtResource("1_i3pyv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NewZone"]
+transform = Transform3D(0.181768, 0, 0.118973, 0, 0.217242, 0, -0.118973, 0, 0.181768, -3.61997, 0, 3.05507)
+mesh = SubResource("PlaneMesh_15rcq")
+
+[node name="SubViewport" type="SubViewport" parent="NewZone/MeshInstance3D"]
+disable_3d = true
+transparent_bg = true
+size_2d_override = Vector2i(965, 653)
+size_2d_override_stretch = true
+
+[node name="News" parent="NewZone/MeshInstance3D/SubViewport" instance=ExtResource("2_vgxuv")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_70xyv")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.831737, -0.528377, 0.170386, -0.320319, 0.707401, 0.630063, -0.453442, 0.469469, -0.757621, 0, 1.84004, -7.04979)
+shadow_enabled = true
+shadow_opacity = 0.41
+shadow_blur = 0.944
+
+[node name="Node3D" parent="." instance=ExtResource("4_4p7xv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.00934)
+
+[node name="enemy_box" parent="." instance=ExtResource("5_vwki0")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.571763, 0.669174, -8.9295)
+
+[node name="Spawner" parent="." instance=ExtResource("6_cskkp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87833, -0.288894, 2.41498)
+scene = ExtResource("7_j7ixt")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.946815, 0.961725)
+material_override = ExtResource("8_wyy1l")
+use_collision = true
+size = Vector3(822.776, 0.110761, 494.773)

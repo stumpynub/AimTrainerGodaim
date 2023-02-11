@@ -11,7 +11,7 @@ material = SubResource("StandardMaterial3D_xb3if")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_esmvl"]
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D2" type="Node3D"]
 script = ExtResource("1_3arsa")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
