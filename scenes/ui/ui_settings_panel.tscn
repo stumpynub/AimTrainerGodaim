@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c56ndi646prqv"]
+[gd_scene load_steps=5 format=3 uid="uid://cwf1qkwhwulg"]
 
 [ext_resource type="Script" path="res://scripts/ui/ui_settings_panel.gd" id="1_lv5si"]
 [ext_resource type="Texture2D" uid="uid://fq2lt45t4ph" path="res://assets/reticles/cross.png" id="1_pqkha"]
-[ext_resource type="Texture2D" uid="uid://iimjt3srn03f" path="res://assets/images/grabber.png" id="3_wep3d"]
+[ext_resource type="Texture2D" path="res://assets/images/grabber.png" id="3_gl2le"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_26vva"]
 bg_color = Color(0.388235, 0.388235, 0.388235, 0.956863)
@@ -50,7 +50,7 @@ mouse_filter = 2
 self_modulate = Color(0.505882, 0.505882, 0.505882, 1)
 layout_mode = 2
 button_mask = 3
-texture_normal = ExtResource("3_wep3d")
+texture_normal = ExtResource("3_gl2le")
 
 [connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]
 [connection signal="button_down" from="CenterContainer/GrabButton" to="." method="_on_grab_button_button_down"]

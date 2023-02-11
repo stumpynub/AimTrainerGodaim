@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bnht6a7cfthe2"]
+[gd_scene load_steps=4 format=3 uid="uid://xuff85a6kofo"]
 
 [ext_resource type="Texture2D" uid="uid://bjt71rlmshtio" path="res://assets/src/logo.png" id="1_5qrlm"]
 [ext_resource type="Script" path="res://scripts/ui/ui_senereo_item.gd" id="1_je5qf"]
