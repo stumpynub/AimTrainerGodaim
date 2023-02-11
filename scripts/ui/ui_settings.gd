@@ -77,7 +77,6 @@ func _on_vsync_check_box_toggled(button_pressed):
 	ezcfg.save_value("graphics", "vsync", button_pressed)
 
 func init_values(): 
-	%VsyncCheckBox.button_pressed = ezcfg.get_value("graphics", "vsync")
 	%SensitivitySlider.value = ezcfg.get_value("player", "sensitivity", 0.2)
 	%ReticleImagesOption.selected = ezcfg.get_value("reticle", "image")
 	%ColorPickerButton.color = ezcfg.get_value("reticle", "color", Color(1,1,1,1))
