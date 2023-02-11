@@ -20,7 +20,7 @@ glow_enabled = true
 [node name="CrazyCubes" type="Node3D"]
 
 [node name="Player" parent="." instance=ExtResource("2_tckui")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.284773, 2.28255, 6.44776)
 enable_movement = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

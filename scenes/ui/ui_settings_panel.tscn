@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://c56ndi646prqv"]
+
+[ext_resource type="Script" path="res://scripts/ui/ui_settings_panel.gd" id="1_lv5si"]
+[ext_resource type="Texture2D" uid="uid://fq2lt45t4ph" path="res://assets/reticles/cross.png" id="1_pqkha"]
+[ext_resource type="Texture2D" uid="uid://iimjt3srn03f" path="res://assets/images/grabber.png" id="3_wep3d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_26vva"]
+bg_color = Color(0.388235, 0.388235, 0.388235, 0.956863)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 1
+
+[node name="Panel" type="Panel"]
+anchors_preset = -1
+anchor_right = 0.333333
+anchor_bottom = 0.419753
+theme_override_styles/panel = SubResource("StyleBoxFlat_26vva")
+script = ExtResource("1_lv5si")
+metadata/_edit_use_anchors_ = true
+
+[node name="CloseButton" type="TextureButton" parent="."]
+modulate = Color(1, 0.6, 0, 1)
+layout_mode = 2
+anchor_left = 0.895833
+anchor_top = 0.0477941
+anchor_right = 0.960938
+anchor_bottom = 0.139706
+grow_horizontal = 0
+rotation = -0.785397
+pivot_offset = Vector2(13, 13)
+texture_normal = ExtResource("1_pqkha")
+metadata/_edit_use_anchors_ = true
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 40.0
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="GrabButton" type="TextureButton" parent="CenterContainer"]
+self_modulate = Color(0.505882, 0.505882, 0.505882, 1)
+layout_mode = 2
+button_mask = 3
+texture_normal = ExtResource("3_wep3d")
+
+[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="button_down" from="CenterContainer/GrabButton" to="." method="_on_grab_button_button_down"]
+[connection signal="button_up" from="CenterContainer/GrabButton" to="." method="_on_grab_button_button_up"]

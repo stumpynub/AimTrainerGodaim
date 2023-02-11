@@ -44,7 +44,7 @@ func load_file():
 		print("file found")
 		emit_signal("loaded")
 
-func get_value(section, key): 
+func get_value(section, key, default=0): 
 	# returns the request value from our cfg file
 	if is_file_found(): 
 		var file = get_file()
@@ -52,9 +52,9 @@ func get_value(section, key):
 		# if no value is found save a new value with the given params
 		# TODO: may not be desired outcome so make an option to not save 
 		if !file.has_section_key(section, key): 
-			file.set_value(section, key, 0)
+			file.set_value(section, key, default)
 			save_file()
-		return file.get_value(section, key, 0)
+		return file.get_value(section, key, default)
 
 func save_value(section, key, value): 
 	if is_file_found():  

@@ -2,9 +2,10 @@
 
 [ext_resource type="FontFile" uid="uid://bo7dby5evgex7" path="res://assets/fonts/Anita semi square.ttf" id="1_gm22n"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0pre6"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ak885"]
+bg_color = Color(0, 0, 0, 0.862745)
 
 [resource]
 Button/fonts/font = ExtResource("1_gm22n")
-Button/styles/normal = SubResource("StyleBoxFlat_0pre6")
 Label/fonts/font = ExtResource("1_gm22n")
+TabContainer/styles/panel = SubResource("StyleBoxFlat_ak885")

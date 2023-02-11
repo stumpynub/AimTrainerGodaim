@@ -1,12 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://bvxiq1xo1p1j5"]
+[gd_scene load_steps=10 format=3 uid="uid://bvxiq1xo1p1j5"]
 
 [ext_resource type="Theme" uid="uid://bsxf0otie5016" path="res://assets/theme.tres" id="1_amped"]
 [ext_resource type="Script" path="res://scripts/ui/ui_settings.gd" id="2_3thbb"]
 [ext_resource type="Texture2D" uid="uid://cjheknmnawhfq" path="res://assets/reticles/dot.png" id="2_ji1vt"]
+[ext_resource type="PackedScene" uid="uid://c56ndi646prqv" path="res://scenes/ui/ui_settings_panel.tscn" id="3_i64wq"]
 [ext_resource type="Texture2D" uid="uid://fq2lt45t4ph" path="res://assets/reticles/cross.png" id="4_kupv1"]
 [ext_resource type="Texture2D" uid="uid://da542fl87vpfk" path="res://assets/reticles/chevron.png" id="5_qntyo"]
 [ext_resource type="Texture2D" uid="uid://dusx8uygtsa3u" path="res://assets/reticles/hollow_dot.png" id="6_0f4bp"]
 [ext_resource type="Script" path="res://scenes/util/ezcfg.gd" id="7_k8bej"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fius2"]
+bg_color = Color(0.109804, 0.109804, 0.109804, 1)
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -19,6 +23,7 @@ theme = ExtResource("1_amped")
 script = ExtResource("2_3thbb")
 
 [node name="TabContainer" type="TabContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -38,35 +43,75 @@ layout_mode = 2
 layout_mode = 2
 text = "Quit"
 
-[node name="Settings" type="CenterContainer" parent="TabContainer"]
+[node name="SettingsContainer" type="HBoxContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="GraphicsSettingsVContainer" type="VBoxContainer" parent="TabContainer/SettingsContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="TabContainer/SettingsContainer/GraphicsSettingsVContainer"]
+layout_mode = 2
+text = "GraphicSettings"
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/SettingsContainer/GraphicsSettingsVContainer"]
+layout_mode = 2
+
+[node name="VsyncCheckBox" type="CheckBox" parent="TabContainer/SettingsContainer/GraphicsSettingsVContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "V-Sync"
+icon_alignment = 1
+
+[node name="Scenerios" type="ScrollContainer" parent="TabContainer"]
 visible = false
 layout_mode = 2
 
-[node name="SettingsContainer" type="HBoxContainer" parent="TabContainer/Settings"]
+[node name="SceneriosVContainer" type="VBoxContainer" parent="TabContainer/Scenerios"]
+custom_minimum_size = Vector2(500, 1000)
 layout_mode = 2
-theme_override_constants/separation = 100
+size_flags_horizontal = 6
 
-[node name="ReticleSettingsVContainer" type="VBoxContainer" parent="TabContainer/Settings/SettingsContainer"]
-layout_mode = 2
+[node name="ReticlePanel" parent="." instance=ExtResource("3_i64wq")]
+layout_mode = 1
+anchor_left = -0.0347222
+anchor_top = 0.0617284
+anchor_right = 0.368056
+anchor_bottom = 0.82716
+
+[node name="ReticleSettingsVContainer" type="VBoxContainer" parent="ReticlePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 40.0
+offset_right = -24.0
+offset_bottom = -8.00003
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/separation = 32
-alignment = 2
 
-[node name="Label" type="Label" parent="TabContainer/Settings/SettingsContainer/ReticleSettingsVContainer"]
+[node name="Label" type="Label" parent="ReticlePanel/ReticleSettingsVContainer"]
 layout_mode = 2
 text = "Reticle Settings"
+horizontal_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Settings/SettingsContainer/ReticleSettingsVContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="ReticlePanel/ReticleSettingsVContainer"]
 layout_mode = 2
 
-[node name="ReticleImagesOptionVContainer" type="VBoxContainer" parent="TabContainer/Settings/SettingsContainer/ReticleSettingsVContainer"]
+[node name="ReticleImagesOptionVContainer" type="VBoxContainer" parent="ReticlePanel/ReticleSettingsVContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="TabContainer/Settings/SettingsContainer/ReticleSettingsVContainer/ReticleImagesOptionVContainer"]
+[node name="Label" type="Label" parent="ReticlePanel/ReticleSettingsVContainer/ReticleImagesOptionVContainer"]
 layout_mode = 2
 text = "Image"
 horizontal_alignment = 1
 
-[node name="ReticleImagesOption" type="OptionButton" parent="TabContainer/Settings/SettingsContainer/ReticleSettingsVContainer/ReticleImagesOptionVContainer"]
+[node name="ReticleImagesOption" type="OptionButton" parent="ReticlePanel/ReticleSettingsVContainer/ReticleImagesOptionVContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 flat = true
@@ -86,55 +131,75 @@ popup/item_3/text = "Hollow Circle"
 popup/item_3/icon = ExtResource("6_0f4bp")
 popup/item_3/id = 3
 
-[node name="ReticleColorPickerVContainer" type="VBoxContainer" parent="TabContainer/Settings/SettingsContainer/ReticleSettingsVContainer"]
+[node name="ReticleColorPickerVContainer" type="VBoxContainer" parent="ReticlePanel/ReticleSettingsVContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="TabContainer/Settings/SettingsContainer/ReticleSettingsVContainer/ReticleColorPickerVContainer"]
+[node name="Label" type="Label" parent="ReticlePanel/ReticleSettingsVContainer/ReticleColorPickerVContainer"]
 layout_mode = 2
 text = "Reticle Color
 "
+horizontal_alignment = 1
 
-[node name="ColorPickerButton" type="ColorPickerButton" parent="TabContainer/Settings/SettingsContainer/ReticleSettingsVContainer/ReticleColorPickerVContainer"]
+[node name="ColorPickerButton" type="ColorPickerButton" parent="ReticlePanel/ReticleSettingsVContainer/ReticleColorPickerVContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("1_amped")
 text = "dfasdf"
 
-[node name="ReticleScaleVContainer" type="VBoxContainer" parent="TabContainer/Settings/SettingsContainer/ReticleSettingsVContainer"]
+[node name="ReticleScaleVContainer" type="VBoxContainer" parent="ReticlePanel/ReticleSettingsVContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="TabContainer/Settings/SettingsContainer/ReticleSettingsVContainer/ReticleScaleVContainer"]
+[node name="Label" type="Label" parent="ReticlePanel/ReticleSettingsVContainer/ReticleScaleVContainer"]
 layout_mode = 2
 text = "Reticle Scale
 "
+horizontal_alignment = 1
 
-[node name="ReticleScaleSlider" type="HSlider" parent="TabContainer/Settings/SettingsContainer/ReticleSettingsVContainer/ReticleScaleVContainer"]
+[node name="ReticleScaleSlider" type="HSlider" parent="ReticlePanel/ReticleSettingsVContainer/ReticleScaleVContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 max_value = 3.0
 step = 0.1
 value = 1.0
 
-[node name="PlayerSettingsVContainer" type="VBoxContainer" parent="TabContainer/Settings/SettingsContainer"]
+[node name="ReticlePreview" type="TextureRect" parent="ReticlePanel/ReticleSettingsVContainer"]
+unique_name_in_owner = true
 layout_mode = 2
+texture = ExtResource("2_ji1vt")
+stretch_mode = 3
+
+[node name="ControlsPanel" parent="." instance=ExtResource("3_i64wq")]
+layout_mode = 1
+anchor_left = 0.520833
+anchor_top = 0.160494
+anchor_right = 0.854167
+anchor_bottom = 0.580247
+
+[node name="PlayerSettingsVContainer" type="VBoxContainer" parent="ControlsPanel"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 344.0
+offset_bottom = 224.0
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="TabContainer/Settings/SettingsContainer/PlayerSettingsVContainer"]
+[node name="Label" type="Label" parent="ControlsPanel/PlayerSettingsVContainer"]
 layout_mode = 2
 text = "Player Settings"
+horizontal_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Settings/SettingsContainer/PlayerSettingsVContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="ControlsPanel/PlayerSettingsVContainer"]
 layout_mode = 2
 
-[node name="SensitivityVContainer" type="VBoxContainer" parent="TabContainer/Settings/SettingsContainer/PlayerSettingsVContainer"]
+[node name="SensitivityVContainer" type="VBoxContainer" parent="ControlsPanel/PlayerSettingsVContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="TabContainer/Settings/SettingsContainer/PlayerSettingsVContainer/SensitivityVContainer"]
+[node name="Label" type="Label" parent="ControlsPanel/PlayerSettingsVContainer/SensitivityVContainer"]
 layout_mode = 2
 text = "Mouse Sensitivity
 "
 
-[node name="SensitivitySlider" type="HSlider" parent="TabContainer/Settings/SettingsContainer/PlayerSettingsVContainer/SensitivityVContainer"]
+[node name="SensitivitySlider" type="HSlider" parent="ControlsPanel/PlayerSettingsVContainer/SensitivityVContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 min_value = 0.01
@@ -142,29 +207,37 @@ max_value = 2.0
 step = 0.01
 value = 1.01
 
-[node name="GraphicsSettingsVContainer" type="VBoxContainer" parent="TabContainer/Settings/SettingsContainer"]
-layout_mode = 2
-theme_override_constants/separation = 32
-
-[node name="Label" type="Label" parent="TabContainer/Settings/SettingsContainer/GraphicsSettingsVContainer"]
-layout_mode = 2
-text = "GraphicSettings"
-
-[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Settings/SettingsContainer/GraphicsSettingsVContainer"]
-layout_mode = 2
-
-[node name="VsyncCheckBox" type="CheckBox" parent="TabContainer/Settings/SettingsContainer/GraphicsSettingsVContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "V-Sync"
-icon_alignment = 1
-
 [node name="EzCfg" type="Node" parent="."]
 script = ExtResource("7_k8bej")
 
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_top = 608.0
+offset_right = 1152.0
+offset_bottom = 648.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_fius2")
+
+[node name="ReticleMenuButton" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 8.0
+offset_right = 338.0
+offset_bottom = 35.0
+text = "RETICLE"
+
+[node name="ReticleMenuButton2" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 8.0
+offset_right = 442.0
+offset_bottom = 35.0
+text = "CONTROLS"
+
 [connection signal="pressed" from="TabContainer/Game/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="item_selected" from="TabContainer/Settings/SettingsContainer/ReticleSettingsVContainer/ReticleImagesOptionVContainer/ReticleImagesOption" to="." method="_on_reticle_images_option_item_selected"]
-[connection signal="color_changed" from="TabContainer/Settings/SettingsContainer/ReticleSettingsVContainer/ReticleColorPickerVContainer/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
-[connection signal="value_changed" from="TabContainer/Settings/SettingsContainer/ReticleSettingsVContainer/ReticleScaleVContainer/ReticleScaleSlider" to="." method="_on_h_slider_value_changed"]
-[connection signal="value_changed" from="TabContainer/Settings/SettingsContainer/PlayerSettingsVContainer/SensitivityVContainer/SensitivitySlider" to="." method="_on_sensitivity_slider_value_changed"]
-[connection signal="toggled" from="TabContainer/Settings/SettingsContainer/GraphicsSettingsVContainer/VsyncCheckBox" to="." method="_on_vsync_check_box_toggled"]
+[connection signal="toggled" from="TabContainer/SettingsContainer/GraphicsSettingsVContainer/VsyncCheckBox" to="." method="_on_vsync_check_box_toggled"]
+[connection signal="item_selected" from="ReticlePanel/ReticleSettingsVContainer/ReticleImagesOptionVContainer/ReticleImagesOption" to="." method="_on_reticle_images_option_item_selected"]
+[connection signal="color_changed" from="ReticlePanel/ReticleSettingsVContainer/ReticleColorPickerVContainer/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
+[connection signal="value_changed" from="ReticlePanel/ReticleSettingsVContainer/ReticleScaleVContainer/ReticleScaleSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="ControlsPanel/PlayerSettingsVContainer/SensitivityVContainer/SensitivitySlider" to="." method="_on_sensitivity_slider_value_changed"]
+[connection signal="pressed" from="Panel/ReticleMenuButton" to="." method="_on_reticle_menu_button_pressed"]
+[connection signal="pressed" from="Panel/ReticleMenuButton2" to="." method="_on_reticle_menu_button_2_pressed"]
