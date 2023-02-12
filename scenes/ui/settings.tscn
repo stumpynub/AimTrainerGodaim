@@ -173,7 +173,6 @@ layout_mode = 2
 anchor_top = 0.125
 anchor_right = 0.999998
 anchor_bottom = 0.939516
-mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="ScenariosVContainer" type="VBoxContainer" parent="SettingsContainer/ScenariosPanel/Scenarios"]
@@ -298,9 +297,13 @@ horizontal_alignment = 1
 [node name="MarginContainer" type="MarginContainer" parent="SettingsContainer/VideoPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer"]
 layout_mode = 2
 
-[node name="CheckBox" type="CheckBox" parent="SettingsContainer/VideoPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer"]
+[node name="VsyncCheckbox" type="CheckBox" parent="SettingsContainer/VideoPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer"]
 layout_mode = 2
-text = "VSYNC"
+text = "vsync"
+
+[node name="FullscreenCheckbox" type="CheckBox" parent="SettingsContainer/VideoPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer"]
+layout_mode = 2
+text = "fullscreen"
 
 [node name="EnviromentPanel" parent="SettingsContainer" instance=ExtResource("3_i64wq")]
 layout_mode = 1
