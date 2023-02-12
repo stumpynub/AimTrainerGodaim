@@ -1,16 +1,20 @@
 extends Control
 
-@onready var scenerios_container = $TabContainer/Scenerios/SceneriosVContainer
+@onready var scenarios_container = %ScenariosVContainer
 @onready var ezcfg: EzCfg = $EzCfg
+@onready var customize_popup = %CustomizeMenuButton.get_popup()
+@onready var settings_popup = %SettingsMenuButton.get_popup()
 
-
+var settings_panels = []
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	hide()
 	
+	customize_popup.id_pressed.connect(customize_pressed)
+	settings_popup.id_pressed.connect(settings_pressed)
 	var dir = "res://scenes/scenerios/"
+	
 	if DirAccess.dir_exists_absolute("res://scenes/scenerios/"): 
 		for file in DirAccess.get_files_at("res://scenes/scenerios/"):
 
@@ -19,10 +23,10 @@ func _ready():
 			var path = dir + str(file)
 			print(path)
 			name = name.replace(".tscn", "")
-			name = name.replace("scenerio ", "")
+			name = name.replace("scenario ", "")
 			instance = instance.instantiate()
 			instance.set_item(name, path)
-			scenerios_container.add_child(instance)
+			scenarios_container.add_child(instance)
 	
 	init_values()
 
@@ -30,12 +34,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_just_pressed("menu"):
-		if visible: 
-			get_parent().ui_locked = false 
-			visible = false 
-		else: 
-			get_parent().ui_locked = true 
-			visible = true
+		toggle_menu()
 
 
 func _on_h_slider_value_changed(value):
@@ -88,14 +87,58 @@ func init_values():
 	Global.reticle.scale.y = ezcfg.get_value("reticle", "scale")
 	
 	update_reticle_preview()
-func _on_reticle_menu_button_pressed():
-	$ReticlePanel.show()
-	$ReticlePanel.move_to_front()
-
+	
 func update_reticle_preview(): 
 	%ReticlePreview.modulate = %ColorPickerButton.color
 	%ReticlePreview.texture =  %ReticleImagesOption.get_item_icon(ezcfg.get_value("reticle", "image"))
 
+func _on_reticle_menu_button_pressed():
+	select_panel($SettingsContainer/ReticlePanel)
+
 func _on_reticle_menu_button_2_pressed():
-	$ControlsPanel.show()
-	$ControlsPanel.move_to_front()
+	select_panel($SettingsContainer/ControlsPanel)
+	
+func _on_scenarios_menu_button_pressed():
+		select_panel($SettingsContainer/ScenariosPanel)
+
+func _on_stats_pressed():
+	select_panel($SettingsContainer/StatsPanel)
+
+
+func customize_pressed(id): 
+	match id: 
+		0: 
+			select_panel($SettingsContainer/ReticlePanel)
+		1: 
+			select_panel($SettingsContainer/EnviromentPanel)
+			
+func settings_pressed(id): 
+	match id: 
+		0: 
+			select_panel($SettingsContainer/ControlsPanel)
+		
+		1: 
+			select_panel($SettingsContainer/VideoPanel)
+			
+func select_panel(panel): 
+	panel.show()
+	panel.move_to_front()
+	panel.global_position.x = get_viewport().size.x / 2 - panel.size.x / 2
+	panel.global_position.y = (get_viewport().size.y / 2) - panel.size.y / 2
+	
+
+func toggle_menu(): 
+	if visible: 
+		hide()
+		Global.player.ui_locked = false
+	else: 
+		show()
+		Global.player.ui_locked = true
+
+func _on_scenarios_search_text_changed(new_text):
+	for s in scenarios_container.get_children(): 
+		if s.get("scenario_name"): 
+			if str(s.scenario_name).contains(new_text.strip_edges()) or new_text == "":
+				s.show()
+			else: 
+				s.hide()

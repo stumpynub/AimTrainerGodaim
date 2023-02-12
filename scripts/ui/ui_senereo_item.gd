@@ -1,5 +1,6 @@
 extends Control
 
+var scenario_name = ""
 var path = ""
 var mouse_hovered = false
 
@@ -11,7 +12,8 @@ func _process(delta):
 
 func set_item(name, p):
 	path = p 
-	$Label.text = name
+	scenario_name = name
+	$Label.text = scenario_name
 
 
 

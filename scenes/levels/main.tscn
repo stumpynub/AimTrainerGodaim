@@ -1,27 +1,10 @@
-[gd_scene load_steps=15 format=3]
+[gd_scene load_steps=9 format=3 uid="uid://cpkq4dij3d6vf"]
 
-[ext_resource type="Texture2D" uid="uid://bjt71rlmshtio" path="res://assets/src/logo.png" id="1_wua64"]
 [ext_resource type="PackedScene" uid="uid://b7y5xmt660wt3" path="res://scenes/player.tscn" id="2_qww2c"]
-[ext_resource type="PackedScene" path="res://scenes/ui/news.tscn" id="2_yw2j2"]
 [ext_resource type="Texture2D" uid="uid://bcx7gh8xiduk2" path="res://assets/backgrounds/night.exr" id="3_5bdqe"]
-[ext_resource type="PackedScene" uid="uid://ig31frwu1h8l" path="res://scenes/targets/enemy.tscn" id="4_widby"]
-[ext_resource type="Material" uid="uid://cgdkqar5mvrvw" path="res://assets/materials/environment_background/grid_transparent.tres" id="5_3omwl"]
 [ext_resource type="PackedScene" uid="uid://c6sn1dsp2w22a" path="res://scenes/targets/spawner.tscn" id="7_hc76a"]
 [ext_resource type="PackedScene" uid="uid://b8sal0moppk73" path="res://scenes/targets/target_popcorn.tscn" id="8_kfwj8"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_nmn16"]
-viewport_path = NodePath("NewZone/MeshInstance3D/SubViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ak1r"]
-resource_local_to_scene = true
-transparency = 1
-albedo_texture = SubResource("ViewportTexture_nmn16")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_15rcq"]
-resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_6ak1r")
-size = Vector2(16, 9)
-orientation = 2
+[ext_resource type="PackedScene" uid="uid://il8o4nxjg74e" path="res://scenes/targets/target_dueling_tree.tscn" id="9_ti2gs"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_frcbd"]
 panorama = ExtResource("3_5bdqe")
@@ -40,26 +23,6 @@ glow_enabled = true
 
 [node name="Node3D" type="Node3D"]
 
-[node name="NewZone" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.769444, -4.42732)
-
-[node name="Sprite3D" type="Sprite3D" parent="NewZone"]
-transform = Transform3D(1, 0, 0, 0, 0.999948, -0.0101751, 0, 0.0101751, 0.999948, 0, 1.5335, 0)
-texture_filter = 1
-texture = ExtResource("1_wua64")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NewZone"]
-transform = Transform3D(0.181768, 0, 0.118973, 0, 0.217242, 0, -0.118973, 0, 0.181768, -3.61997, 0, 3.05507)
-mesh = SubResource("PlaneMesh_15rcq")
-
-[node name="SubViewport" type="SubViewport" parent="NewZone/MeshInstance3D"]
-disable_3d = true
-transparent_bg = true
-size_2d_override = Vector2i(965, 653)
-size_2d_override_stretch = true
-
-[node name="News" parent="NewZone/MeshInstance3D/SubViewport" instance=ExtResource("2_yw2j2")]
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_70xyv")
 
@@ -72,16 +35,14 @@ shadow_blur = 0.944
 [node name="Node3D" parent="." instance=ExtResource("2_qww2c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.00934)
 
-[node name="enemy_box" parent="." instance=ExtResource("4_widby")]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.571763, 0.669174, -8.9295)
-
 [node name="Spawner" parent="." instance=ExtResource("7_hc76a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87833, -0.288894, 2.41498)
 scene = ExtResource("8_kfwj8")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.946815, 0.961725)
-material_override = ExtResource("5_3omwl")
 use_collision = true
 size = Vector3(822.776, 0.110761, 494.773)
+
+[node name="TargetDuelingTree" parent="." instance=ExtResource("9_ti2gs")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.76993, 5.47676, 11.8029)

@@ -11,3 +11,4 @@ normal_texture = ExtResource("2_mtlsb")
 ao_texture = ExtResource("2_mtlsb")
 refraction_texture = ExtResource("2_mtlsb")
 uv1_triplanar = true
+uv1_world_triplanar = true

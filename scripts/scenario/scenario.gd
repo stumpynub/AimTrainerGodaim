@@ -1,14 +1,13 @@
-extends Node
+extends Node3D
 
-var player = null 
-var reticle = null 
-var current_scenario = null
- 
+var total_clicks = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	Global.current_scenario = self 
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if !Global.player.ui_locked and Input.is_action_just_pressed("action"): 
+		total_clicks += 1
