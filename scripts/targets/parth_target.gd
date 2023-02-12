@@ -13,17 +13,20 @@ func _ready():
 func _process(delta):
 	if progress_ratio >= 1: 
 		dir = -1 
-		
-	elif progress_ratio <= 0: 
+		r = 1
+	if progress_ratio <= 0: 
 		dir = 1 
-		
+		r = -1
 	
+
 func _physics_process(delta):
-	if r <= 0: 
-		progress_ratio += delta * dir * speed
-	else: 
-		progress_ratio -= delta * dir * speed
-		
+	progress_ratio += delta * (speed * dir) * r
+	
 func _on_timer_timeout():
 	r = randf_range(-3, 3)
-
+	if r == 0: 
+		r = 1
+	elif r < 0: 
+		r = -1 
+	elif r > 0: 
+		r = 1
