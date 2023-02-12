@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dyf4miwqnxqil"]
+[gd_scene load_steps=7 format=3 uid="uid://djnvt8q7o7t4j"]
 
 [ext_resource type="PackedScene" uid="uid://ig31frwu1h8l" path="res://scenes/targets/enemy.tscn" id="1_4yyky"]
 [ext_resource type="PackedScene" uid="uid://b7y5xmt660wt3" path="res://scenes/player.tscn" id="2_tckui"]
@@ -42,7 +42,7 @@ flip_faces = true
 size = Vector3(16, 16, 16)
 
 [node name="box_enemy1" parent="." groups=["box_enemy"] instance=ExtResource("1_4yyky")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -7)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -7.06151)
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -4.06151)
