@@ -1,7 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://ig31frwu1h8l"]
 
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_3arsa"]
+[ext_resource type="Script" path="res://scripts/targets/target_random_radius.gd" id="1_kmbqb"]
 [ext_resource type="Texture2D" uid="uid://cqwy35syndtf4" path="res://assets/textures/icon.svg" id="2_10381"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kvrta"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xb3if"]
 albedo_texture = ExtResource("2_10381")
@@ -9,15 +11,14 @@ albedo_texture = ExtResource("2_10381")
 [sub_resource type="BoxMesh" id="BoxMesh_v0v0s"]
 material = SubResource("StandardMaterial3D_xb3if")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_esmvl"]
+[node name="RigidBody3D" type="RigidBody3D" groups=["target"]]
+freeze = true
+freeze_mode = 1
+script = ExtResource("1_kmbqb")
 
-[node name="Node3D2" type="Node3D"]
-script = ExtResource("1_3arsa")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_kvrta")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_v0v0s")
-
-[node name="Area3D" type="Area3D" parent="."]
-
-[node name="box_enemy_collider" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource("BoxShape3D_esmvl")
+skeleton = NodePath("")

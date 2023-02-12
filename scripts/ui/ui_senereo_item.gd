@@ -13,7 +13,7 @@ func _process(delta):
 func set_item(name, p):
 	path = p 
 	scenario_name = name
-	$Label.text = scenario_name
+	$Panel/Label.text = scenario_name
 
 
 
