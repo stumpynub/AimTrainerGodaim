@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4vrn1ihauj68"
-path="res://.godot/imported/grabber.png-e89391020197a4affbb903a0727aecc2.ctex"
+uid="uid://iimjt3srn03f"
+path="res://.godot/imported/grabber.png-aca777d553ed35410a168548162d0e39.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/grabber.png"
-dest_files=["res://.godot/imported/grabber.png-e89391020197a4affbb903a0727aecc2.ctex"]
+source_file="res://assets/images/ui/grabber.png"
+dest_files=["res://.godot/imported/grabber.png-aca777d553ed35410a168548162d0e39.ctex"]
 
 [params]
 

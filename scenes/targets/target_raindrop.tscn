@@ -1,21 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8sal0moppk73"]
+[gd_scene load_steps=3 format=3 uid="uid://brxmem847i6ih"]
 
-[ext_resource type="Script" path="res://scripts/targets/target_popcorn.gd" id="1_g4vi8"]
+[ext_resource type="Script" path="res://scripts/targets/target_popcorn.gd" id="1_3c8ma"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_cyp1s"]
 
-[node name="TargetPopcorn" type="RigidBody3D"]
-gravity_scale = 3.0
-script = ExtResource("1_g4vi8")
+[node name="TargetRaindrop" type="RigidBody3D"]
+collision_layer = 4
+gravity_scale = 2.0
+max_contacts_reported = 1
+contact_monitor = true
+script = ExtResource("1_3c8ma")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.39612, 0, 0, 0, 0.39612, 0, 0, 0, 0.39612, 0, 0, 0)
+transform = Transform3D(2.22443, 0, 0, 0, 2.22443, 0, 0, 0, 2.22443, 0, 0, 0)
 shape = SubResource("SphereShape3D_cyp1s")
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="CollisionShape3D"]
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 1.5
+wait_time = 3.0
 autostart = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

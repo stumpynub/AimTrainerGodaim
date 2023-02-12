@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://il8o4nxjg74e"]
+
+[ext_resource type="Script" path="res://scripts/targets/target_tree_item.gd" id="1_rpk50"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_jysbk"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_fsg1j"]
+height = 0.151335
+radius = 0.874932
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vu04e"]
+
+[node name="TargetDuelingTree" type="Node3D"]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(0.433826, 0, 0, 0, 10.5684, 0, 0, 0, 0.433826, 0, 0, 0)
+mesh = SubResource("CylinderMesh_jysbk")
+
+[node name="TargetTree" type="Node3D" parent="."]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.2106)
+mass = 0.07
+linear_damp = 7.353
+angular_damp = 7.843
+script = ExtResource("1_rpk50")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("CylinderShape3D_fsg1j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D/CollisionShape3D"]
+transform = Transform3D(1.51957, 0, 0, 0, 0.105819, 0, 0, 0, 1.61075, 0, 0, 0)
+mesh = SubResource("CylinderMesh_vu04e")
+
+[node name="HingeJoint3D" type="HingeJoint3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+node_b = NodePath("../RigidBody3D")
+angular_limit/enable = true
+motor/enable = true
+motor/target_velocity = 0.1

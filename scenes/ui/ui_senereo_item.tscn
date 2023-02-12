@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/ui/ui_senereo_item.gd" id="1_je5qf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hekr"]
-bg_color = Color(0.0431373, 0.0431373, 0.0431373, 1)
+bg_color = Color(0.239216, 0.239216, 0.239216, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -24,16 +24,19 @@ script = ExtResource("1_je5qf")
 metadata/_edit_use_anchors_ = true
 
 [node name="Panel" type="Panel" parent="."]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.5
 theme_override_styles/panel = SubResource("StyleBoxFlat_4hekr")
 metadata/_edit_use_anchors_ = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 2
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = -0.0208328
+anchor_top = -0.125
+anchor_right = 0.979167
+anchor_bottom = 0.742187
 pivot_offset = Vector2(48, 56)
 texture = ExtResource("1_5qrlm")
 stretch_mode = 4
@@ -41,10 +44,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
-anchor_left = 0.5
-anchor_top = 0.0625
-anchor_right = 0.6875
-anchor_bottom = 0.265625
+anchor_left = 0.416667
+anchor_right = 0.604167
+anchor_bottom = 0.203125
 text = "scenerio"
 metadata/_edit_use_anchors_ = true
 

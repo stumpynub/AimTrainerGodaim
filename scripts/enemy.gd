@@ -5,19 +5,36 @@ class_name Enemy
 @onready var start = position
 @export var health: int
 @onready var boxes: Array = get_tree().get_nodes_in_group("box_enemy")
-
-func _ready():
-	print(boxes)
-
+var close_boxes = []
+var can_change = false 
+var i = 0 
 func hit():
-	print('hit')
-	for box in boxes:
-		print('in loop')
-		if is_collided(self, box):
-			box.position = Vector3(randf_range(-7, 7), randf_range(-7, 7), start.z)
+	
+	global_position = Vector3(randf_range(-7, 7), randf_range(-7, 7), start.z)
+	
+	while 1: 
+		var close_list = []
+		var close = false
+		
+		global_position = Vector3(randf_range(-7, 7), randf_range(-7, 7), start.z)
+		
+		for box in boxes: 
+			var d = global_position.distance_to(box.global_position)
 			
+			if box != self: 
+				close_list.append(d < 2.5)
+				
+		for i in close_list.size() :
+			if close_list[i] == true: 
+				global_position = Vector3(randf_range(-7, 7), randf_range(-7, 7), start.z)
+				close = true 
+	
+			if i == int(close_list.size() - 1): 
+				if close == false: 
+					return
+	
+
 func is_collided(box1, box2):
-	print("in collided")
 	var distance = box1.position.distance_to(box2.position)
 	var combined_size = (box1.scale + box2.scale).length() + 4
 	if distance <= combined_size / 2:

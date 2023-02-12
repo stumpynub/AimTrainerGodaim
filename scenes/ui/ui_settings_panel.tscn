@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cwf1qkwhwulg"]
+[gd_scene load_steps=7 format=3 uid="uid://b7wlu8lqxga7o"]
 
 [ext_resource type="Script" path="res://scripts/ui/ui_settings_panel.gd" id="1_lv5si"]
-[ext_resource type="Texture2D" uid="uid://fq2lt45t4ph" path="res://assets/reticles/cross.png" id="1_pqkha"]
-[ext_resource type="Texture2D" path="res://assets/images/grabber.png" id="3_gl2le"]
+[ext_resource type="Texture2D" uid="uid://k5abksemmvlk" path="res://assets/images/ui/close.png" id="2_aphxm"]
+[ext_resource type="Texture2D" uid="uid://c4vrn1ihauj68" path="res://assets/images/grabber.png" id="3_gl2le"]
+[ext_resource type="Texture2D" uid="uid://daoej6u6cmh1k" path="res://assets/images/ui/scale.png" id="4_v5hs4"]
+[ext_resource type="Texture2D" uid="uid://di4lgui1yfidf" path="res://assets/images/ui/pin.png" id="5_3lrqy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_26vva"]
 bg_color = Color(0.388235, 0.388235, 0.388235, 0.956863)
@@ -18,6 +20,7 @@ corner_radius_bottom_left = 5
 corner_detail = 1
 
 [node name="Panel" type="Panel"]
+custom_minimum_size = Vector2(200, 100)
 anchors_preset = -1
 anchor_right = 0.333333
 anchor_bottom = 0.419753
@@ -26,23 +29,27 @@ script = ExtResource("1_lv5si")
 metadata/_edit_use_anchors_ = true
 
 [node name="CloseButton" type="TextureButton" parent="."]
-modulate = Color(1, 0.6, 0, 1)
-layout_mode = 2
-anchor_left = 0.895833
-anchor_top = 0.0477941
-anchor_right = 0.960938
-anchor_bottom = 0.139706
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -23.9996
+offset_top = 8.0
+offset_right = -7.9996
+offset_bottom = 25.0
 grow_horizontal = 0
-rotation = -0.785397
-pivot_offset = Vector2(13, 13)
-texture_normal = ExtResource("1_pqkha")
-metadata/_edit_use_anchors_ = true
+rotation = -1.57079
+pivot_offset = Vector2(8.21289, 9.34097)
+texture_normal = ExtResource("2_aphxm")
+stretch_mode = 3
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 40.0
+offset_left = 48.0
+offset_right = -71.9996
+offset_bottom = 24.0
 grow_horizontal = 2
 mouse_filter = 2
 
@@ -52,6 +59,36 @@ layout_mode = 2
 button_mask = 3
 texture_normal = ExtResource("3_gl2le")
 
+[node name="SizeButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -23.9996
+offset_top = -23.9999
+offset_right = -8.99957
+offset_bottom = -8.99994
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("4_v5hs4")
+
+[node name="PinButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -63.9996
+offset_top = 8.0
+offset_right = -47.9996
+offset_bottom = 29.0
+grow_horizontal = 0
+pivot_offset = Vector2(10, 11)
+texture_normal = ExtResource("5_3lrqy")
+
 [connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]
 [connection signal="button_down" from="CenterContainer/GrabButton" to="." method="_on_grab_button_button_down"]
 [connection signal="button_up" from="CenterContainer/GrabButton" to="." method="_on_grab_button_button_up"]
+[connection signal="button_down" from="SizeButton" to="." method="_on_size_button_button_down"]
+[connection signal="button_up" from="SizeButton" to="." method="_on_size_button_button_up"]

@@ -1,6 +1,18 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://bsxf0otie5016"]
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://bsxf0otie5016"]
 
 [ext_resource type="FontFile" uid="uid://bo7dby5evgex7" path="res://assets/fonts/Anita semi square.ttf" id="1_gm22n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gwnwa"]
+bg_color = Color(0.109804, 0.109804, 0.109804, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_top = 236.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ak885"]
 bg_color = Color(0, 0, 0, 0.862745)
@@ -8,4 +20,5 @@ bg_color = Color(0, 0, 0, 0.862745)
 [resource]
 Button/fonts/font = ExtResource("1_gm22n")
 Label/fonts/font = ExtResource("1_gm22n")
+PopupMenu/styles/panel = SubResource("StyleBoxFlat_gwnwa")
 TabContainer/styles/panel = SubResource("StyleBoxFlat_ak885")

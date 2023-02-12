@@ -59,17 +59,21 @@ func _process(delta):
 
 	if get_slide_collision_count() > 0: 
 		velocity += get_last_slide_collision().get_normal() * 2
-	
-	if Input.is_action_just_pressed("ads"): 
-		$Camera3D/glock/GlockAnim.play("ads")
-	elif Input.is_action_just_released("ads"):
-		$Camera3D/glock/GlockAnim.play_backwards("ads")
-		
+
 	if Input.is_action_just_pressed("action") and !ui_locked: 
 		# add an offset with the collision normal
 		# helps when placing things such as lights 
+		
 		if interaction_ray.is_colliding():
+			if interaction_ray.get_collider().get_class() == "RigidBody3D": 
+				interaction_ray.get_collider().apply_central_impulse(
+					-camera.global_transform.basis.z.normalized() * 20, 
+				)
+			
 			if is_instance_valid(interaction_ray.get_collider()): 
+				if interaction_ray.get_collider().has_signal("hi"): 
+					interaction_ray.get_collider().emit_signal("hit")
+				
 				if interaction_ray.get_collider().has_method("hit"):
 					interaction_ray.get_collider().hit()
 				if interaction_ray.get_collider().get_parent().has_method("hit"):
@@ -220,7 +224,7 @@ func _init_rays():
 	add_child(ground_ray)
 	camera.add_child(interaction_ray)
 	camera.add_child(head_ray)
-	
+	interaction_ray.set_collision_mask_value(3, true)
 	interaction_ray.target_position = Vector3(0,0,-50)
 	interaction_ray.collide_with_areas = true
 	ground_ray.target_position = Vector3(0, -STANDING_HEIGHT, 0)
