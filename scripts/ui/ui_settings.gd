@@ -67,19 +67,14 @@ func _on_sensitivity_slider_value_changed(value):
 	if is_instance_valid(Global.player): 
 		Global.player.mouse_sensitivity = value
 	
-func _on_vsync_check_box_toggled(button_pressed):
-	if button_pressed == true: 
-		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
-	else: 
-		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
-		
-	ezcfg.save_value("graphics", "vsync", button_pressed)
-
+	
 func init_values(): 
 	%SensitivitySlider.value = ezcfg.get_value("player", "sensitivity", 0.2)
 	%ReticleImagesOption.selected = ezcfg.get_value("reticle", "image")
 	%ColorPickerButton.color = ezcfg.get_value("reticle", "color", Color(1,1,1,1))
 	%ReticleScaleSlider.value =  ezcfg.get_value("reticle", "scale", 0.2)
+	%FullscreenCheckbox.button_pressed = ezcfg.get_value("graphics", "fullscreen", false)
+	%VsyncCheckbox.button_pressed = ezcfg.get_value("graphics", "vsync", false)
 	
 	Global.reticle.texture = %ReticleImagesOption.get_item_icon(ezcfg.get_value("reticle", "image"))
 	Global.reticle.modulate = %ColorPickerButton.color
@@ -142,3 +137,20 @@ func _on_scenarios_search_text_changed(new_text):
 				s.show()
 			else: 
 				s.hide()
+
+
+func _on_fullscreen_checkbox_toggled(button_pressed):
+	ezcfg.save_value("graphics", "fullscreen", button_pressed)
+	if button_pressed == true: 
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else: 
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+
+
+func _on_vsync_checkbox_toggled(button_pressed):
+	if button_pressed == true: 
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
+	else: 
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+		
+	ezcfg.save_value("graphics", "vsync", button_pressed)

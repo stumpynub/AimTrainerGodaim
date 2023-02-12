@@ -19,6 +19,7 @@ offset_left = -192.0
 offset_right = -192.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 mouse_force_pass_scroll_events = false
 script = ExtResource("1_je5qf")
 metadata/_edit_use_anchors_ = true
