@@ -1,18 +1,18 @@
-extends Node3D
+extends Target
 
-class_name Enemy
 
 @onready var start = position
-@export var health: int
-@onready var boxes: Array = get_tree().get_nodes_in_group("box_enemy")
-var close_boxes = []
-var can_change = false 
-var i = 0 
+@onready var targets: Array = get_tree().get_nodes_in_group("target")
+
+func _ready(): 
+	print(targets)
+	connect("hit", _hit)
+
 func _hit():
-	
+	print("hi")
 	global_position = Vector3(randf_range(-7, 7), randf_range(-7, 7), start.z)
 	
-	if boxes.size() <= 1: 
+	if targets.size() <= 1: 
 		global_position = Vector3(randf_range(-7, 7), randf_range(-7, 7), start.z)
 		return 
 	
@@ -22,7 +22,7 @@ func _hit():
 		
 		global_position = Vector3(randf_range(-7, 7), randf_range(-7, 7), start.z)
 		
-		for box in boxes: 
+		for box in targets: 
 			var d = global_position.distance_to(box.global_position)
 			
 			if box != self: 
@@ -38,9 +38,3 @@ func _hit():
 					return
 	
 
-func is_collided(box1, box2):
-	var distance = box1.position.distance_to(box2.position)
-	var combined_size = (box1.scale + box2.scale).length() + 4
-	if distance <= combined_size / 2:
-		return true
-	return false

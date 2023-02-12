@@ -7,14 +7,19 @@ extends Control
 
 var settings_panels = []
 
+var opened = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
+	get_tree().paused = false
+	
 	customize_popup.id_pressed.connect(customize_pressed)
 	settings_popup.id_pressed.connect(settings_pressed)
-	var dir = "res://scenes/scenerios/"
 	
+	
+	
+	var dir = "res://scenes/scenerios/"
 	if DirAccess.dir_exists_absolute("res://scenes/scenerios/"): 
 		for file in DirAccess.get_files_at("res://scenes/scenerios/"):
 
@@ -35,6 +40,47 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed("menu"):
 		toggle_menu()
+		
+	if is_instance_valid(Global.current_scenario) and %HitCountLabel:
+		var hits: float = Global.current_scenario.hits
+		var misses: float = Global.current_scenario.misses 
+		var total: float = hits + misses
+		
+		if hits != 0 and total != 0 : 
+			
+			var p = (hits / total) * 100
+			%AccuracyLabel.text = "Accuracy: %.2f%%" %p
+		else: 
+			pass
+			
+		#var p = 100 if average == 0 else (10.0 / average) * 10.0
+		%HitCountLabel.text = "Hits: " + str(Global.current_scenario.hits)
+func toggle_menu(): 
+	var s = $SettingsContainer
+	if opened: 
+		for child in s.get_children(): 
+			
+			if child.get("pinned") == true:
+				if child.pinned == true: 
+					child.show()
+			else: 
+				child.hide()
+		opened = false 
+		Global.player.ui_locked = false
+		get_tree().paused = false
+	else: 
+		Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+		for child in s.get_children(): 
+			if child.get("prev_opened") != null: 
+				if child.prev_opened == true: 
+					child.show()
+				else: 
+					child.hide()
+			else: 
+				child.show()
+		Global.player.ui_locked = true
+		opened = true 
+		get_tree().paused = true
 
 
 func _on_h_slider_value_changed(value):
@@ -61,13 +107,6 @@ func _on_quit_button_pressed():
 	get_tree().quit()
 
 
-func _on_sensitivity_slider_value_changed(value):
-	ezcfg.save_value("player", "sensitivity", value)
-
-	if is_instance_valid(Global.player): 
-		Global.player.mouse_sensitivity = value
-	
-	
 func init_values(): 
 	%SensitivitySlider.value = ezcfg.get_value("player", "sensitivity", 0.2)
 	%ReticleImagesOption.selected = ezcfg.get_value("reticle", "image")
@@ -117,28 +156,44 @@ func settings_pressed(id):
 			
 func select_panel(panel): 
 	panel.show()
+	panel.prev_opened = true
 	panel.move_to_front()
 	panel.global_position.x = get_viewport().size.x / 2 - panel.size.x / 2
 	panel.global_position.y = (get_viewport().size.y / 2) - panel.size.y / 2
 	
 
-func toggle_menu(): 
-	if visible: 
-		hide()
-		Global.player.ui_locked = false
-	else: 
-		show()
-		Global.player.ui_locked = true
 
 func _on_scenarios_search_text_changed(new_text):
 	for s in scenarios_container.get_children(): 
 		if s.get("scenario_name"): 
-			if str(s.scenario_name).contains(new_text.strip_edges()) or new_text == "":
+			if str(s.scenario_name).to_lower().contains(new_text.strip_edges().to_lower()) or new_text == "":
 				s.show()
 			else: 
 				s.hide()
 
 
+
+## CONTROL SETTINGS ###################################
+func _on_sensitivity_spin_box_value_changed(value):
+	%SensitivitySlider.value = value
+
+
+func _on_sensitivity_slider_value_changed(value):
+	ezcfg.save_value("player", "sensitivity", value)
+
+	if is_instance_valid(Global.player): 
+		Global.player.mouse_sensitivity = value
+	
+	%SensitivitySpinBox.value = value 
+
+## END CONTROL ##########################################
+
+
+
+
+
+
+## GRAPHIC SETTINGS #####################################
 func _on_fullscreen_checkbox_toggled(button_pressed):
 	ezcfg.save_value("graphics", "fullscreen", button_pressed)
 	if button_pressed == true: 
@@ -147,10 +202,22 @@ func _on_fullscreen_checkbox_toggled(button_pressed):
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
 
+
 func _on_vsync_checkbox_toggled(button_pressed):
+	ezcfg.save_value("graphics", "vsync", button_pressed)
 	if button_pressed == true: 
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
 	else: 
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
-		
-	ezcfg.save_value("graphics", "vsync", button_pressed)
+
+## END GRAPHIC SETTINGS #####################################
+
+
+ 
+## STATS PANEL ###########################################
+
+
+
+## END STATS PANEL #######################################
+
+

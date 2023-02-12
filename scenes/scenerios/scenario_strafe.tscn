@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://gr4lxalqwd5a"]
+[gd_scene load_steps=10 format=3 uid="uid://gr4lxalqwd5a"]
 
 [ext_resource type="PackedScene" uid="uid://b7y5xmt660wt3" path="res://scenes/player.tscn" id="1_rh3iq"]
 [ext_resource type="Texture2D" uid="uid://bcx7gh8xiduk2" path="res://assets/backgrounds/night.exr" id="1_tf2w2"]
@@ -24,6 +24,8 @@ _data = {
 point_count = 3
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_j83ur"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bbpre"]
 
 [node name="scenario_strafe" type="Node3D"]
 
@@ -51,6 +53,12 @@ script = ExtResource("2_yjufn")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D/PathFollow3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01856, 0)
 mesh = SubResource("CapsuleMesh_j83ur")
+
+[node name="Area3D" type="Area3D" parent="Path3D/PathFollow3D/MeshInstance3D"]
+transform = Transform3D(1, -4.65661e-10, 0, -2.32831e-10, 1, 9.31323e-10, -2.98023e-08, -4.65661e-10, 1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Path3D/PathFollow3D/MeshInstance3D/Area3D"]
+shape = SubResource("CapsuleShape3D_bbpre")
 
 [node name="Timer" type="Timer" parent="Path3D/PathFollow3D"]
 autostart = true

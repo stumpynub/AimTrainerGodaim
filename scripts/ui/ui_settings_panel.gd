@@ -9,7 +9,7 @@ class_name UISettingsPanel
 @onready var init_anchor_right = anchor_right
 @onready var init_anchor_bottom = anchor_bottom
 @onready var init_scale = scale
-var opened_last = false 
+var prev_opened = false 
 var grabbed = false 
 var scale_grabbed = false 
 var offset: Vector2 
@@ -37,7 +37,7 @@ func _process(delta):
 		anchor_bottom = init_anchor_bottom - (offset.y / 1000)
 		
 func _on_close_button_pressed():
-	opened_last = true 
+	prev_opened = false  
 	pinned = false 
 	hide()
 
@@ -59,3 +59,10 @@ func _on_size_button_button_down():
 
 func _on_size_button_button_up():
 	scale_grabbed = false 
+
+func _on_pin_button_toggled(button_pressed):
+	if button_pressed == true: 
+		pinned = true 
+	else: 
+		print("unpinned")
+		pinned = false

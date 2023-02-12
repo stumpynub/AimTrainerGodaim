@@ -64,21 +64,29 @@ func _process(delta):
 		# add an offset with the collision normal
 		# helps when placing things such as lights 
 		
-		if interaction_ray.is_colliding():
-			if interaction_ray.get_collider().get_class() == "RigidBody3D": 
-				interaction_ray.get_collider().apply_central_impulse(
-					-camera.global_transform.basis.z.normalized() * 20, 
-				)
-			
-			if is_instance_valid(interaction_ray.get_collider()): 
-				if interaction_ray.get_collider().has_signal("hi"): 
-					interaction_ray.get_collider().emit_signal("hit")
-				
-				if interaction_ray.get_collider().has_method("hit"):
-					interaction_ray.get_collider().hit()
-				if interaction_ray.get_collider().get_parent().has_method("hit"):
-					interaction_ray.get_collider().get_parent().hit()
 		
+		var scenario = Global.current_scenario
+		
+		if interaction_ray.is_colliding():
+			if is_instance_valid(interaction_ray.get_collider()): 
+				if interaction_ray.get_collider().get_class() == "RigidBody3D": 
+					interaction_ray.get_collider().apply_central_impulse(
+						-camera.global_transform.basis.z.normalized() * 20, 
+					)
+					
+		
+				if interaction_ray.get_collider().has_signal("hit"): 
+					interaction_ray.get_collider().emit_signal("hit")
+					scenario.hits += 1
+					$SFXActionPlayer.play_hit()
+					
+				else: 
+					scenario.misses += 1
+					$SFXActionPlayer.play_miss()
+		else: 
+			scenario.misses += 1
+			$SFXActionPlayer.play_miss()
+			
 		var place_offset = (interaction_ray.get_collision_normal() * delta)
 		emit_signal("action", interaction_ray.get_collision_point() + place_offset )
 	
