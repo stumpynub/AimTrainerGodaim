@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://dyf4miwqnxqil"]
 
 [ext_resource type="PackedScene" uid="uid://ig31frwu1h8l" path="res://scenes/targets/enemy.tscn" id="1_4yyky"]
-[ext_resource type="Material" uid="uid://cgdkqar5mvrvw" path="res://assets/materials/grid_transparent.tres" id="1_gl53d"]
 [ext_resource type="PackedScene" uid="uid://b7y5xmt660wt3" path="res://scenes/player.tscn" id="2_tckui"]
+[ext_resource type="Material" uid="uid://dwlvqiglrtdgv" path="res://assets/materials/scifi_material_2/scifi_material_2.tres" id="3_6obb6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5qu6x"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -36,10 +36,16 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 3.344, -4.09, -7)
 [node name="box_enemy3" parent="." groups=["box_enemy"] instance=ExtResource("1_4yyky")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -4, 0, -7)
 
-[node name="box_enemy1" parent="." groups=["box_enemy"] instance=ExtResource("1_4yyky")]
-transform = Transform3D(2, 2.98023e-08, -1.49012e-08, 0, 2, 0, -1.49012e-08, 0, 2, -4, 4.838, -7)
-
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-material_override = ExtResource("1_gl53d")
+material_override = ExtResource("3_6obb6")
 flip_faces = true
 size = Vector3(16, 16, 16)
+
+[node name="box_enemy1" parent="." groups=["box_enemy"] instance=ExtResource("1_4yyky")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -7)
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -4.06151)
+remote_path = NodePath("../box_enemy1")
+update_rotation = false
+update_scale = false

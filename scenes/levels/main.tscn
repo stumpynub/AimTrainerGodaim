@@ -1,11 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://cpkq4dij3d6vf"]
+[gd_scene load_steps=15 format=3]
 
 [ext_resource type="Texture2D" uid="uid://bjt71rlmshtio" path="res://assets/src/logo.png" id="1_wua64"]
 [ext_resource type="PackedScene" uid="uid://b7y5xmt660wt3" path="res://scenes/player.tscn" id="2_qww2c"]
-[ext_resource type="PackedScene" uid="uid://dd1inopnm13m3" path="res://scenes/ui/news.tscn" id="2_yw2j2"]
+[ext_resource type="PackedScene" path="res://scenes/ui/news.tscn" id="2_yw2j2"]
 [ext_resource type="Texture2D" uid="uid://bcx7gh8xiduk2" path="res://assets/backgrounds/night.exr" id="3_5bdqe"]
 [ext_resource type="PackedScene" uid="uid://ig31frwu1h8l" path="res://scenes/targets/enemy.tscn" id="4_widby"]
-[ext_resource type="Material" uid="uid://cgdkqar5mvrvw" path="res://assets/materials/grid_transparent.tres" id="5_3omwl"]
+[ext_resource type="Material" uid="uid://cgdkqar5mvrvw" path="res://assets/materials/environment_background/grid_transparent.tres" id="5_3omwl"]
 [ext_resource type="PackedScene" uid="uid://c6sn1dsp2w22a" path="res://scenes/targets/spawner.tscn" id="7_hc76a"]
 [ext_resource type="PackedScene" uid="uid://b8sal0moppk73" path="res://scenes/targets/target_popcorn.tscn" id="8_kfwj8"]
 
