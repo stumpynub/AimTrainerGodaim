@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://1cgrhwnquoy6"]
 
 [ext_resource type="PackedScene" uid="uid://c6sn1dsp2w22a" path="res://scenes/targets/spawner.tscn" id="1_8s47e"]
-[ext_resource type="Material" uid="uid://cgdkqar5mvrvw" path="res://assets/materials/grid_transparent.tres" id="2_jpgvo"]
 [ext_resource type="PackedScene" uid="uid://brxmem847i6ih" path="res://scenes/targets/target_raindrop.tscn" id="2_npwg6"]
+[ext_resource type="Material" uid="uid://cgdkqar5mvrvw" path="res://assets/materials/environment_background/grid_transparent.tres" id="3_x5hp4"]
 [ext_resource type="PackedScene" uid="uid://b7y5xmt660wt3" path="res://scenes/player.tscn" id="4_pe2rk"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1hk35"]
@@ -34,7 +34,7 @@ scene = ExtResource("2_npwg6")
 spawn_on_timeout = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-material_override = ExtResource("2_jpgvo")
+material_override = ExtResource("3_x5hp4")
 use_collision = true
 size = Vector3(76.5518, 1, 85.1235)
 

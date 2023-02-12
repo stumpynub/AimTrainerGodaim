@@ -1,13 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://cum0c4g01kk68"]
+[gd_scene load_steps=15 format=3 uid="uid://cum0c4g01kk68"]
 
 [ext_resource type="Texture2D" uid="uid://bjt71rlmshtio" path="res://assets/src/logo.png" id="1_i3pyv"]
 [ext_resource type="PackedScene" uid="uid://dd1inopnm13m3" path="res://scenes/ui/news.tscn" id="2_vgxuv"]
 [ext_resource type="Texture2D" uid="uid://bcx7gh8xiduk2" path="res://assets/backgrounds/night.exr" id="3_5c8i8"]
 [ext_resource type="PackedScene" uid="uid://b7y5xmt660wt3" path="res://scenes/player.tscn" id="4_4p7xv"]
-[ext_resource type="PackedScene" uid="uid://ig31frwu1h8l" path="res://scenes/targets/enemy.tscn" id="5_vwki0"]
 [ext_resource type="PackedScene" uid="uid://c6sn1dsp2w22a" path="res://scenes/targets/spawner.tscn" id="6_cskkp"]
 [ext_resource type="PackedScene" uid="uid://b8sal0moppk73" path="res://scenes/targets/target_popcorn.tscn" id="7_j7ixt"]
-[ext_resource type="Material" uid="uid://cgdkqar5mvrvw" path="res://assets/materials/grid_transparent.tres" id="8_wyy1l"]
+[ext_resource type="Material" uid="uid://cgdkqar5mvrvw" path="res://assets/materials/environment_background/grid_transparent.tres" id="8_sc47p"]
 [ext_resource type="PackedScene" uid="uid://il8o4nxjg74e" path="res://scenes/targets/target_dueling_tree.tscn" id="9_7d25h"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_nmn16"]
@@ -73,10 +72,6 @@ shadow_blur = 0.944
 [node name="Node3D" parent="." instance=ExtResource("4_4p7xv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.00934)
 
-[node name="enemy_box" parent="." instance=ExtResource("5_vwki0")]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.571763, 0.669174, -8.9295)
-
 [node name="Spawner" parent="." instance=ExtResource("6_cskkp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.88273, 1.90385, 2.41498)
 amount = 47
@@ -86,7 +81,7 @@ spawn_on_timeout = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.946815, 0.961725)
-material_override = ExtResource("8_wyy1l")
+material_override = ExtResource("8_sc47p")
 use_collision = true
 size = Vector3(822.776, 0.110761, 494.773)
 
