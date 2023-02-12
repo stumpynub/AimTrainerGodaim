@@ -298,10 +298,12 @@ horizontal_alignment = 1
 layout_mode = 2
 
 [node name="VsyncCheckbox" type="CheckBox" parent="SettingsContainer/VideoPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "vsync"
 
 [node name="FullscreenCheckbox" type="CheckBox" parent="SettingsContainer/VideoPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "fullscreen"
 
@@ -435,6 +437,9 @@ mouse_filter = 2
 [connection signal="value_changed" from="SettingsContainer/ReticlePanel/ScrollContainer/CenterContainer/ReticleSettingsVContainer/ReticleScaleVContainer/ReticleScaleSlider" to="." method="_on_h_slider_value_changed"]
 [connection signal="text_changed" from="SettingsContainer/ScenariosPanel/ScenariosSearch" to="." method="_on_scenarios_search_text_changed"]
 [connection signal="value_changed" from="SettingsContainer/ControlsPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer/SensitivityVContainer/SensitivitySlider" to="." method="_on_sensitivity_slider_value_changed"]
+[connection signal="pressed" from="SettingsContainer/VideoPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer/VsyncCheckbox" to="." method="_on_vsync_checkbox_pressed"]
+[connection signal="toggled" from="SettingsContainer/VideoPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer/VsyncCheckbox" to="." method="_on_vsync_checkbox_toggled"]
+[connection signal="toggled" from="SettingsContainer/VideoPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer/FullscreenCheckbox" to="." method="_on_fullscreen_checkbox_toggled"]
 [connection signal="pressed" from="SettingsContainer/MenuBar/HBoxContainer/ScenariosMenuButton" to="." method="_on_scenarios_menu_button_pressed"]
 [connection signal="pressed" from="SettingsContainer/MenuBar/HBoxContainer/Stats" to="." method="_on_stats_pressed"]
 [connection signal="pressed" from="SettingsContainer/MenuBar/QuitButton" to="." method="_on_quit_button_pressed"]
