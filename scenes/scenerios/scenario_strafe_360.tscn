@@ -47,7 +47,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75879, 0, 0)
 curve = SubResource("Curve3D_dbo12")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(0.717755, 0, -0.696242, 0, 1, 0, 0.696242, 0, 0.717754, 3.91551, 0, 8.09997)
+transform = Transform3D(0.717684, 0, -0.696314, 0, 1, 0, 0.696315, 0, 0.717684, 3.91552, 0, 8.09997)
 progress = 50.6507
 script = ExtResource("4_4ffdp")
 

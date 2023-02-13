@@ -13,12 +13,12 @@ var supported_audio_formats = ["ogg", "wav"]
 
 var settings_panels = []
 
-var opened = false
+var opened = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_tree().paused = false
-	
+	toggle_menu()
 	
 	## Connect 
 	## 
@@ -253,11 +253,17 @@ func _on_stats_pressed():
 ## SFX PANEL #############################################
 func _on_action_option_button_item_selected(index):
 	if is_instance_valid(Global.shoot_player): 
-		Global.shoot_player.hit_clip = load(actions_dir + %HitSFXOptionButton.get_item_text(index))
+		if index == 0: 
+			Global.shoot_player.hit_clip = null 
+		else: 
+			Global.shoot_player.hit_clip = load(actions_dir + %HitSFXOptionButton.get_item_text(index))
 
 
 func _on_miss_sfx_option_button_item_selected(index):
 	if is_instance_valid(Global.shoot_player): 
-		Global.shoot_player.miss_clip = load(actions_dir + %MissSFXOptionButton.get_item_text(index))
+		if index == 0: 
+			Global.shoot_player.miss_clip = null
+		else: 
+			Global.shoot_player.miss_clip = load(actions_dir + %MissSFXOptionButton.get_item_text(index))
 
 ##################################################################################################

@@ -50,7 +50,7 @@ func _enter_tree():
 
 func _ready(): 
 	_init_rays()
-
+	
 func _process(delta):
 	
 	var offset = -STANDING_HEIGHT - (ground_ray.get_collision_point().y - camera.global_position.y) + 0.1
@@ -61,10 +61,7 @@ func _process(delta):
 		velocity += get_last_slide_collision().get_normal() * 2
 
 	if Input.is_action_just_pressed("action") and !ui_locked: 
-		# add an offset with the collision normal
-		# helps when placing things such as lights 
-		
-		
+	
 		var scenario = Global.current_scenario
 		
 		if interaction_ray.is_colliding():
@@ -86,7 +83,8 @@ func _process(delta):
 						scenario.misses += 1
 					$SFXActionPlayer.play_miss()
 		else: 
-			scenario.misses += 1
+			if is_instance_valid(scenario): 
+				scenario.misses += 1
 			
 			$SFXActionPlayer.play_miss()
 			
