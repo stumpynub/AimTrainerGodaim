@@ -77,14 +77,17 @@ func _process(delta):
 		
 				if interaction_ray.get_collider().has_signal("hit"): 
 					interaction_ray.get_collider().emit_signal("hit")
-					scenario.hits += 1
 					$SFXActionPlayer.play_hit()
+					if is_instance_valid(scenario): 
+						scenario.hits += 1
 					
 				else: 
-					scenario.misses += 1
+					if is_instance_valid(scenario): 
+						scenario.misses += 1
 					$SFXActionPlayer.play_miss()
 		else: 
 			scenario.misses += 1
+			
 			$SFXActionPlayer.play_miss()
 			
 		var place_offset = (interaction_ray.get_collision_normal() * delta)
