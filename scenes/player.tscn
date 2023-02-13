@@ -28,4 +28,4 @@ volume_db = -13.97
 pitch_scale = 1.18
 script = ExtResource("5_n5c3a")
 hit_clip = ExtResource("4_yxbui")
-mis_clip = ExtResource("6_so5ue")
+miss_clip = ExtResource("6_so5ue")

@@ -378,6 +378,69 @@ max_value = 1.0
 step = 0.01
 value = 1.0
 
+[node name="SFXPanel" parent="SettingsContainer" instance=ExtResource("3_i64wq")]
+layout_mode = 1
+anchor_left = -0.472222
+anchor_top = 0.287037
+anchor_right = -0.266204
+anchor_bottom = 0.706466
+offset_right = 186.667
+offset_bottom = 83.2099
+pivot_offset = Vector2(192, 136)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SettingsContainer/SFXPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 48.0
+offset_top = 68.0
+offset_right = -48.0
+offset_bottom = -68.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="SettingsContainer/SFXPanel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PlayerSettingsVContainer" type="VBoxContainer" parent="SettingsContainer/SFXPanel/ScrollContainer/CenterContainer"]
+layout_direction = 2
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="SettingsContainer/SFXPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer"]
+layout_mode = 2
+text = "SFX"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="SettingsContainer/SFXPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingsContainer/SFXPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsContainer/SFXPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer/HBoxContainer"]
+layout_mode = 2
+text = "hit sfx"
+
+[node name="HitSFXOptionButton" type="OptionButton" parent="SettingsContainer/SFXPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="SettingsContainer/SFXPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsContainer/SFXPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer/HBoxContainer2"]
+layout_mode = 2
+text = "miss sfx"
+
+[node name="MissSFXOptionButton" type="OptionButton" parent="SettingsContainer/SFXPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+
 [node name="VideoPanel" parent="SettingsContainer" instance=ExtResource("3_i64wq")]
 layout_mode = 1
 anchor_left = -1.8125
@@ -500,16 +563,20 @@ metadata/_edit_use_anchors_ = true
 unique_name_in_owner = true
 layout_mode = 2
 text = "customize"
-item_count = 2
+switch_on_hover = true
+item_count = 3
 popup/item_0/text = "Reticle"
 popup/item_0/id = 0
 popup/item_1/text = "enviroment"
 popup/item_1/id = 1
+popup/item_2/text = "audio"
+popup/item_2/id = 2
 
 [node name="SettingsMenuButton" type="MenuButton" parent="SettingsContainer/MenuBar/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "settings"
+switch_on_hover = true
 item_count = 2
 popup/item_0/text = "Controls"
 popup/item_0/id = 0
@@ -563,6 +630,8 @@ mouse_filter = 2
 [connection signal="value_changed" from="SettingsContainer/ControlsPanel2/ScrollContainer/CenterContainer/PlayerSettingsVContainer/SensitivityVContainer/SFXSlider" to="." method="_on_sensitivity_slider_value_changed"]
 [connection signal="value_changed" from="SettingsContainer/ControlsPanel2/ScrollContainer/CenterContainer/PlayerSettingsVContainer/SensitivityVContainer2/SFXSlider" to="." method="_on_sensitivity_slider_value_changed"]
 [connection signal="value_changed" from="SettingsContainer/ControlsPanel2/ScrollContainer/CenterContainer/PlayerSettingsVContainer/SensitivityVContainer3/SFXSlider" to="." method="_on_sensitivity_slider_value_changed"]
+[connection signal="item_selected" from="SettingsContainer/SFXPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer/HBoxContainer/HitSFXOptionButton" to="." method="_on_action_option_button_item_selected"]
+[connection signal="item_selected" from="SettingsContainer/SFXPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer/HBoxContainer2/MissSFXOptionButton" to="." method="_on_miss_sfx_option_button_item_selected"]
 [connection signal="pressed" from="SettingsContainer/VideoPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer/VsyncCheckbox" to="." method="_on_vsync_checkbox_pressed"]
 [connection signal="toggled" from="SettingsContainer/VideoPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer/VsyncCheckbox" to="." method="_on_vsync_checkbox_toggled"]
 [connection signal="toggled" from="SettingsContainer/VideoPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer/FullscreenCheckbox" to="." method="_on_fullscreen_checkbox_toggled"]

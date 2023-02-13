@@ -1,12 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://gr4lxalqwd5a"]
+[gd_scene load_steps=11 format=3 uid="uid://bvqfvq3brhndv"]
 
-[ext_resource type="Script" path="res://scripts/scenario/scenario.gd" id="1_8ra7p"]
-[ext_resource type="PackedScene" uid="uid://b7y5xmt660wt3" path="res://scenes/player.tscn" id="1_rh3iq"]
-[ext_resource type="Texture2D" uid="uid://bcx7gh8xiduk2" path="res://assets/backgrounds/night.exr" id="1_tf2w2"]
-[ext_resource type="Script" path="res://scripts/targets/parth_target.gd" id="2_yjufn"]
+[ext_resource type="Script" path="res://scripts/scenario/scenario.gd" id="1_thdtr"]
+[ext_resource type="Texture2D" uid="uid://bcx7gh8xiduk2" path="res://assets/backgrounds/night.exr" id="2_2bljm"]
+[ext_resource type="PackedScene" uid="uid://b7y5xmt660wt3" path="res://scenes/player.tscn" id="3_xk6eb"]
+[ext_resource type="Script" path="res://scripts/targets/parth_target.gd" id="4_4ffdp"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_uispv"]
-panorama = ExtResource("1_tf2w2")
+panorama = ExtResource("2_2bljm")
 
 [sub_resource type="Sky" id="Sky_w0bic"]
 sky_material = SubResource("PanoramaSkyMaterial_uispv")
@@ -19,17 +19,17 @@ glow_enabled = true
 
 [sub_resource type="Curve3D" id="Curve3D_dbo12"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 3.91551, 0, 8.09997, 2.52895, -0.0589461, 9.98378, -2.52895, 0.0589461, -9.98378, -6.97888, 0.284197, 0.246885, 0, 0, 0, 0, 0, 0, 3.72172, 0, -7.88818),
-"tilts": PackedFloat32Array(0, 0, 0)
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 3.91551, 0, 8.09997, 0, 0, 8, 0, 0, -8, -4.24121, 0, 0, 0, 0, 0, 0, 0, 0, 3.72172, 0, -7.88818, 0, 0, -8, 0, 0, 8, 11.6945, 0, 0.0806423, 0, 0, 0, 0, 0, 0, 3.91551, 0, 8.09997),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
 }
-point_count = 3
+point_count = 5
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_j83ur"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bbpre"]
 
 [node name="scenario_strafe" type="Node3D"]
-script = ExtResource("1_8ra7p")
+script = ExtResource("1_thdtr")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
@@ -38,7 +38,7 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_f21vu")
 
-[node name="Player" parent="." instance=ExtResource("1_rh3iq")]
+[node name="Player" parent="." instance=ExtResource("3_xk6eb")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.50284, 0)
 enable_movement = false
 
@@ -47,10 +47,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75879, 0, 0)
 curve = SubResource("Curve3D_dbo12")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(-0.912909, 0.0118095, -0.407912, 0.00841754, 0.999914, 0.0101082, 0.407996, 0.00579466, -0.912929, -6.12394, 0.263519, 2.75043)
-progress = 12.3789
-loop = false
-script = ExtResource("2_yjufn")
+transform = Transform3D(0.717755, 0, -0.696242, 0, 1, 0, 0.696242, 0, 0.717754, 3.91551, 0, 8.09997)
+progress = 50.6507
+script = ExtResource("4_4ffdp")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D/PathFollow3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01856, 0)

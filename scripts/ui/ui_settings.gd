@@ -5,36 +5,56 @@ extends Control
 @onready var customize_popup = %CustomizeMenuButton.get_popup()
 @onready var settings_popup = %SettingsMenuButton.get_popup()
 
+
+var scenarios_dir =  "res://scenes/scenerios/"
+
+var actions_dir = "res://assets/audio/sfx/action/"
+var supported_audio_formats = ["ogg", "wav"]
+
 var settings_panels = []
 
 var opened = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
 	get_tree().paused = false
 	
+	
+	## Connect 
+	## 
 	customize_popup.id_pressed.connect(customize_pressed)
 	settings_popup.id_pressed.connect(settings_pressed)
 	
 	
+	## Get any files in in the sfx dir 
+	## and add an option for the hit and miss option buttons 
+
+	if DirAccess.dir_exists_absolute(actions_dir): 
+		for file in DirAccess.get_files_at(actions_dir):
+			for format in supported_audio_formats: 
+				if file.ends_with(format): 
+					%HitSFXOptionButton.add_item(file)
+					%MissSFXOptionButton.add_item(file)
 	
-	var dir = "res://scenes/scenerios/"
-	if DirAccess.dir_exists_absolute("res://scenes/scenerios/"): 
+	####
+	
+	## Adds 'ui_scenario_item' for each file in
+	## the scenarios scene folder -> res/scenes/scenarios
+	
+	if DirAccess.dir_exists_absolute(scenarios_dir): 
 		for file in DirAccess.get_files_at("res://scenes/scenerios/"):
 
 			var instance = load("res://scenes/ui/ui_senereo_item.tscn")
 			var name = file.replace("_", " ")
-			var path = dir + str(file)
-			print(path)
+			var path = scenarios_dir + str(file)
 			name = name.replace(".tscn", "")
 			name = name.replace("scenario ", "")
 			instance = instance.instantiate()
 			instance.set_item(name, path)
 			scenarios_container.add_child(instance)
+	####
 	
 	init_values()
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -55,6 +75,7 @@ func _process(delta):
 			
 		#var p = 100 if average == 0 else (10.0 / average) * 10.0
 		%HitCountLabel.text = "Hits: " + str(Global.current_scenario.hits)
+
 func toggle_menu(): 
 	var s = $SettingsContainer
 	if opened: 
@@ -83,29 +104,9 @@ func toggle_menu():
 		get_tree().paused = true
 
 
-func _on_h_slider_value_changed(value):
-	Global.reticle.scale.x = value
-	Global.reticle.scale.y = value
-	ezcfg.save_value("reticle", "scale", value)
-
-
-func _on_reticle_images_option_item_selected(index):
-	update_reticle_preview()
-	print("selected")
-	ezcfg.save_value("reticle", "image", index)
-	Global.reticle.texture = %ReticleImagesOption.get_item_icon(index)
-
-func _on_color_picker_button_color_changed(color):
-	update_reticle_preview()
-	if is_instance_valid(Global.reticle): 
-	
-		Global.reticle.modulate = color
-	ezcfg.save_value("reticle", "color", color)
-	
-
-func _on_quit_button_pressed():
-	get_tree().quit()
-
+func update_reticle_preview(): 
+	%ReticlePreview.modulate = %ColorPickerButton.color
+	%ReticlePreview.texture =  %ReticleImagesOption.get_item_icon(ezcfg.get_value("reticle", "image"))
 
 func init_values(): 
 	%SensitivitySlider.value = ezcfg.get_value("player", "sensitivity", 0.2)
@@ -122,22 +123,8 @@ func init_values():
 	
 	update_reticle_preview()
 	
-func update_reticle_preview(): 
-	%ReticlePreview.modulate = %ColorPickerButton.color
-	%ReticlePreview.texture =  %ReticleImagesOption.get_item_icon(ezcfg.get_value("reticle", "image"))
-
-func _on_reticle_menu_button_pressed():
-	select_panel($SettingsContainer/ReticlePanel)
-
-func _on_reticle_menu_button_2_pressed():
-	select_panel($SettingsContainer/ControlsPanel)
-	
-func _on_scenarios_menu_button_pressed():
-		select_panel($SettingsContainer/ScenariosPanel)
-
-func _on_stats_pressed():
-	select_panel($SettingsContainer/StatsPanel)
-
+func _on_quit_button_pressed():
+	get_tree().quit()
 
 func customize_pressed(id): 
 	match id: 
@@ -145,6 +132,8 @@ func customize_pressed(id):
 			select_panel($SettingsContainer/ReticlePanel)
 		1: 
 			select_panel($SettingsContainer/EnviromentPanel)
+		2: 
+			select_panel($SettingsContainer/SFXPanel)
 			
 func settings_pressed(id): 
 	match id: 
@@ -153,7 +142,7 @@ func settings_pressed(id):
 		
 		1: 
 			select_panel($SettingsContainer/VideoPanel)
-			
+	
 func select_panel(panel): 
 	panel.show()
 	panel.prev_opened = true
@@ -163,6 +152,41 @@ func select_panel(panel):
 	
 
 
+## RETICLE PANEL #############################################
+func _on_h_slider_value_changed(value):
+	Global.reticle.scale.x = value
+	Global.reticle.scale.y = value
+	ezcfg.save_value("reticle", "scale", value)
+
+func _on_reticle_images_option_item_selected(index):
+	update_reticle_preview()
+	print("selected")
+	ezcfg.save_value("reticle", "image", index)
+	Global.reticle.texture = %ReticleImagesOption.get_item_icon(index)
+
+func _on_color_picker_button_color_changed(color):
+	update_reticle_preview()
+	if is_instance_valid(Global.reticle): 
+	
+		Global.reticle.modulate = color
+	ezcfg.save_value("reticle", "color", color)
+
+func _on_reticle_menu_button_pressed():
+	select_panel($SettingsContainer/ReticlePanel)
+
+func _on_reticle_menu_button_2_pressed():
+	select_panel($SettingsContainer/ControlsPanel)
+
+########################################################
+
+
+
+
+## SCENARIOS PANEL ###########################################
+func _on_scenarios_menu_button_pressed():
+		select_panel($SettingsContainer/ScenariosPanel)
+
+
 func _on_scenarios_search_text_changed(new_text):
 	for s in scenarios_container.get_children(): 
 		if s.get("scenario_name"): 
@@ -170,6 +194,10 @@ func _on_scenarios_search_text_changed(new_text):
 				s.show()
 			else: 
 				s.hide()
+
+###########################################################
+
+
 
 
 
@@ -186,9 +214,7 @@ func _on_sensitivity_slider_value_changed(value):
 	
 	%SensitivitySpinBox.value = value 
 
-## END CONTROL ##########################################
-
-
+############################################
 
 
 
@@ -210,14 +236,28 @@ func _on_vsync_checkbox_toggled(button_pressed):
 	else: 
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 
-## END GRAPHIC SETTINGS #####################################
+#######################################
 
 
  
 ## STATS PANEL ###########################################
 
+func _on_stats_pressed():
+	select_panel($SettingsContainer/StatsPanel)
 
 
-## END STATS PANEL #######################################
+#########################################
 
 
+
+## SFX PANEL #############################################
+func _on_action_option_button_item_selected(index):
+	if is_instance_valid(Global.shoot_player): 
+		Global.shoot_player.hit_clip = load(actions_dir + %HitSFXOptionButton.get_item_text(index))
+
+
+func _on_miss_sfx_option_button_item_selected(index):
+	if is_instance_valid(Global.shoot_player): 
+		Global.shoot_player.miss_clip = load(actions_dir + %MissSFXOptionButton.get_item_text(index))
+
+##################################################################################################
