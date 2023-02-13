@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=3 uid="uid://dyf4miwqnxqil"]
+
+[ext_resource type="PackedScene" uid="uid://b7y5xmt660wt3" path="res://scenes/player.tscn" id="1_im103"]
+[ext_resource type="PackedScene" uid="uid://ig31frwu1h8l" path="res://scenes/targets/enemy.tscn" id="2_gbts5"]
+[ext_resource type="Material" uid="uid://cgdkqar5mvrvw" path="res://assets/materials/environment_background/grid_transparent.tres" id="3_jwu14"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5qu6x"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_tk2dy"]
+sky_material = SubResource("ProceduralSkyMaterial_5qu6x")
+
+[sub_resource type="Environment" id="Environment_aa580"]
+background_mode = 2
+sky = SubResource("Sky_tk2dy")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="CrazyCubes" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_im103")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.284773, 2.28255, 6.44776)
+enable_movement = false
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_aa580")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="box_enemy3" parent="." groups=["box_enemy"] instance=ExtResource("2_gbts5")]
+transform = Transform3D(0.56, 0, 0, 0, 0.56, 0, 0, 0, 0.56, -3.99035, 0, -7.72685)
+
+[node name="box_enemy6" parent="." groups=["box_enemy"] instance=ExtResource("2_gbts5")]
+transform = Transform3D(0.56, 0, 0, 0, 0.56, 0, 0, 0, 0.56, 0.00394702, 3.14798, -7.72685)
+
+[node name="box_enemy11" parent="." groups=["box_enemy"] instance=ExtResource("2_gbts5")]
+transform = Transform3D(0.56, 0, 0, 0, 0.56, 0, 0, 0, 0.56, 1.53855, 6.30878, -7.72685)
+
+[node name="box_enemy4" parent="." groups=["box_enemy"] instance=ExtResource("2_gbts5")]
+transform = Transform3D(0.56, 0, 0, 0, 0.56, 0, 0, 0, 0.56, 3.98254, 0, -7.72685)
+
+[node name="box_enemy9" parent="." groups=["box_enemy"] instance=ExtResource("2_gbts5")]
+transform = Transform3D(0.56, 0, 0, 0, 0.56, 0, 0, 0, 0.56, 3.98254, -5.25325, -7.72685)
+
+[node name="box_enemy7" parent="." groups=["box_enemy"] instance=ExtResource("2_gbts5")]
+transform = Transform3D(0.56, 0, 0, 0, 0.56, 0, 0, 0, 0.56, 4.49557, 3.56988, -7.72685)
+
+[node name="box_enemy8" parent="." groups=["box_enemy"] instance=ExtResource("2_gbts5")]
+transform = Transform3D(0.56, 0, 0, 0, 0.56, 0, 0, 0, 0.56, -4.43527, 5.49228, -7.72685)
+
+[node name="box_enemy5" parent="." groups=["box_enemy"] instance=ExtResource("2_gbts5")]
+transform = Transform3D(0.56, 0, 0, 0, 0.56, 0, 0, 0, 0.56, 0.356723, -4, -7.72685)
+
+[node name="box_enemy10" parent="." groups=["box_enemy"] instance=ExtResource("2_gbts5")]
+transform = Transform3D(0.56, 0, 0, 0, 0.56, 0, 0, 0, 0.56, -3.55532, -4, -7.72685)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+material_override = ExtResource("3_jwu14")
+flip_faces = true
+size = Vector3(16, 16, 16)
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -4.06151)
+update_rotation = false
+update_scale = false
