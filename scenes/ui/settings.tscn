@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://bsxf0otie5016" path="res://assets/theme.tres" id="1_amped"]
 [ext_resource type="Script" path="res://scripts/ui/ui_settings.gd" id="2_3thbb"]
 [ext_resource type="Texture2D" uid="uid://cjheknmnawhfq" path="res://assets/reticles/dot.png" id="2_ji1vt"]
-[ext_resource type="PackedScene" path="res://scenes/ui/ui_settings_panel.tscn" id="3_i64wq"]
+[ext_resource type="PackedScene" uid="uid://b7wlu8lqxga7o" path="res://scenes/ui/ui_settings_panel.tscn" id="3_i64wq"]
 [ext_resource type="Texture2D" uid="uid://fq2lt45t4ph" path="res://assets/reticles/cross.png" id="4_kupv1"]
 [ext_resource type="Texture2D" uid="uid://da542fl87vpfk" path="res://assets/reticles/chevron.png" id="5_qntyo"]
 [ext_resource type="Texture2D" uid="uid://dusx8uygtsa3u" path="res://assets/reticles/hollow_dot.png" id="6_0f4bp"]
@@ -429,6 +429,10 @@ text = "hit sfx"
 [node name="HitSFXOptionButton" type="OptionButton" parent="SettingsContainer/SFXPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+item_count = 1
+selected = 0
+popup/item_0/text = "None"
+popup/item_0/id = 0
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="SettingsContainer/SFXPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer"]
 layout_mode = 2
@@ -440,6 +444,10 @@ text = "miss sfx"
 [node name="MissSFXOptionButton" type="OptionButton" parent="SettingsContainer/SFXPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer/HBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
+item_count = 1
+selected = 0
+popup/item_0/text = "None"
+popup/item_0/id = 0
 
 [node name="VideoPanel" parent="SettingsContainer" instance=ExtResource("3_i64wq")]
 layout_mode = 1

@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cnvvcsft7ks01"]
+[gd_scene load_steps=8 format=3 uid="uid://ntk76gwfnasd"]
 
+[ext_resource type="Script" path="res://scripts/scenario/scenario.gd" id="1_5lra7"]
 [ext_resource type="Material" uid="uid://cgdkqar5mvrvw" path="res://assets/materials/environment_background/grid_transparent.tres" id="1_v853g"]
 [ext_resource type="PackedScene" uid="uid://b7y5xmt660wt3" path="res://scenes/player.tscn" id="2_2nrcp"]
 [ext_resource type="PackedScene" uid="uid://ig31frwu1h8l" path="res://scenes/targets/enemy.tscn" id="3_rhu3x"]
@@ -19,6 +20,7 @@ glow_enabled = true
 
 [node name="Pokeball" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.71782)
+script = ExtResource("1_5lra7")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
