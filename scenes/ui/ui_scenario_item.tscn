@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://xuff85a6kofo"]
+[gd_scene load_steps=5 format=3 uid="uid://cjvqbaipqv3n3"]
 
-[ext_resource type="Texture2D" uid="uid://bjt71rlmshtio" path="res://assets/src/logo.png" id="1_5qrlm"]
-[ext_resource type="Script" path="res://scripts/ui/ui_senereo_item.gd" id="1_je5qf"]
-[ext_resource type="Texture2D" uid="uid://byo5bsf8wf0cm" path="res://assets/images/ui/star.png" id="3_jxabe"]
+[ext_resource type="Script" path="res://scripts/ui/ui_scenario_item.gd" id="1_57q5i"]
+[ext_resource type="Texture2D" uid="uid://bjt71rlmshtio" path="res://assets/src/logo.png" id="2_vps7t"]
+[ext_resource type="Texture2D" uid="uid://byo5bsf8wf0cm" path="res://assets/images/ui/star.png" id="3_w4yyd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hekr"]
 bg_color = Color(0.239216, 0.239216, 0.239216, 1)
@@ -23,7 +23,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 mouse_force_pass_scroll_events = false
-script = ExtResource("1_je5qf")
+script = ExtResource("1_57q5i")
 metadata/_edit_use_anchors_ = true
 
 [node name="Panel" type="Panel" parent="."]
@@ -31,22 +31,27 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = -56.0
+offset_left = 13.0
+offset_top = 9.0
+offset_right = -15.0004
+offset_bottom = -66.0001
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.975183, 0.972508)
+pivot_offset = Vector2(192, 36)
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_4hekr")
 
 [node name="TextureRect" type="TextureRect" parent="Panel"]
 layout_mode = 2
-anchor_left = -0.0208328
-anchor_top = -0.23125
-anchor_right = 0.221355
-anchor_bottom = 1.12734
+anchor_left = -0.0551632
+anchor_top = -0.465432
+anchor_right = 0.206073
+anchor_bottom = 1.62891
 offset_right = -1.52588e-05
 offset_bottom = 1.52588e-05
 pivot_offset = Vector2(48, 56)
-texture = ExtResource("1_5qrlm")
+texture = ExtResource("2_vps7t")
 stretch_mode = 3
 metadata/_edit_use_anchors_ = true
 
@@ -71,7 +76,7 @@ metadata/_edit_use_anchors_ = true
 [node name="Star" type="TextureRect" parent="Panel/RatingContainer"]
 modulate = Color(1, 1, 0, 1)
 layout_mode = 2
-texture = ExtResource("3_jxabe")
+texture = ExtResource("3_w4yyd")
 stretch_mode = 3
 
 [node name="Label" type="Label" parent="Panel/RatingContainer"]

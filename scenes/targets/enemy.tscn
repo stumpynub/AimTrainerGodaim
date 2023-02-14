@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://ig31frwu1h8l"]
+[gd_scene load_steps=7 format=3 uid="uid://c3p77ou65nmk3"]
 
 [ext_resource type="Script" path="res://scripts/targets/target_random_radius.gd" id="1_kmbqb"]
 [ext_resource type="Texture2D" uid="uid://cqwy35syndtf4" path="res://assets/textures/icon.svg" id="2_10381"]
-[ext_resource type="Script" path="res://scenes/targets/target_behaviours/target_behaviour_hover_color.gd" id="3_ppwvi"]
+[ext_resource type="Script" path="res://scripts/targets/target_behaviours/target_behaviour_hover_color.gd" id="3_bv823"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kvrta"]
 
@@ -27,7 +27,7 @@ mesh = SubResource("BoxMesh_v0v0s")
 skeleton = NodePath("")
 
 [node name="Node" type="Node" parent="." node_paths=PackedStringArray("mesh")]
-script = ExtResource("3_ppwvi")
+script = ExtResource("3_bv823")
 color_change_speed = 10
 normal_color = Color(1, 1, 1, 1)
 hovered_color = Color(1, 0.533333, 0, 1)

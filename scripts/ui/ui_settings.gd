@@ -44,7 +44,7 @@ func _ready():
 	if DirAccess.dir_exists_absolute(scenarios_dir): 
 		for file in DirAccess.get_files_at("res://scenes/scenerios/"):
 
-			var instance = load("res://scenes/ui/ui_senereo_item.tscn")
+			var instance = load("res://scenes/ui/ui_scenario_item.tscn")
 			var name = file.replace("_", " ")
 			var path = scenarios_dir + str(file)
 			name = name.replace(".tscn", "")
@@ -78,6 +78,7 @@ func _process(delta):
 
 func toggle_menu(): 
 	var s = $SettingsContainer
+	$SettingsContainer/MenuBar/AnimationPlayer.play("RESET")
 	if opened: 
 		for child in s.get_children(): 
 			
@@ -91,6 +92,7 @@ func toggle_menu():
 		get_tree().paused = false
 	else: 
 		Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+		$SettingsContainer/MenuBar/AnimationPlayer.play("open")
 		for child in s.get_children(): 
 			if child.get("prev_opened") != null: 
 				if child.prev_opened == true: 

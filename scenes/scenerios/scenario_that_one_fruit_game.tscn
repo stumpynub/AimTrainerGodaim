@@ -1,3 +1,9 @@
-[gd_scene format=3 uid="uid://d2prphrwtsppo"]
+[gd_scene load_steps=2 format=3 uid="uid://d2prphrwtsppo"]
+
+[ext_resource type="Script" path="res://scripts/targets/spawner.gd" id="1_2kyhs"]
 
 [node name="scenario_that_one_fruit_game" type="Node3D"]
+
+[node name="Spawner" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.22799, 0, 0)
+script = ExtResource("1_2kyhs")
