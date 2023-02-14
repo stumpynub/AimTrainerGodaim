@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://b7wlu8lqxga7o"]
+[gd_scene load_steps=8 format=3 uid="uid://b7wlu8lqxga7o"]
 
 [ext_resource type="Script" path="res://scripts/ui/ui_settings_panel.gd" id="1_lv5si"]
 [ext_resource type="Texture2D" uid="uid://k5abksemmvlk" path="res://assets/images/ui/close.png" id="2_aphxm"]
+[ext_resource type="Texture2D" uid="uid://d0mf1e1b2oenh" path="res://assets/images/ui/pin_open.png" id="2_q42iy"]
 [ext_resource type="Texture2D" uid="uid://c4vrn1ihauj68" path="res://assets/images/grabber.png" id="3_gl2le"]
+[ext_resource type="Texture2D" uid="uid://bg0xxws686wm6" path="res://assets/images/ui/pin_closed.png" id="3_yuo67"]
 [ext_resource type="Texture2D" uid="uid://daoej6u6cmh1k" path="res://assets/images/ui/scale.png" id="4_v5hs4"]
-[ext_resource type="Texture2D" uid="uid://di4lgui1yfidf" path="res://assets/images/ui/pin.png" id="5_3lrqy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_26vva"]
 bg_color = Color(0.388235, 0.388235, 0.388235, 0.956863)
@@ -13,10 +14,6 @@ border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
 corner_detail = 1
 
 [node name="Panel" type="Panel"]
@@ -28,35 +25,33 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_26vva")
 script = ExtResource("1_lv5si")
 metadata/_edit_use_anchors_ = true
 
-[node name="PinButton" type="TextureButton" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -63.9996
-offset_top = 8.0
-offset_right = -47.9996
-offset_bottom = 29.0
+offset_left = -112.0
+offset_right = -23.9996
+offset_bottom = 40.0
 grow_horizontal = 0
-pivot_offset = Vector2(10, 11)
+theme_override_constants/separation = 20
+alignment = 2
+
+[node name="PinButton" type="TextureButton" parent="HBoxContainer"]
+custom_minimum_size = Vector2(15, 10)
+layout_mode = 2
 mouse_filter = 1
 toggle_mode = true
-texture_normal = ExtResource("5_3lrqy")
+texture_normal = ExtResource("2_q42iy")
+texture_pressed = ExtResource("3_yuo67")
+ignore_texture_size = true
+stretch_mode = 5
 
-[node name="CloseButton" type="TextureButton" parent="."]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -23.9996
-offset_top = 8.0
-offset_right = -7.9996
-offset_bottom = 25.0
-grow_horizontal = 0
-rotation = -1.57079
-pivot_offset = Vector2(8.21289, 9.34097)
+[node name="CloseButton" type="TextureButton" parent="HBoxContainer"]
+custom_minimum_size = Vector2(15, 0)
+layout_mode = 2
 texture_normal = ExtResource("2_aphxm")
-stretch_mode = 3
+stretch_mode = 5
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -89,8 +84,8 @@ grow_horizontal = 0
 grow_vertical = 0
 texture_normal = ExtResource("4_v5hs4")
 
-[connection signal="toggled" from="PinButton" to="." method="_on_pin_button_toggled"]
-[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="toggled" from="HBoxContainer/PinButton" to="." method="_on_pin_button_toggled"]
+[connection signal="pressed" from="HBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]
 [connection signal="button_down" from="CenterContainer/GrabButton" to="." method="_on_grab_button_button_down"]
 [connection signal="button_up" from="CenterContainer/GrabButton" to="." method="_on_grab_button_button_up"]
 [connection signal="button_down" from="SizeButton" to="." method="_on_size_button_button_down"]

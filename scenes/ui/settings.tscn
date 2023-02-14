@@ -48,10 +48,11 @@ pinned_container = NodePath("../../PinnedContainer")
 [node name="VBoxContainer" type="VBoxContainer" parent="SettingsContainer/StatsPanel"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.0833333
-anchor_top = 0.139423
-anchor_right = 0.916667
-anchor_bottom = 1.0
+anchor_left = 0.083
+anchor_right = 0.916665
+anchor_bottom = 0.999993
+offset_left = 0.127935
+offset_top = 34.0
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
@@ -73,7 +74,6 @@ anchor_top = 1.04938
 anchor_right = -0.0833333
 anchor_bottom = 1.56327
 pivot_offset = Vector2(232, 217)
-pinned = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="SettingsContainer/ReticlePanel"]
 layout_mode = 1
@@ -551,10 +551,10 @@ layout_mode = 2
 
 [node name="MenuBar" type="Panel" parent="SettingsContainer"]
 layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.938272
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 1.0
+offset_bottom = 40.0
+grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_fius2")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="SettingsContainer/MenuBar"]

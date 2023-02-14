@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://ntk76gwfnasd"]
+[gd_scene load_steps=9 format=3 uid="uid://ntk76gwfnasd"]
 
 [ext_resource type="Script" path="res://scripts/scenario/scenario.gd" id="1_5lra7"]
 [ext_resource type="Material" uid="uid://cgdkqar5mvrvw" path="res://assets/materials/environment_background/grid_transparent.tres" id="1_v853g"]
 [ext_resource type="PackedScene" uid="uid://b7y5xmt660wt3" path="res://scenes/player.tscn" id="2_2nrcp"]
 [ext_resource type="PackedScene" uid="uid://ig31frwu1h8l" path="res://scenes/targets/enemy.tscn" id="3_rhu3x"]
+[ext_resource type="Script" path="res://scripts/targets/spawner.gd" id="4_2u5ye"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1s4j1"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -39,38 +40,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 14.5)
 slide_on_ceiling = false
 enable_movement = false
 
-[node name="box_enemy1" parent="." groups=["box_enemy"] instance=ExtResource("3_rhu3x")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 4.47612, 4.76837e-07, 2.63711)
+[node name="Spawner3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.734764, 0, 7.04694)
+script = ExtResource("4_2u5ye")
+amount = 5
+scene = ExtResource("3_rhu3x")
+spawn_on_start = true
 
-[node name="box_enemy3" parent="." groups=["box_enemy"] instance=ExtResource("3_rhu3x")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 1.20992, 2.08238, 0.110453)
+[node name="Spawner4" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.734764, 0, 0.299264)
+script = ExtResource("4_2u5ye")
+amount = 5
+scene = ExtResource("3_rhu3x")
+spawn_on_start = true
 
-[node name="box_enemy5" parent="." groups=["box_enemy"] instance=ExtResource("3_rhu3x")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 5.39937, -4.76837e-07, -2.01761)
-
-[node name="box_enemy6" parent="." groups=["box_enemy"] instance=ExtResource("3_rhu3x")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -4.84104, -1.92271, -4.3439)
-
-[node name="box_enemy7" parent="." groups=["box_enemy"] instance=ExtResource("3_rhu3x")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 2.82553, 0, -4.03842)
-
-[node name="box_enemy8" parent="." groups=["box_enemy"] instance=ExtResource("3_rhu3x")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 6.96621, 0, -1417.72)
-
-[node name="box_enemy9" parent="." groups=["box_enemy"] instance=ExtResource("3_rhu3x")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 2.48601, -0.372041, 3.67664)
-
-[node name="box_enemy10" parent="." groups=["box_enemy"] instance=ExtResource("3_rhu3x")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -3.42045, 2.69726, -4.88216)
-
-[node name="box_enemy12" parent="." groups=["box_enemy"] instance=ExtResource("3_rhu3x")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -3.15341, 0, 5.66349)
-
-[node name="box_enemy13" parent="." groups=["box_enemy"] instance=ExtResource("3_rhu3x")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -4.67482, 0, 2.60562)
-
-[node name="box_enemy15" parent="." groups=["box_enemy"] instance=ExtResource("3_rhu3x")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -4.9912, 0, -14.4433)
-
-[node name="box_enemy16" parent="." groups=["box_enemy"] instance=ExtResource("3_rhu3x")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.691816, 0, -9.86431)
+[node name="Spawner5" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.734764, 0, -9.21791)
+script = ExtResource("4_2u5ye")
+amount = 5
+scene = ExtResource("3_rhu3x")
+spawn_on_start = true
