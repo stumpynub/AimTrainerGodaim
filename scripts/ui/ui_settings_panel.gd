@@ -6,8 +6,8 @@ class_name UISettingsPanel
 @export var pinned_container: Control
 
 @onready var start_container = get_parent()
-@onready var init_anchor_right = anchor_right
-@onready var init_anchor_bottom = anchor_bottom
+@onready var init_offset_right = offset_right
+@onready var init_offset_bottom = offset_bottom
 @onready var init_scale = scale
 var prev_opened = false 
 var grabbed = false 
@@ -32,13 +32,15 @@ func _process(delta):
 		
 	if scale_grabbed: 
 		var offset = scale_mouse_pos - get_global_mouse_position()
-		print(offset_right)
-		anchor_right = init_anchor_right - (offset.x / 1000)
-		anchor_bottom = init_anchor_bottom - (offset.y / 1000)
+		
+		offset_right = init_offset_right - offset.x 
+		offset_bottom = init_offset_bottom - offset.y
+		#anchor_bottom = init_anchor_bottom - (offset.y / 1000)
 		
 func _on_close_button_pressed():
 	prev_opened = false  
 	pinned = false 
+	$HBoxContainer/PinButton.button_pressed = false
 	hide()
 
 
@@ -53,8 +55,8 @@ func _on_grab_button_button_up():
 
 func _on_size_button_button_down():
 	scale_mouse_pos = get_global_mouse_position()
-	init_anchor_right = anchor_right
-	init_anchor_bottom = anchor_bottom
+	init_offset_right = offset_right
+	init_offset_bottom = offset_bottom
 	scale_grabbed = true 
 
 func _on_size_button_button_up():
@@ -64,5 +66,4 @@ func _on_pin_button_toggled(button_pressed):
 	if button_pressed == true: 
 		pinned = true 
 	else: 
-		print("unpinned")
 		pinned = false

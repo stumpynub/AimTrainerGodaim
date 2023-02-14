@@ -10,19 +10,17 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	print(progress_ratio)
 	if r == 1:
 		progress_ratio += delta * speed
 		if progress_ratio >= 0.9:
 			r = 2
 
 	if r == 2:
-		progress_ratio += delta * speed * -1
 		if progress_ratio <= 0.1:
 			r = 1
 
 func _physics_process(delta):
-	pass
+	progress_ratio += delta * speed * -1
 
 func _on_timer_timeout():
 	r = randi_range(1, 2)

@@ -1,0 +1,26 @@
+[gd_scene load_steps=7 format=3 uid="uid://bvkpp5xdaetga"]
+
+[ext_resource type="Script" path="res://scripts/targets/target_delete.gd" id="1_igajk"]
+[ext_resource type="Texture2D" uid="uid://cqwy35syndtf4" path="res://assets/textures/icon.svg" id="2_ka2tj"]
+[ext_resource type="Script" path="res://scenes/targets/target_behaviours/target_behaviour_delete_on_hit.gd" id="3_16wxr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kvrta"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xb3if"]
+albedo_texture = ExtResource("2_ka2tj")
+
+[sub_resource type="BoxMesh" id="BoxMesh_v0v0s"]
+material = SubResource("StandardMaterial3D_xb3if")
+
+[node name="RigidBody3D" type="RigidBody3D" groups=["target"]]
+script = ExtResource("1_igajk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_kvrta")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_v0v0s")
+skeleton = NodePath("")
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("3_16wxr")

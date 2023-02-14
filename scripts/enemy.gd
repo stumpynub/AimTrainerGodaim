@@ -8,6 +8,7 @@ class_name Enemy
 var close_boxes = []
 var can_change = false 
 var i = 0 
+
 func _hit():
 	
 	global_position = Vector3(randf_range(-7, 7), randf_range(-7, 7), start.z)

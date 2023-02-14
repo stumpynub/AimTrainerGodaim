@@ -30,8 +30,8 @@ var current_movement_state: e_movement_state
 var speed = 1
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var friction = 0.2
-var swimming = false
-var climbing = false 
+
+var prev_target = null 
 
 @onready var interaction_ray: RayCast3D = RayCast3D.new()
 @onready var ground_ray: RayCast3D = RayCast3D.new()
@@ -39,9 +39,9 @@ var climbing = false
 
 @onready var start_friction = friction 
 @onready var start_speed = speed
+@onready var start_coyote_time = coyote_time
 
 var coyote_time = 0.2
-@onready var start_coyote_time = coyote_time
 
 signal action
 
@@ -59,7 +59,25 @@ func _process(delta):
 
 	if get_slide_collision_count() > 0: 
 		velocity += get_last_slide_collision().get_normal() * 2
-
+	
+	
+	if interaction_ray.is_colliding():
+		if is_instance_valid(interaction_ray.get_collider()): 
+			if interaction_ray.get_collider().has_signal("hit"):
+				
+				if prev_target != null: 
+					if interaction_ray.get_collider() == prev_target: 
+						prev_target = interaction_ray.get_collider()
+						prev_target.hovered = true
+						
+					else: 
+						prev_target.hovered = false
+					prev_target = interaction_ray.get_collider()
+					
+				prev_target = interaction_ray.get_collider()
+	else: 
+		if is_instance_valid(prev_target):
+			prev_target.hovered = false 
 	if Input.is_action_just_pressed("action") and !ui_locked: 
 	
 		var scenario = Global.current_scenario
@@ -73,6 +91,7 @@ func _process(delta):
 					
 		
 				if interaction_ray.get_collider().has_signal("hit"): 
+					
 					interaction_ray.get_collider().emit_signal("hit")
 					$SFXActionPlayer.play_hit()
 					if is_instance_valid(scenario): 
@@ -115,8 +134,6 @@ func _physics_process(delta):
 		e_movement_state["ground_walk"]: 
 			_ground_move(direction)
 			_ground_stick()
-		e_movement_state["climb"]: 
-			_wall_move(input_vec)
 		e_movement_state["swim"]: 
 			pass
 	
@@ -152,17 +169,6 @@ func _ground_move(direction):
 			speed = start_speed 
 
 	velocity = velocity.slide(ground_ray.get_collision_normal())
-	
-func _wall_move(dir): 
-	var floor_dot = camera.basis.z.dot(Vector3.DOWN)
-	var wall_dot = -camera.global_transform.basis.z.dot(get_slide_collision(0).get_normal())
-	var climb_direction = (transform.basis * Vector3(dir.x, get_axis() * floor_dot, dir.y)).normalized()
-	
-	velocity = climb_direction * speed * 2
-	if get_jump_input() and wall_dot > 0: 
-		velocity = (-camera.global_transform.basis.z * 10 ) + get_slide_collision(0).get_normal() * 2 + Vector3.UP * JUMP_VELOCITY
-	else:
-		velocity = velocity.slide(get_slide_collision(0).get_normal())
 
 func _crouch_move(): 
 	if Input.is_action_pressed("crouch") or is_crouch_blocked(): 
@@ -194,12 +200,10 @@ func is_crouching() -> bool:
 
 func get_movement_state() -> e_movement_state: 
 	
-	if is_grounded() and !can_climb(): 
+	if is_grounded() : 
 		return e_movement_state["ground_walk"]
-	elif !is_grounded() and !can_climb(): 
+	elif !is_grounded(): 
 		return e_movement_state["air"]
-	elif can_climb(): 
-		return e_movement_state["climb"]
 	elif can_swim(): 
 		return e_movement_state["swim"]
 	else: 
@@ -238,15 +242,7 @@ func _init_rays():
 	interaction_ray.collide_with_areas = true
 	ground_ray.target_position = Vector3(0, -STANDING_HEIGHT, 0)
 
-func can_climb() -> bool: 
-	
-	if get_slide_collision_count() > 0: 
-		var col = get_slide_collision(0)
-		var up_dot = get_slide_collision(0).get_normal().dot(Vector3.UP)
-		print(up_dot)
-		return col.get_collider().is_in_group("climbable") and up_dot <= 0
-	
-	return false 
+
 
 func get_jump_input(): 
 	return Input.is_action_just_pressed("jump")

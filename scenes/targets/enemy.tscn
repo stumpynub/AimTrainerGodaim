@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://ig31frwu1h8l"]
+[gd_scene load_steps=7 format=3 uid="uid://ig31frwu1h8l"]
 
 [ext_resource type="Script" path="res://scripts/targets/target_random_radius.gd" id="1_kmbqb"]
 [ext_resource type="Texture2D" uid="uid://cqwy35syndtf4" path="res://assets/textures/icon.svg" id="2_10381"]
+[ext_resource type="Script" path="res://scenes/targets/target_behaviours/target_behaviour_hover_color.gd" id="3_ppwvi"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kvrta"]
 
@@ -15,6 +16,8 @@ material = SubResource("StandardMaterial3D_xb3if")
 freeze = true
 freeze_mode = 1
 script = ExtResource("1_kmbqb")
+randomize_on_start = true
+area = Vector3(6, 3, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_kvrta")
@@ -22,3 +25,12 @@ shape = SubResource("BoxShape3D_kvrta")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_v0v0s")
 skeleton = NodePath("")
+
+[node name="Node" type="Node" parent="." node_paths=PackedStringArray("mesh")]
+script = ExtResource("3_ppwvi")
+color_change_speed = 10
+normal_color = Color(1, 1, 1, 1)
+hovered_color = Color(1, 0.533333, 0, 1)
+mesh = NodePath("../MeshInstance3D")
+color_on_hit = true
+hit_color = Color(1, 0, 0, 1)
