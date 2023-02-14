@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://3t2vpxaf3n0w"]
+
+[ext_resource type="Script" path="res://scripts/targets/target_random_radius.gd" id="1_eukhb"]
+[ext_resource type="Texture2D" uid="uid://cqwy35syndtf4" path="res://assets/textures/icon.svg" id="2_2sqt4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kvrta"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xb3if"]
+albedo_texture = ExtResource("2_2sqt4")
+
+[sub_resource type="BoxMesh" id="BoxMesh_v0v0s"]
+material = SubResource("StandardMaterial3D_xb3if")
+
+[node name="pokeball" type="RigidBody3D" groups=["target"]]
+freeze = true
+freeze_mode = 1
+script = ExtResource("1_eukhb")
+area = Vector3(9, 4, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_kvrta")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_v0v0s")
+skeleton = NodePath("")

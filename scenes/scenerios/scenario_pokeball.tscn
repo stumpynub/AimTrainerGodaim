@@ -1,0 +1,46 @@
+[gd_scene load_steps=9 format=3 uid="uid://cnvvcsft7ks01"]
+
+[ext_resource type="Script" path="res://scripts/scenario/scenario.gd" id="1_neotw"]
+[ext_resource type="Material" uid="uid://cgdkqar5mvrvw" path="res://assets/materials/environment_background/grid_transparent.tres" id="2_i1xwy"]
+[ext_resource type="PackedScene" uid="uid://b7y5xmt660wt3" path="res://scenes/player.tscn" id="3_jdovu"]
+[ext_resource type="PackedScene" uid="uid://c6sn1dsp2w22a" path="res://scenes/targets/spawner.tscn" id="4_rckd6"]
+[ext_resource type="PackedScene" uid="uid://3t2vpxaf3n0w" path="res://scenes/targets/pokeball.tscn" id="5_mcqgy"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1s4j1"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_pepnn"]
+sky_material = SubResource("ProceduralSkyMaterial_1s4j1")
+
+[sub_resource type="Environment" id="Environment_v5tpk"]
+background_mode = 2
+sky = SubResource("Sky_pepnn")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Pokeball" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.71782)
+script = ExtResource("1_neotw")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_v5tpk")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+flip_faces = true
+size = Vector3(20, 10, 30)
+material = ExtResource("2_i1xwy")
+
+[node name="Player" parent="." instance=ExtResource("3_jdovu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 14.5)
+slide_on_ceiling = false
+enable_movement = false
+
+[node name="Spawner" parent="." instance=ExtResource("4_rckd6")]
+amount = 16
+scene = ExtResource("5_mcqgy")
+spawn_on_start = true
