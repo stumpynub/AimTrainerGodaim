@@ -5,7 +5,6 @@ extends AudioStreamPlayer
 
 func _ready():
 	Global.shoot_player = self 
-
 func play_hit(): 
 	stream = hit_clip
 	play()

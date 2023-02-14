@@ -1,6 +1,6 @@
 extends Node
 
-class_name TargetBehaviourDeleteOnHit
+class_name TargetBehaviorDeleteOnHit
 
 @onready var target: Target = get_parent()
 

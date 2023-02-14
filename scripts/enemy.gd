@@ -38,10 +38,3 @@ func _hit():
 				if close == false: 
 					return
 	
-
-func is_collided(box1, box2):
-	var distance = box1.position.distance_to(box2.position)
-	var combined_size = (box1.scale + box2.scale).length() + 4
-	if distance <= combined_size / 2:
-		return true
-	return false

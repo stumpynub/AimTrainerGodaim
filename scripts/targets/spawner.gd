@@ -6,16 +6,25 @@ class_name Spawner
 @export var rand_max = 0 
 @export var amount = 1
 @export var scene: PackedScene
+@export var target: Target
 @export var spawn_area: Vector3
 @export var spawn_on_start = false
 @export var spawn_on_timeout = false
 
-@onready var timer: Timer = $Timer
-
+@onready var timer = Timer.new()
 var spawned_objects = []
 
 func _ready(): 
+	
+	if target != null: 
+		pass
+		
+	add_child(timer)
+	timer.autostart = true 
+	timer.timeout.connect(_on_timer_timeout)
+	
 	if spawn_on_start: 
+		print("spawned")
 		spawn()
 	
 	if rand_max > 0: 

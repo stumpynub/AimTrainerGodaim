@@ -15,7 +15,7 @@ class_name TargetBehaviourHoverColor
 
 
 func _ready():
-	
+	hover_mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	target.hit.connect(_hit)
 	hover_mat.albedo_color = normal_color
 	

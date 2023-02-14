@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=3 uid="uid://chcji27rdm1wa"]
+
+[ext_resource type="PackedScene" uid="uid://b7y5xmt660wt3" path="res://scenes/player.tscn" id="1_vv3av"]
+[ext_resource type="Script" path="res://scripts/targets/target_behaviours/target_behaviour_random_position.gd" id="3_ss1p6"]
+[ext_resource type="Script" path="res://scripts/targets/target.gd" id="4_n22c5"]
+[ext_resource type="Script" path="res://scripts/targets/target_behaviours/target_behaviour_move_constant.gd" id="5_0j6sp"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5qu6x"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_tk2dy"]
+sky_material = SubResource("ProceduralSkyMaterial_5qu6x")
+
+[sub_resource type="Environment" id="Environment_wdwvu"]
+background_mode = 1
+sky = SubResource("Sky_tk2dy")
+tonemap_mode = 3
+ssao_enabled = true
+glow_enabled = true
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fob1r"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_og1rw"]
+
+[node name="scenario_aim_invaders" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_vv3av")]
+enable_movement = false
+
+[node name="ScenarioEnviorment" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="ScenarioEnviorment"]
+environment = SubResource("Environment_wdwvu")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="ScenarioEnviorment"]
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0.457809, -0.485681, 0.744664, -0.201031, 0.759349, 0.61885, 0, 0, 0)
+shadow_enabled = true
+shadow_opacity = 0.75
+shadow_blur = 2.46
+
+[node name="Target" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -43.4548)
+freeze = true
+freeze_mode = 1
+script = ExtResource("4_n22c5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Target"]
+transform = Transform3D(4.86426, 0, 0, 0, 4.86426, 0, 0, 0, 4.86426, 0, 0, 0)
+shape = SubResource("SphereShape3D_fob1r")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Target/CollisionShape3D"]
+mesh = SubResource("SphereMesh_og1rw")
+skeleton = NodePath("../..")
+
+[node name="TargetBehaviourRandomPosition" type="Node" parent="Target"]
+script = ExtResource("3_ss1p6")
+randomize_on_start = true
+
+[node name="TargetBehaviourMoveConstant" type="Node" parent="Target"]
+script = ExtResource("5_0j6sp")
+direction = Vector3(0, 1, 0)
