@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://3t2vpxaf3n0w"]
+[gd_scene load_steps=6 format=3 uid="uid://3wimi23vl683"]
 
 [ext_resource type="Script" path="res://scripts/targets/target_random_radius.gd" id="1_eukhb"]
 [ext_resource type="Texture2D" uid="uid://cqwy35syndtf4" path="res://assets/textures/icon.svg" id="2_2sqt4"]

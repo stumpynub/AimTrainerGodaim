@@ -44,7 +44,7 @@ func _ready():
 	if DirAccess.dir_exists_absolute(scenarios_dir): 
 		for file in DirAccess.get_files_at("res://scenes/scenerios/"):
 
-			var instance = load("res://scenes/ui/ui_senereo_item.tscn")
+			var instance = load("res://scenes/ui/ui_scenario_item.tscn")
 			var name = file.replace("_", " ")
 			var path = scenarios_dir + str(file)
 			name = name.replace(".tscn", "")
