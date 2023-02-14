@@ -20,7 +20,7 @@ func _ready():
 	get_tree().paused = false
 	toggle_menu()
 	
-	## Connect 
+	## Connect menu bar buttons
 	## 
 	customize_popup.id_pressed.connect(customize_pressed)
 	settings_popup.id_pressed.connect(settings_pressed)
@@ -36,7 +36,6 @@ func _ready():
 					%HitSFXOptionButton.add_item(file)
 					%MissSFXOptionButton.add_item(file)
 	
-	####
 	
 	## Adds 'ui_scenario_item' for each file in
 	## the scenarios scene folder -> res/scenes/scenarios
@@ -54,7 +53,8 @@ func _ready():
 			scenarios_container.add_child(instance)
 	####
 	
-	init_values()
+
+	call_deferred("init_values")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -78,7 +78,6 @@ func _process(delta):
 
 func toggle_menu(): 
 	var s = $SettingsContainer
-	$SettingsContainer/MenuBar/AnimationPlayer.play("RESET")
 	if opened: 
 		for child in s.get_children(): 
 			
@@ -92,7 +91,6 @@ func toggle_menu():
 		get_tree().paused = false
 	else: 
 		Input.mouse_mode = Input.MOUSE_MODE_CONFINED
-		$SettingsContainer/MenuBar/AnimationPlayer.play("open")
 		for child in s.get_children(): 
 			if child.get("prev_opened") != null: 
 				if child.prev_opened == true: 
@@ -118,11 +116,18 @@ func init_values():
 	%FullscreenCheckbox.button_pressed = ezcfg.get_value("graphics", "fullscreen", false)
 	%VsyncCheckbox.button_pressed = ezcfg.get_value("graphics", "vsync", false)
 	
+	# SFX Customize
+	%HitSFXOptionButton.selected = ezcfg.get_value("SFX", "hit", 0)
+	%MissSFXOptionButton.selected = ezcfg.get_value("SFX", "miss", 0)
+	
 	Global.reticle.texture = %ReticleImagesOption.get_item_icon(ezcfg.get_value("reticle", "image"))
+	Global.shoot_player.hit_clip = load(actions_dir + %HitSFXOptionButton.get_item_text(ezcfg.get_value("SFX", "hit", 0)))
+	Global.shoot_player.miss_clip = load(actions_dir + %MissSFXOptionButton.get_item_text(ezcfg.get_value("SFX", "miss", 0)))
+	
 	Global.reticle.modulate = %ColorPickerButton.color
 	Global.reticle.scale.x = ezcfg.get_value("reticle", "scale")
 	Global.reticle.scale.y = ezcfg.get_value("reticle", "scale")
-	
+
 	update_reticle_preview()
 	
 func _on_quit_button_pressed():
@@ -165,7 +170,6 @@ func _on_reticle_images_option_item_selected(index):
 	print("selected")
 	ezcfg.save_value("reticle", "image", index)
 	Global.reticle.texture = %ReticleImagesOption.get_item_icon(index)
-
 func _on_color_picker_button_color_changed(color):
 	update_reticle_preview()
 	if is_instance_valid(Global.reticle): 
@@ -254,18 +258,21 @@ func _on_stats_pressed():
 
 ## SFX PANEL #############################################
 func _on_action_option_button_item_selected(index):
+	print("found")
 	if is_instance_valid(Global.shoot_player): 
-		if index == 0: 
+		if index == 0:
 			Global.shoot_player.hit_clip = null 
 		else: 
 			Global.shoot_player.hit_clip = load(actions_dir + %HitSFXOptionButton.get_item_text(index))
-
-
+		ezcfg.save_value("SFX", "hit", index)
+		
 func _on_miss_sfx_option_button_item_selected(index):
 	if is_instance_valid(Global.shoot_player): 
 		if index == 0: 
 			Global.shoot_player.miss_clip = null
 		else: 
 			Global.shoot_player.miss_clip = load(actions_dir + %MissSFXOptionButton.get_item_text(index))
-
+		
+		ezcfg.save_value("SFX", "miss", index)
+		
 ##################################################################################################

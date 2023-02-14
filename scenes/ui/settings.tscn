@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://mttrb38y8hc0"]
+[gd_scene load_steps=13 format=3 uid="uid://mttrb38y8hc0"]
 
 [ext_resource type="Theme" uid="uid://bsxf0otie5016" path="res://assets/theme.tres" id="1_amped"]
 [ext_resource type="Script" path="res://scripts/ui/ui_settings.gd" id="2_3thbb"]
@@ -15,43 +15,6 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fius2"]
 bg_color = Color(0.109804, 0.109804, 0.109804, 1)
-
-[sub_resource type="Animation" id="Animation_2d87n"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MenuBar:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -50)]
-}
-
-[sub_resource type="Animation" id="Animation_318f6"]
-resource_name = "open"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MenuBar:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, -50), Vector2(0, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_tgbka"]
-_data = {
-"RESET": SubResource("Animation_2d87n"),
-"open": SubResource("Animation_318f6")
-}
 
 [node name="Settings" type="Control"]
 process_mode = 3
@@ -92,6 +55,7 @@ offset_left = 0.127935
 offset_top = 34.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="HitCountLabel" type="Label" parent="SettingsContainer/StatsPanel/VBoxContainer"]
@@ -305,29 +269,32 @@ layout_mode = 2
 layout_mode = 2
 text = "Mouse Sensitivity
 "
-
-[node name="SensitivitySpinBox" type="SpinBox" parent="SettingsContainer/ControlsPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer/SensitivityVContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_icons/updown = SubResource("ImageTexture_8xw0h")
-min_value = 0.01
-max_value = 1.0
-step = 0.01
-value = 1.0
-alignment = 1
-
-[node name="SensitivitySlider" type="HSlider" parent="SettingsContainer/ControlsPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer/SensitivityVContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(7.964, 0)
-layout_mode = 2
-min_value = 0.01
-max_value = 1.0
-step = 0.01
-value = 1.0
+horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="SettingsContainer/ControlsPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer/SensitivityVContainer"]
 layout_mode = 2
+
+[node name="SensitivitySpinBox" type="SpinBox" parent="SettingsContainer/ControlsPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer/SensitivityVContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+theme_override_icons/updown = SubResource("ImageTexture_8xw0h")
+min_value = 0.001
+max_value = 1.0
+step = 0.001
+value = 1.0
 alignment = 1
+
+[node name="SensitivitySlider" type="HSlider" parent="SettingsContainer/ControlsPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer/SensitivityVContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+min_value = 0.001
+max_value = 1.0
+step = 0.001
+value = 1.0
 
 [node name="ControlsPanel2" parent="SettingsContainer" instance=ExtResource("3_i64wq")]
 layout_mode = 1
@@ -501,38 +468,52 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 48.0
+offset_left = 26.0
 offset_top = 68.0
-offset_right = -48.0
-offset_bottom = -68.0
+offset_right = -26.0021
+offset_bottom = -33.0007
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+follow_focus = true
 
 [node name="CenterContainer" type="CenterContainer" parent="SettingsContainer/VideoPanel/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PlayerSettingsVContainer" type="VBoxContainer" parent="SettingsContainer/VideoPanel/ScrollContainer/CenterContainer"]
+[node name="Label" type="Label" parent="SettingsContainer/VideoPanel/ScrollContainer/CenterContainer"]
+layout_mode = 2
+text = "Video"
+horizontal_alignment = 1
+
+[node name="PlayerSettingsVContainer" type="VBoxContainer" parent="SettingsContainer/VideoPanel/ScrollContainer"]
 layout_direction = 2
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="SettingsContainer/VideoPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer"]
-layout_mode = 2
-text = "Video"
-horizontal_alignment = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="SettingsContainer/VideoPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="SettingsContainer/VideoPanel/ScrollContainer/PlayerSettingsVContainer"]
 layout_mode = 2
 
-[node name="VsyncCheckbox" type="CheckBox" parent="SettingsContainer/VideoPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer"]
+[node name="ResolutionContainer" type="VBoxContainer" parent="SettingsContainer/VideoPanel/ScrollContainer/PlayerSettingsVContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsContainer/VideoPanel/ScrollContainer/PlayerSettingsVContainer/ResolutionContainer"]
+layout_mode = 2
+text = "Resolution"
+
+[node name="OptionButton" type="OptionButton" parent="SettingsContainer/VideoPanel/ScrollContainer/PlayerSettingsVContainer/ResolutionContainer"]
+layout_mode = 2
+item_count = 1
+popup/item_0/text = "1920x1080"
+popup/item_0/id = 0
+
+[node name="VsyncCheckbox" type="CheckBox" parent="SettingsContainer/VideoPanel/ScrollContainer/PlayerSettingsVContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "vsync"
 
-[node name="FullscreenCheckbox" type="CheckBox" parent="SettingsContainer/VideoPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer"]
+[node name="FullscreenCheckbox" type="CheckBox" parent="SettingsContainer/VideoPanel/ScrollContainer/PlayerSettingsVContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "fullscreen"
@@ -591,8 +572,7 @@ layout_direction = 1
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = -50.0
-offset_bottom = -10.0
+offset_bottom = 40.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_fius2")
 
@@ -656,14 +636,6 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="SettingsContainer/MenuBar"]
-root_node = NodePath("../..")
-autoplay = "open"
-speed_scale = 2.0
-libraries = {
-"": SubResource("AnimationLibrary_tgbka")
-}
-
 [node name="EzCfg" type="Node" parent="."]
 script = ExtResource("7_k8bej")
 
@@ -680,16 +652,16 @@ mouse_filter = 2
 [connection signal="color_changed" from="SettingsContainer/ReticlePanel/ScrollContainer/CenterContainer/ReticleSettingsVContainer/ReticleColorPickerVContainer/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
 [connection signal="value_changed" from="SettingsContainer/ReticlePanel/ScrollContainer/CenterContainer/ReticleSettingsVContainer/ReticleScaleVContainer/ReticleScaleSlider" to="." method="_on_h_slider_value_changed"]
 [connection signal="text_changed" from="SettingsContainer/ScenariosPanel/ScenariosSearch" to="." method="_on_scenarios_search_text_changed"]
-[connection signal="value_changed" from="SettingsContainer/ControlsPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer/SensitivityVContainer/SensitivitySpinBox" to="." method="_on_sensitivity_spin_box_value_changed"]
-[connection signal="value_changed" from="SettingsContainer/ControlsPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer/SensitivityVContainer/SensitivitySlider" to="." method="_on_sensitivity_slider_value_changed"]
+[connection signal="value_changed" from="SettingsContainer/ControlsPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer/SensitivityVContainer/HBoxContainer/SensitivitySpinBox" to="." method="_on_sensitivity_spin_box_value_changed"]
+[connection signal="value_changed" from="SettingsContainer/ControlsPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer/SensitivityVContainer/HBoxContainer/SensitivitySlider" to="." method="_on_sensitivity_slider_value_changed"]
 [connection signal="value_changed" from="SettingsContainer/ControlsPanel2/ScrollContainer/CenterContainer/PlayerSettingsVContainer/SensitivityVContainer/SFXSlider" to="." method="_on_sensitivity_slider_value_changed"]
 [connection signal="value_changed" from="SettingsContainer/ControlsPanel2/ScrollContainer/CenterContainer/PlayerSettingsVContainer/SensitivityVContainer2/SFXSlider" to="." method="_on_sensitivity_slider_value_changed"]
 [connection signal="value_changed" from="SettingsContainer/ControlsPanel2/ScrollContainer/CenterContainer/PlayerSettingsVContainer/SensitivityVContainer3/SFXSlider" to="." method="_on_sensitivity_slider_value_changed"]
 [connection signal="item_selected" from="SettingsContainer/SFXPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer/HBoxContainer/HitSFXOptionButton" to="." method="_on_action_option_button_item_selected"]
 [connection signal="item_selected" from="SettingsContainer/SFXPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer/HBoxContainer2/MissSFXOptionButton" to="." method="_on_miss_sfx_option_button_item_selected"]
-[connection signal="pressed" from="SettingsContainer/VideoPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer/VsyncCheckbox" to="." method="_on_vsync_checkbox_pressed"]
-[connection signal="toggled" from="SettingsContainer/VideoPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer/VsyncCheckbox" to="." method="_on_vsync_checkbox_toggled"]
-[connection signal="toggled" from="SettingsContainer/VideoPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer/FullscreenCheckbox" to="." method="_on_fullscreen_checkbox_toggled"]
+[connection signal="pressed" from="SettingsContainer/VideoPanel/ScrollContainer/PlayerSettingsVContainer/VsyncCheckbox" to="." method="_on_vsync_checkbox_pressed"]
+[connection signal="toggled" from="SettingsContainer/VideoPanel/ScrollContainer/PlayerSettingsVContainer/VsyncCheckbox" to="." method="_on_vsync_checkbox_toggled"]
+[connection signal="toggled" from="SettingsContainer/VideoPanel/ScrollContainer/PlayerSettingsVContainer/FullscreenCheckbox" to="." method="_on_fullscreen_checkbox_toggled"]
 [connection signal="pressed" from="SettingsContainer/MenuBar/HBoxContainer/ScenariosMenuButton" to="." method="_on_scenarios_menu_button_pressed"]
 [connection signal="pressed" from="SettingsContainer/MenuBar/HBoxContainer/Stats" to="." method="_on_stats_pressed"]
 [connection signal="pressed" from="SettingsContainer/MenuBar/QuitButton" to="." method="_on_quit_button_pressed"]

@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bcx7gh8xiduk2" path="res://assets/backgrounds/night.exr" id="1_tf2w2"]
 [ext_resource type="Script" path="res://scripts/targets/parth_target.gd" id="2_yjufn"]
 [ext_resource type="Script" path="res://scripts/targets/target.gd" id="5_qeo1i"]
+[ext_resource type="Script" path="res://scripts/targets/target_behaviours/target_behaviour_hover_color.gd" id="6_yrg3x"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_uispv"]
 panorama = ExtResource("1_tf2w2")
@@ -24,49 +25,6 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0)
 }
 point_count = 3
-
-[sub_resource type="GDScript" id="GDScript_p4p4o"]
-script/source = "extends Node
-
-class_name TargetBehaviourHoverColor
-
-@export_range(0, 10) var color_change_speed = 5
-@onready var hover_mat = StandardMaterial3D.new()
-@export var normal_color: Color
-@export var hovered_color: Color
-@export var mesh: MeshInstance3D
-
-@export var color_on_hit = false 
-@export var hit_color: Color
-
-@onready var target: Target = get_parent()
-
-
-func _ready():
-	
-	target.hit.connect(_hit)
-	hover_mat.albedo_color = normal_color
-	
-	if mesh == null: 
-		if get_parent().has_method(\"get_mesh\"): 
-			mesh = get_parent().get_mesh()
-			mesh.set_surface_override_material(0, hover_mat)
-	else: 
-		mesh.set_surface_override_material(0, hover_mat)
-func _process(delta):
-	if target.hovered: 
-		hover_mat.albedo_color = hover_mat.albedo_color.lerp(hovered_color, delta * color_change_speed)
-		print(\"hover\")
-	else: 
-		hover_mat.albedo_color = hover_mat.albedo_color.lerp(normal_color, delta * color_change_speed)
-
-func _hit():
-	if mesh == null: 
-		return 
-
-	if color_on_hit: 
-		hover_mat.albedo_color = hit_color
-"
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_j83ur"]
 
@@ -120,14 +78,6 @@ freeze = true
 freeze_mode = 1
 script = ExtResource("5_qeo1i")
 
-[node name="TargetBehaviourHoverColor" type="Node" parent="Path3D/PathFollow3D/Target"]
-script = SubResource("GDScript_p4p4o")
-color_change_speed = 10
-normal_color = Color(1, 1, 1, 1)
-hovered_color = Color(1, 0.533333, 0, 1)
-color_on_hit = true
-hit_color = Color(1, 0, 0, 1)
-
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D/PathFollow3D/Target"]
 transform = Transform3D(1, -9.31323e-10, 2.98023e-08, -4.65661e-10, 1, -9.31323e-10, -2.98023e-08, -9.31323e-10, 1, -9.53674e-07, 1.01856, 0)
 mesh = SubResource("CapsuleMesh_j83ur")
@@ -139,5 +89,12 @@ shape = SubResource("CapsuleShape3D_bbpre")
 
 [node name="TargetBehaviourDeleteOnHit" type="Node" parent="Path3D/PathFollow3D/Target"]
 script = SubResource("GDScript_bu587")
+
+[node name="TargetBehaviourHoverColor" type="Node" parent="Path3D/PathFollow3D/Target" node_paths=PackedStringArray("mesh")]
+script = ExtResource("6_yrg3x")
+normal_color = Color(1, 1, 1, 1)
+hovered_color = Color(0.929412, 0.47451, 0, 1)
+mesh = NodePath("../MeshInstance3D")
+hit_color = Color(1, 0, 0, 1)
 
 [connection signal="timeout" from="Path3D/PathFollow3D/Timer" to="Path3D/PathFollow3D" method="_on_timer_timeout"]

@@ -61,7 +61,6 @@ func _process(delta):
 	if get_slide_collision_count() > 0: 
 		velocity += get_last_slide_collision().get_normal() * 2
 	
-	
 	if interaction_ray.is_colliding():
 		if is_instance_valid(interaction_ray.get_collider()): 
 			if interaction_ray.get_collider().has_signal("hit"):
@@ -239,7 +238,7 @@ func _init_rays():
 	camera.add_child(interaction_ray)
 	camera.add_child(head_ray)
 	interaction_ray.set_collision_mask_value(3, true)
-	interaction_ray.target_position = Vector3(0,0,-50)
+	interaction_ray.target_position = Vector3(0,0,-500)
 	interaction_ray.collide_with_areas = true
 	ground_ray.target_position = Vector3(0, -STANDING_HEIGHT, 0)
 
