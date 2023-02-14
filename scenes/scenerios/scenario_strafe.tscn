@@ -1,11 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://gr4lxalqwd5a"]
+[gd_scene load_steps=13 format=3 uid="uid://bxbmosiahbxxl"]
 
 [ext_resource type="Script" path="res://scripts/scenario/scenario.gd" id="1_8ra7p"]
 [ext_resource type="PackedScene" uid="uid://b7y5xmt660wt3" path="res://scenes/player.tscn" id="1_rh3iq"]
 [ext_resource type="Texture2D" uid="uid://bcx7gh8xiduk2" path="res://assets/backgrounds/night.exr" id="1_tf2w2"]
-[ext_resource type="Script" path="res://scripts/targets/parth_target.gd" id="2_yjufn"]
-[ext_resource type="Script" path="res://scenes/targets/target_behaviours/target_behaviour_hover_color.gd" id="5_dtgoy"]
+[ext_resource type="Script" path="res://scripts/targets/target_path_follower.gd" id="4_xnimb"]
 [ext_resource type="Script" path="res://scripts/targets/target.gd" id="5_qeo1i"]
+[ext_resource type="Script" path="res://scripts/targets/target_behaviours/target_behaviour_hover_color.gd" id="6_agqel"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_uispv"]
 panorama = ExtResource("1_tf2w2")
@@ -19,9 +19,9 @@ sky = SubResource("Sky_w0bic")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="Curve3D" id="Curve3D_dbo12"]
+[sub_resource type="Curve3D" id="Curve3D_fnlt6"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 3.91551, 0, 8.09997, 2.52895, -0.0589461, 9.98378, -2.52895, 0.0589461, -9.98378, -6.97888, 0.284197, 0.246885, 0, 0, 0, 0, 0, 0, 3.72172, 0, -7.88818),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 3.75879, 0, 8, 2.52895, -0.0589461, 9.98378, -2.52895, 0.0589461, -9.98378, -6.97888, 0.284197, 0.246885, 0, 0, 0, 0, 0, 0, 3.72172, 0, -7.88818),
 "tilts": PackedFloat32Array(0, 0, 0)
 }
 point_count = 3
@@ -46,13 +46,13 @@ enable_movement = false
 
 [node name="Path3D" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75879, 0, 0)
-curve = SubResource("Curve3D_dbo12")
+curve = SubResource("Curve3D_fnlt6")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(-0.912909, 0.0118095, -0.407912, 0.00841754, 0.999914, 0.0101082, 0.407996, 0.00579466, -0.912929, -6.12394, 0.263519, 2.75043)
-progress = 12.3789
+transform = Transform3D(-0.585377, 0.0173931, -0.810531, -9.31289e-10, 0.999766, 0.0214526, 0.810717, 0.0125587, -0.585242, 3.75879, 0, 8)
 loop = false
-script = ExtResource("2_yjufn")
+tilt_enabled = false
+script = ExtResource("4_xnimb")
 
 [node name="Timer" type="Timer" parent="Path3D/PathFollow3D"]
 autostart = true
@@ -64,7 +64,7 @@ freeze_mode = 1
 script = ExtResource("5_qeo1i")
 
 [node name="TargetBehaviourHoverColor" type="Node" parent="Path3D/PathFollow3D/Target" node_paths=PackedStringArray("mesh")]
-script = ExtResource("5_dtgoy")
+script = ExtResource("6_agqel")
 color_change_speed = 10
 normal_color = Color(1, 1, 1, 1)
 hovered_color = Color(1, 0.533333, 0, 1)

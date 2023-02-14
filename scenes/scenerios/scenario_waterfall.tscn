@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b7y5xmt660wt3" path="res://scenes/player.tscn" id="1_ck7b6"]
 [ext_resource type="Texture2D" uid="uid://sjaj8rlbbmm3" path="res://assets/backgrounds/sunset.exr" id="2_4eksj"]
 [ext_resource type="PackedScene" uid="uid://c6sn1dsp2w22a" path="res://scenes/targets/spawner.tscn" id="2_wu5gn"]
-[ext_resource type="PackedScene" uid="uid://bvkpp5xdaetga" path="res://scenes/targets/target_waterfall.tscn" id="3_i8j34"]
+[ext_resource type="PackedScene" uid="uid://bcl8p8d1ld3o3" path="res://scenes/targets/target_waterfall.tscn" id="3_i8j34"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_yr4i1"]
 panorama = ExtResource("2_4eksj")

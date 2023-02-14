@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bvkpp5xdaetga"]
+[gd_scene load_steps=7 format=3 uid="uid://bcl8p8d1ld3o3"]
 
 [ext_resource type="Script" path="res://scripts/targets/target_delete.gd" id="1_igajk"]
 [ext_resource type="Texture2D" uid="uid://cqwy35syndtf4" path="res://assets/textures/icon.svg" id="2_ka2tj"]
-[ext_resource type="Script" path="res://scenes/targets/target_behaviours/target_behaviour_delete_on_hit.gd" id="3_16wxr"]
+[ext_resource type="Script" path="res://scripts/targets/target_behaviours/target_behaviour_delete_on_hit.gd" id="3_11uyp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kvrta"]
 
@@ -23,4 +23,4 @@ mesh = SubResource("BoxMesh_v0v0s")
 skeleton = NodePath("")
 
 [node name="Node" type="Node" parent="."]
-script = ExtResource("3_16wxr")
+script = ExtResource("3_11uyp")

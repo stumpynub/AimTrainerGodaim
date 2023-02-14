@@ -14,8 +14,6 @@ func set_item(name, p):
 	scenario_name = name
 	$Panel/Label.text = scenario_name
 
-
-
 func _on_mouse_entered():
 	mouse_hovered = true 
 	

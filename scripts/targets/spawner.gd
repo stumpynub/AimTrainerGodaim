@@ -1,6 +1,7 @@
 extends Node3D
 
 class_name Spawner
+
 @export var rand_min = 0 
 @export var rand_max = 0 
 @export var amount = 1

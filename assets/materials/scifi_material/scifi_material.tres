@@ -20,4 +20,3 @@ heightmap_enabled = true
 heightmap_texture = ExtResource("3_ausvq")
 uv1_scale = Vector3(0.2, 0.2, 0.2)
 uv1_triplanar = true
-uv1_world_triplanar = true

@@ -12,6 +12,7 @@ enum e_movement_state {
 }
 
 
+@export var fire_rate = 0.3
 @export var camera: Camera3D
 @export var player_area: Area3D
 @export var enable_movement = false
