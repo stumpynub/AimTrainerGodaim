@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://c5jv5gu4t4nee"]
+
+[ext_resource type="Texture2D" uid="uid://dt4u40pgdkmum" path="res://assets/images/smudge.png" id="1_lxxlk"]
+
+[sub_resource type="Curve" id="Curve_es5tf"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.426724, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_lmdpb"]
+curve = SubResource("Curve_es5tf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vtmpq"]
+direction = Vector3(0, 0, 1)
+spread = 17.03
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 7.81
+initial_velocity_max = 7.81
+angle_min = -711.0
+angle_max = 720.0
+scale_min = 0.1
+scale_max = 0.2
+scale_curve = SubResource("CurveTexture_lmdpb")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nufe1"]
+transparency = 1
+blend_mode = 1
+albedo_color = Color(1, 1, 0.517647, 0.12549)
+albedo_texture = ExtResource("1_lxxlk")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_bg7rf"]
+material = SubResource("StandardMaterial3D_nufe1")
+
+[node name="GPUParticles3D" type="GPUParticles3D"]
+amount = 16
+lifetime = 0.5
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_vtmpq")
+draw_pass_1 = SubResource("QuadMesh_bg7rf")
