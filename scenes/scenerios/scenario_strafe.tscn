@@ -1,9 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://gr4lxalqwd5a"]
+[gd_scene load_steps=13 format=3 uid="uid://gr4lxalqwd5a"]
 
 [ext_resource type="Script" path="res://scripts/scenario/scenario.gd" id="1_8ra7p"]
 [ext_resource type="PackedScene" uid="uid://b7y5xmt660wt3" path="res://scenes/player.tscn" id="1_rh3iq"]
 [ext_resource type="Texture2D" uid="uid://bcx7gh8xiduk2" path="res://assets/backgrounds/night.exr" id="1_tf2w2"]
-[ext_resource type="Script" path="res://scripts/targets/parth_target.gd" id="2_yjufn"]
+[ext_resource type="Script" path="res://scripts/targets/target_path_follower.gd" id="4_vt72q"]
 [ext_resource type="Script" path="res://scripts/targets/target.gd" id="5_qeo1i"]
 [ext_resource type="Script" path="res://scripts/targets/target_behaviours/target_behaviour_hover_color.gd" id="6_yrg3x"]
 
@@ -30,20 +30,6 @@ point_count = 3
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bbpre"]
 
-[sub_resource type="GDScript" id="GDScript_bu587"]
-script/source = "extends Node
-
-class_name TargetBehaviourDeleteOnHit
-
-@onready var target: Target = get_parent()
-
-func _ready():
-	target.hit.connect(_hit)
-	
-func _hit():
-	target.queue_free()
-"
-
 [node name="scenario_strafe" type="Node3D"]
 script = ExtResource("1_8ra7p")
 
@@ -63,11 +49,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75879, 0, 0)
 curve = SubResource("Curve3D_dbo12")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(-0.934368, 0.00293564, -0.356204, 0.00383324, 0.999992, -0.00181424, 0.356196, -0.00306078, -0.934371, -6.18295, 0.325987, 4.19626)
-progress = 12.3789
-cubic_interp = false
+transform = Transform3D(-0.650428, 0.0158816, -0.759357, -0.00131287, 0.999754, 0.0220326, 0.759522, 0.0153285, -0.650248, -3.72067, 0.281691, 7.71094)
+progress = 8.04141
 loop = false
-script = ExtResource("2_yjufn")
+script = ExtResource("4_vt72q")
 
 [node name="Timer" type="Timer" parent="Path3D/PathFollow3D"]
 autostart = true
@@ -87,14 +72,12 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, -6.98492e-10, 2.98023e-08, -2.32831e-10, 1, 0, -5.96046e-08, -1.39698e-09, 1, -9.53674e-07, 1.01856, 0)
 shape = SubResource("CapsuleShape3D_bbpre")
 
-[node name="TargetBehaviourDeleteOnHit" type="Node" parent="Path3D/PathFollow3D/Target"]
-script = SubResource("GDScript_bu587")
-
 [node name="TargetBehaviourHoverColor" type="Node" parent="Path3D/PathFollow3D/Target" node_paths=PackedStringArray("mesh")]
 script = ExtResource("6_yrg3x")
 normal_color = Color(1, 1, 1, 1)
 hovered_color = Color(0.929412, 0.47451, 0, 1)
 mesh = NodePath("../MeshInstance3D")
+color_on_hit = true
 hit_color = Color(1, 0, 0, 1)
 
 [connection signal="timeout" from="Path3D/PathFollow3D/Timer" to="Path3D/PathFollow3D" method="_on_timer_timeout"]

@@ -12,9 +12,9 @@ enum e_movement_state {
 }
 
 
-@export var fire_rate = 0.3
 @export var camera: Camera3D
-@export var player_area: Area3D
+@export var xr_camera: XRCamera3D
+@export var fire_rate = 0.3
 @export var enable_movement = false
 @export_range(0.01, 2.0) var mouse_sensitivity = 0.5
 
@@ -43,13 +43,27 @@ var prev_target = null
 @onready var start_coyote_time = coyote_time
 
 var coyote_time = 0.2
+var fire_timer: Timer = Timer.new()
 
+var use_xr = false 
 signal action
 
 func _enter_tree():
+
+		
 	Global.player = self
 
 func _ready(): 
+	
+	if use_xr: 
+		get_viewport().use_xr = true
+		print("found")
+		camera.current = false
+		xr_camera.current = true
+	else: 
+		camera.current = true
+		xr_camera.current = false
+	
 	_init_rays()
 	
 func _process(delta):
@@ -61,52 +75,7 @@ func _process(delta):
 	if get_slide_collision_count() > 0: 
 		velocity += get_last_slide_collision().get_normal() * 2
 	
-	if interaction_ray.is_colliding():
-		if is_instance_valid(interaction_ray.get_collider()): 
-			if interaction_ray.get_collider().has_signal("hit"):
-				
-				if prev_target != null: 
-					if interaction_ray.get_collider() == prev_target: 
-						prev_target = interaction_ray.get_collider()
-						prev_target.hovered = true
-						
-					else: 
-						prev_target.hovered = false
-					prev_target = interaction_ray.get_collider()
-					
-				prev_target = interaction_ray.get_collider()
-	else: 
-		if is_instance_valid(prev_target):
-			prev_target.hovered = false 
-	if Input.is_action_just_pressed("action") and !ui_locked: 
 	
-		var scenario = Global.current_scenario
-		
-		if interaction_ray.is_colliding():
-			if is_instance_valid(interaction_ray.get_collider()): 
-				if interaction_ray.get_collider().get_class() == "RigidBody3D": 
-					interaction_ray.get_collider().apply_central_impulse(
-						-camera.global_transform.basis.z.normalized() * 20, 
-					)
-					
-		
-				if interaction_ray.get_collider().has_signal("hit"): 
-					
-					interaction_ray.get_collider().emit_signal("hit")
-					$SFXActionPlayer.play_hit()
-					if is_instance_valid(scenario): 
-						scenario.hits += 1
-					
-				else: 
-					if is_instance_valid(scenario): 
-						scenario.misses += 1
-					$SFXActionPlayer.play_miss()
-		else: 
-			if is_instance_valid(scenario): 
-				scenario.misses += 1
-			
-			$SFXActionPlayer.play_miss()
-			
 		var place_offset = (interaction_ray.get_collision_normal() * delta)
 		emit_signal("action", interaction_ray.get_collision_point() + place_offset )
 	

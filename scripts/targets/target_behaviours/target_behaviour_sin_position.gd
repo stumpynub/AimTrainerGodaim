@@ -7,7 +7,6 @@ class_name TargetBehaviourSinPosition
 @export var z = false 
 
 @export var distance = 2
-@export var direction: Vector3
 @export var speed: float
 
 @onready var target: Target = get_parent()

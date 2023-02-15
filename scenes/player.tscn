@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://b7y5xmt660wt3"]
+[gd_scene load_steps=10 format=3 uid="uid://b7y5xmt660wt3"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ntsen"]
 [ext_resource type="PackedScene" uid="uid://bcqg276xgtikn" path="res://scenes/ui/Hud.tscn" id="2_30vct"]
+[ext_resource type="Script" path="res://scripts/shot_ray.gd" id="3_07dos"]
 [ext_resource type="PackedScene" uid="uid://mttrb38y8hc0" path="res://scenes/ui/settings.tscn" id="3_jq0ru"]
 [ext_resource type="AudioStream" uid="uid://cualusturm6kh" path="res://assets/audio/sfx/action/teacup.ogg" id="4_yxbui"]
 [ext_resource type="Script" path="res://scripts/audio/sfx_action_player.gd" id="5_n5c3a"]
@@ -9,9 +10,16 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0gohi"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera")]
+[sub_resource type="Curve" id="Curve_ng8b8"]
+resource_local_to_scene = true
+min_value = -1.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.378676, -0.381818), 0.0, 0.0, 0, 0, Vector2(0.595588, 0.2), 0.0, 0.0, 0, 0, Vector2(0.775735, -0.254545), 0.0, 0.0, 0, 0, Vector2(1, 0.472727), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "xr_camera")]
 script = ExtResource("1_ntsen")
 camera = NodePath("Camera3D")
+xr_camera = NodePath("XROrigin3D/XRCamera3D")
 enable_movement = true
 
 [node name="Control" parent="." instance=ExtResource("2_30vct")]
@@ -21,11 +29,26 @@ shape = SubResource("SphereShape3D_0gohi")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 
-[node name="Settings" parent="." instance=ExtResource("3_jq0ru")]
+[node name="ShotRay" type="RayCast3D" parent="Camera3D"]
+target_position = Vector3(0, 0, -100)
+collision_mask = 5
+script = ExtResource("3_07dos")
+automatic = true
+shot_time = 0.08
+horizontal_intensity = 100.0
+vertical_intensity = 50.0
+curve = SubResource("Curve_ng8b8")
 
-[node name="SFXActionPlayer" type="AudioStreamPlayer" parent="."]
+[node name="SFXActionPlayer" type="AudioStreamPlayer" parent="Camera3D/ShotRay"]
 volume_db = -13.97
 pitch_scale = 1.18
 script = ExtResource("5_n5c3a")
 hit_clip = ExtResource("4_yxbui")
 miss_clip = ExtResource("6_so5ue")
+
+[node name="Settings" parent="." instance=ExtResource("3_jq0ru")]
+
+[node name="XROrigin3D" type="XROrigin3D" parent="."]
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+current = true

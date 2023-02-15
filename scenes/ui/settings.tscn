@@ -296,7 +296,7 @@ max_value = 1.0
 step = 0.001
 value = 1.0
 
-[node name="ControlsPanel2" parent="SettingsContainer" instance=ExtResource("3_i64wq")]
+[node name="AudioPanel" parent="SettingsContainer" instance=ExtResource("3_i64wq")]
 layout_mode = 1
 anchor_left = -1.375
 anchor_top = 1.85648
@@ -306,7 +306,7 @@ offset_right = 186.667
 offset_bottom = 83.2099
 pivot_offset = Vector2(192, 136)
 
-[node name="ScrollContainer" type="ScrollContainer" parent="SettingsContainer/ControlsPanel2"]
+[node name="ScrollContainer" type="ScrollContainer" parent="SettingsContainer/AudioPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -319,32 +319,33 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="SettingsContainer/ControlsPanel2/ScrollContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="SettingsContainer/AudioPanel/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PlayerSettingsVContainer" type="VBoxContainer" parent="SettingsContainer/ControlsPanel2/ScrollContainer/CenterContainer"]
+[node name="Label" type="Label" parent="SettingsContainer/AudioPanel/ScrollContainer/CenterContainer"]
+layout_mode = 2
+text = "Audio"
+horizontal_alignment = 1
+
+[node name="PlayerSettingsVContainer" type="VBoxContainer" parent="SettingsContainer/AudioPanel/ScrollContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_direction = 2
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="SettingsContainer/ControlsPanel2/ScrollContainer/CenterContainer/PlayerSettingsVContainer"]
-layout_mode = 2
-text = "Audio"
-horizontal_alignment = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="SettingsContainer/ControlsPanel2/ScrollContainer/CenterContainer/PlayerSettingsVContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="SettingsContainer/AudioPanel/ScrollContainer/PlayerSettingsVContainer"]
 layout_mode = 2
 
-[node name="SensitivityVContainer" type="VBoxContainer" parent="SettingsContainer/ControlsPanel2/ScrollContainer/CenterContainer/PlayerSettingsVContainer"]
+[node name="SensitivityVContainer" type="VBoxContainer" parent="SettingsContainer/AudioPanel/ScrollContainer/PlayerSettingsVContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="SettingsContainer/ControlsPanel2/ScrollContainer/CenterContainer/PlayerSettingsVContainer/SensitivityVContainer"]
+[node name="Label" type="Label" parent="SettingsContainer/AudioPanel/ScrollContainer/PlayerSettingsVContainer/SensitivityVContainer"]
 layout_mode = 2
 text = "SFX"
 
-[node name="SFXSlider" type="HSlider" parent="SettingsContainer/ControlsPanel2/ScrollContainer/CenterContainer/PlayerSettingsVContainer/SensitivityVContainer"]
+[node name="SFXSlider" type="HSlider" parent="SettingsContainer/AudioPanel/ScrollContainer/PlayerSettingsVContainer/SensitivityVContainer"]
 custom_minimum_size = Vector2(7.964, 0)
 layout_mode = 2
 min_value = 0.01
@@ -352,14 +353,14 @@ max_value = 1.0
 step = 0.01
 value = 1.0
 
-[node name="SensitivityVContainer2" type="VBoxContainer" parent="SettingsContainer/ControlsPanel2/ScrollContainer/CenterContainer/PlayerSettingsVContainer"]
+[node name="SensitivityVContainer2" type="VBoxContainer" parent="SettingsContainer/AudioPanel/ScrollContainer/PlayerSettingsVContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="SettingsContainer/ControlsPanel2/ScrollContainer/CenterContainer/PlayerSettingsVContainer/SensitivityVContainer2"]
+[node name="Label" type="Label" parent="SettingsContainer/AudioPanel/ScrollContainer/PlayerSettingsVContainer/SensitivityVContainer2"]
 layout_mode = 2
 text = "Music"
 
-[node name="SFXSlider" type="HSlider" parent="SettingsContainer/ControlsPanel2/ScrollContainer/CenterContainer/PlayerSettingsVContainer/SensitivityVContainer2"]
+[node name="SFXSlider" type="HSlider" parent="SettingsContainer/AudioPanel/ScrollContainer/PlayerSettingsVContainer/SensitivityVContainer2"]
 custom_minimum_size = Vector2(7.964, 0)
 layout_mode = 2
 min_value = 0.01
@@ -367,20 +368,8 @@ max_value = 1.0
 step = 0.01
 value = 1.0
 
-[node name="SensitivityVContainer3" type="VBoxContainer" parent="SettingsContainer/ControlsPanel2/ScrollContainer/CenterContainer/PlayerSettingsVContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingsContainer/AudioPanel/ScrollContainer/PlayerSettingsVContainer"]
 layout_mode = 2
-
-[node name="Label" type="Label" parent="SettingsContainer/ControlsPanel2/ScrollContainer/CenterContainer/PlayerSettingsVContainer/SensitivityVContainer3"]
-layout_mode = 2
-text = "Music"
-
-[node name="SFXSlider" type="HSlider" parent="SettingsContainer/ControlsPanel2/ScrollContainer/CenterContainer/PlayerSettingsVContainer/SensitivityVContainer3"]
-custom_minimum_size = Vector2(7.964, 0)
-layout_mode = 2
-min_value = 0.01
-max_value = 1.0
-step = 0.01
-value = 1.0
 
 [node name="SFXPanel" parent="SettingsContainer" instance=ExtResource("3_i64wq")]
 layout_mode = 1
@@ -545,26 +534,26 @@ mouse_filter = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PlayerSettingsVContainer" type="VBoxContainer" parent="SettingsContainer/EnviromentPanel/ScrollContainer/CenterContainer"]
+[node name="Label" type="Label" parent="SettingsContainer/EnviromentPanel/ScrollContainer/CenterContainer"]
+layout_mode = 2
+text = "Enviroment"
+horizontal_alignment = 1
+
+[node name="PlayerSettingsVContainer" type="VBoxContainer" parent="SettingsContainer/EnviromentPanel/ScrollContainer"]
 layout_direction = 2
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="SettingsContainer/EnviromentPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer"]
-layout_mode = 2
-text = "Enviroment"
-horizontal_alignment = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="SettingsContainer/EnviromentPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="SettingsContainer/EnviromentPanel/ScrollContainer/PlayerSettingsVContainer"]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="SettingsContainer/EnviromentPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer"]
+[node name="Label2" type="Label" parent="SettingsContainer/EnviromentPanel/ScrollContainer/PlayerSettingsVContainer"]
 layout_mode = 2
 text = "sky"
 horizontal_alignment = 1
 
-[node name="OptionButton" type="OptionButton" parent="SettingsContainer/EnviromentPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer"]
+[node name="OptionButton" type="OptionButton" parent="SettingsContainer/EnviromentPanel/ScrollContainer/PlayerSettingsVContainer"]
 layout_mode = 2
 
 [node name="MenuBar" type="Panel" parent="SettingsContainer"]
@@ -654,9 +643,8 @@ mouse_filter = 2
 [connection signal="text_changed" from="SettingsContainer/ScenariosPanel/ScenariosSearch" to="." method="_on_scenarios_search_text_changed"]
 [connection signal="value_changed" from="SettingsContainer/ControlsPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer/SensitivityVContainer/HBoxContainer/SensitivitySpinBox" to="." method="_on_sensitivity_spin_box_value_changed"]
 [connection signal="value_changed" from="SettingsContainer/ControlsPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer/SensitivityVContainer/HBoxContainer/SensitivitySlider" to="." method="_on_sensitivity_slider_value_changed"]
-[connection signal="value_changed" from="SettingsContainer/ControlsPanel2/ScrollContainer/CenterContainer/PlayerSettingsVContainer/SensitivityVContainer/SFXSlider" to="." method="_on_sensitivity_slider_value_changed"]
-[connection signal="value_changed" from="SettingsContainer/ControlsPanel2/ScrollContainer/CenterContainer/PlayerSettingsVContainer/SensitivityVContainer2/SFXSlider" to="." method="_on_sensitivity_slider_value_changed"]
-[connection signal="value_changed" from="SettingsContainer/ControlsPanel2/ScrollContainer/CenterContainer/PlayerSettingsVContainer/SensitivityVContainer3/SFXSlider" to="." method="_on_sensitivity_slider_value_changed"]
+[connection signal="value_changed" from="SettingsContainer/AudioPanel/ScrollContainer/PlayerSettingsVContainer/SensitivityVContainer/SFXSlider" to="." method="_on_sensitivity_slider_value_changed"]
+[connection signal="value_changed" from="SettingsContainer/AudioPanel/ScrollContainer/PlayerSettingsVContainer/SensitivityVContainer2/SFXSlider" to="." method="_on_sensitivity_slider_value_changed"]
 [connection signal="item_selected" from="SettingsContainer/SFXPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer/HBoxContainer/HitSFXOptionButton" to="." method="_on_action_option_button_item_selected"]
 [connection signal="item_selected" from="SettingsContainer/SFXPanel/ScrollContainer/CenterContainer/PlayerSettingsVContainer/HBoxContainer2/MissSFXOptionButton" to="." method="_on_miss_sfx_option_button_item_selected"]
 [connection signal="pressed" from="SettingsContainer/VideoPanel/ScrollContainer/PlayerSettingsVContainer/VsyncCheckbox" to="." method="_on_vsync_checkbox_pressed"]

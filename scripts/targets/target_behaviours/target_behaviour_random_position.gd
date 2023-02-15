@@ -1,4 +1,4 @@
-extends Node 
+extends TargetBehaviour 
 
 class_name TargetBehaviourRandomPosition
 
@@ -13,12 +13,15 @@ enum e_offset {
 @export var randomize_on_start = false
 @export var range: Vector3 = Vector3(7, 7, 7)
 @onready var targets: Array = get_tree().get_nodes_in_group("target")
-@onready var target = get_parent()
-@onready var start_position = target.global_position
+
+var start_position 
 
 var rand_iter = 0
 
 func _ready(): 
+	
+	set_deferred("start_position", target.global_position)
+	
 	target.connect("hit", _hit)
 	
 	if randomize_on_start:
@@ -29,7 +32,7 @@ func _ready():
 		
 func _process(delta):
 	targets = get_tree().get_nodes_in_group("target")
-
+ 
 func _randomize():
 	var offset = Vector3.ZERO
 	
@@ -40,15 +43,12 @@ func _randomize():
 			offset = target.global_position + Vector3(randf_range(-range.x, range.x), randf_range(-range.y, range.y), randf_range(-range.z, range.z))
 		e_offset["world"]: 
 			offset= Vector3(randf_range(-range.x, range.x), randf_range(-range.y, range.y), randf_range(-range.z, range.z))
-	target.global_position = offset
+			
+	target.global_transform.origin = offset
 	
 func _hit():
 	
 	_randomize()
-	
-	if targets.size() <= 1 or distance_check <= 0:
-		return 
-
 
 	while 1:
 		var close_list = []

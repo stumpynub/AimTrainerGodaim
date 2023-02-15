@@ -24,6 +24,7 @@ glow_enabled = true
 [sub_resource type="SphereMesh" id="SphereMesh_og1rw"]
 
 [node name="scenario_aim_invaders" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.58663, 4.86586, 0.423481)
 
 [node name="Player" parent="." instance=ExtResource("1_vv3av")]
 enable_movement = false
@@ -40,7 +41,7 @@ shadow_opacity = 0.75
 shadow_blur = 2.46
 
 [node name="Target" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -43.4548)
+transform = Transform3D(1.58, 0, 0, 0, 1.58, 0, 0, 0, 1.58, 0, 0, -65.9752)
 freeze = true
 freeze_mode = 1
 script = ExtResource("4_n22c5")
@@ -53,10 +54,11 @@ shape = SubResource("SphereShape3D_fob1r")
 mesh = SubResource("SphereMesh_og1rw")
 skeleton = NodePath("../..")
 
-[node name="TargetBehaviourRandomPosition" type="Node" parent="Target"]
-script = ExtResource("3_ss1p6")
-randomize_on_start = true
-
 [node name="TargetBehaviourMoveConstant" type="Node" parent="Target"]
 script = ExtResource("5_0j6sp")
-direction = Vector3(0, 1, 0)
+direction = Vector3(0, 10, 0)
+speed = 15.0
+
+[node name="TargetBehaviourRandomPosition" type="Node" parent="Target"]
+script = ExtResource("3_ss1p6")
+distance_check = 0.0
