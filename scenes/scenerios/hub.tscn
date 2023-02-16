@@ -1,13 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://cum0c4g01kk68"]
+[gd_scene load_steps=14 format=3 uid="uid://cum0c4g01kk68"]
 
 [ext_resource type="Texture2D" uid="uid://bjt71rlmshtio" path="res://assets/src/logo.png" id="1_ms0b7"]
 [ext_resource type="PackedScene" uid="uid://dd1inopnm13m3" path="res://scenes/ui/news.tscn" id="2_to2gr"]
 [ext_resource type="Texture2D" uid="uid://bcx7gh8xiduk2" path="res://assets/backgrounds/night.exr" id="3_w1e5u"]
-[ext_resource type="PackedScene" uid="uid://b7y5xmt660wt3" path="res://scenes/player.tscn" id="4_hfhas"]
+[ext_resource type="PackedScene" uid="uid://616fo1xakb26" path="res://scenes/player.tscn" id="4_hfhas"]
 [ext_resource type="PackedScene" uid="uid://c6sn1dsp2w22a" path="res://scenes/targets/spawner.tscn" id="5_nite1"]
 [ext_resource type="PackedScene" uid="uid://b8sal0moppk73" path="res://scenes/targets/target_popcorn.tscn" id="6_0bp7m"]
 [ext_resource type="Material" uid="uid://cgdkqar5mvrvw" path="res://assets/materials/environment_background/grid_transparent.tres" id="7_s5r0v"]
-[ext_resource type="PackedScene" uid="uid://il8o4nxjg74e" path="res://scenes/targets/target_dueling_tree.tscn" id="8_5q6iy"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_nmn16"]
 viewport_path = NodePath("NewZone/MeshInstance3D/SubViewport")
@@ -84,6 +83,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.946815, 0.961725)
 material_override = ExtResource("7_s5r0v")
 use_collision = true
 size = Vector3(822.776, 0.110761, 494.773)
-
-[node name="TargetDuelingTree" parent="." instance=ExtResource("8_5q6iy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.01916, 3.13944, 1.69004)

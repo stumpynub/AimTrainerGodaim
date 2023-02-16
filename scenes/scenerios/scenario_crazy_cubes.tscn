@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c3p77ou65nmk3" path="res://scenes/targets/enemy.tscn" id="1_4yyky"]
 [ext_resource type="Script" path="res://scripts/scenario/scenario.gd" id="1_nd33e"]
 [ext_resource type="PackedScene" uid="uid://bk8jpi1clgffh" path="res://scenes/enviroment/scenario_enviorment.tscn" id="2_njeoa"]
-[ext_resource type="PackedScene" uid="uid://b7y5xmt660wt3" path="res://scenes/player.tscn" id="2_tckui"]
+[ext_resource type="PackedScene" uid="uid://616fo1xakb26" path="res://scenes/player.tscn" id="2_tckui"]
 [ext_resource type="Material" uid="uid://br1cdjt2djlnr" path="res://assets/materials/scifi_material/scifi_material.tres" id="3_fkxhn"]
 
 [node name="CrazyCubes" type="Node3D"]

@@ -155,7 +155,6 @@ func _crouch_move():
 		friction = start_friction
 
 func _ground_stick(): 
-
 	global_position.y = ground_ray.get_collision_point().y + -ground_ray.target_position.y - 0.1
 
 func is_grounded() -> bool: 

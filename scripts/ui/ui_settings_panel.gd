@@ -14,10 +14,6 @@ var grabbed = false
 var scale_grabbed = false 
 var offset: Vector2 
 var scale_mouse_pos = Vector2.ZERO
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -36,7 +32,8 @@ func _process(delta):
 		offset_right = init_offset_right - offset.x 
 		offset_bottom = init_offset_bottom - offset.y
 		#anchor_bottom = init_anchor_bottom - (offset.y / 1000)
-		
+	_process_overload()
+	
 func _on_close_button_pressed():
 	prev_opened = false  
 	pinned = false 
@@ -52,7 +49,6 @@ func _on_grab_button_button_down():
 func _on_grab_button_button_up():
 		grabbed = false
 
-
 func _on_size_button_button_down():
 	scale_mouse_pos = get_global_mouse_position()
 	init_offset_right = offset_right
@@ -67,3 +63,6 @@ func _on_pin_button_toggled(button_pressed):
 		pinned = true 
 	else: 
 		pinned = false
+
+func _process_overload(): 
+	pass

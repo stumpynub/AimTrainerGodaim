@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dyf4miwqnxqil"]
 
 [ext_resource type="Script" path="res://scripts/scenario/scenario.gd" id="1_0btaf"]
-[ext_resource type="PackedScene" uid="uid://b7y5xmt660wt3" path="res://scenes/player.tscn" id="1_tnwln"]
+[ext_resource type="PackedScene" uid="uid://616fo1xakb26" path="res://scenes/player.tscn" id="1_tnwln"]
 [ext_resource type="PackedScene" uid="uid://c3p77ou65nmk3" path="res://scenes/targets/enemy.tscn" id="2_m86ec"]
 [ext_resource type="Material" uid="uid://dwlvqiglrtdgv" path="res://assets/materials/scifi_material_2/scifi_material_2.tres" id="3_o0y6e"]
 

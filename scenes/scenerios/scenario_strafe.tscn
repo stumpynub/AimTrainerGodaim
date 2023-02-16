@@ -1,11 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://gr4lxalqwd5a"]
+[gd_scene load_steps=14 format=3 uid="uid://gr4lxalqwd5a"]
 
 [ext_resource type="Script" path="res://scripts/scenario/scenario.gd" id="1_8ra7p"]
-[ext_resource type="PackedScene" uid="uid://b7y5xmt660wt3" path="res://scenes/player.tscn" id="1_rh3iq"]
+[ext_resource type="PackedScene" uid="uid://616fo1xakb26" path="res://scenes/player.tscn" id="1_rh3iq"]
 [ext_resource type="Texture2D" uid="uid://bcx7gh8xiduk2" path="res://assets/backgrounds/night.exr" id="1_tf2w2"]
 [ext_resource type="Script" path="res://scripts/targets/target_path_follower.gd" id="4_vt72q"]
 [ext_resource type="Script" path="res://scripts/targets/target.gd" id="5_qeo1i"]
 [ext_resource type="Script" path="res://scripts/targets/target_behaviours/target_behaviour_hover_color.gd" id="6_yrg3x"]
+[ext_resource type="PackedScene" uid="uid://cywrd1u5i5xmw" path="res://scenes/targets/custom_targets/target_zombie.tscn" id="7_aprd5"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_uispv"]
 panorama = ExtResource("1_tf2w2")
@@ -33,6 +34,9 @@ point_count = 3
 [node name="scenario_strafe" type="Node3D"]
 script = ExtResource("1_8ra7p")
 
+[node name="TargetZombie" parent="." instance=ExtResource("7_aprd5")]
+transform = Transform3D(1.79768, 0, 0, 0, 1.79768, 0, 0, 0, 1.79768, -5.48902, 0, 0)
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
@@ -49,7 +53,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75879, 0, 0)
 curve = SubResource("Curve3D_dbo12")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(-0.650428, 0.0158816, -0.759357, -0.00131287, 0.999754, 0.0220326, 0.759522, 0.0153285, -0.650248, -3.72067, 0.281691, 7.71094)
+transform = Transform3D(-0.650428, 0.0158816, -0.759357, -0.00131287, 0.999754, 0.0220326, 0.759522, 0.0153285, -0.650248, -3.72078, 0.281702, 7.71121)
 progress = 8.04141
 loop = false
 script = ExtResource("4_vt72q")
@@ -74,6 +78,7 @@ shape = SubResource("CapsuleShape3D_bbpre")
 
 [node name="TargetBehaviourHoverColor" type="Node" parent="Path3D/PathFollow3D/Target" node_paths=PackedStringArray("mesh")]
 script = ExtResource("6_yrg3x")
+color_change_speed = 10
 normal_color = Color(1, 1, 1, 1)
 hovered_color = Color(0.929412, 0.47451, 0, 1)
 mesh = NodePath("../MeshInstance3D")

@@ -1,9 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://b7y5xmt660wt3"]
+[gd_scene load_steps=10 format=3 uid="uid://616fo1xakb26"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_ntsen"]
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="1_6ya58"]
 [ext_resource type="PackedScene" uid="uid://bcqg276xgtikn" path="res://scenes/ui/Hud.tscn" id="2_30vct"]
-[ext_resource type="Script" path="res://scripts/shot_ray.gd" id="3_07dos"]
-[ext_resource type="PackedScene" uid="uid://mttrb38y8hc0" path="res://scenes/ui/settings.tscn" id="3_jq0ru"]
+[ext_resource type="PackedScene" path="res://scenes/ui/settings.tscn" id="3_jq0ru"]
+[ext_resource type="Script" path="res://scripts/player/shot_ray.gd" id="3_kygci"]
 [ext_resource type="AudioStream" uid="uid://cualusturm6kh" path="res://assets/audio/sfx/action/teacup.ogg" id="4_yxbui"]
 [ext_resource type="Script" path="res://scripts/audio/sfx_action_player.gd" id="5_n5c3a"]
 [ext_resource type="AudioStream" uid="uid://cbo5oogukmseu" path="res://assets/audio/sfx/action/thud.ogg" id="6_so5ue"]
@@ -17,7 +17,7 @@ _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.378676, -0.381818), 0.0, 0.0, 
 point_count = 5
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "xr_camera")]
-script = ExtResource("1_ntsen")
+script = ExtResource("1_6ya58")
 camera = NodePath("Camera3D")
 xr_camera = NodePath("XROrigin3D/XRCamera3D")
 enable_movement = true
@@ -32,8 +32,7 @@ shape = SubResource("SphereShape3D_0gohi")
 [node name="ShotRay" type="RayCast3D" parent="Camera3D"]
 target_position = Vector3(0, 0, -100)
 collision_mask = 5
-script = ExtResource("3_07dos")
-automatic = true
+script = ExtResource("3_kygci")
 shot_time = 0.08
 horizontal_intensity = 100.0
 vertical_intensity = 50.0

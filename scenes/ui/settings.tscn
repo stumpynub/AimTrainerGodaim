@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://mttrb38y8hc0"]
+[gd_scene load_steps=14 format=3]
 
 [ext_resource type="Theme" uid="uid://bsxf0otie5016" path="res://assets/theme.tres" id="1_amped"]
 [ext_resource type="Script" path="res://scripts/ui/ui_settings.gd" id="2_3thbb"]
 [ext_resource type="Texture2D" uid="uid://cjheknmnawhfq" path="res://assets/reticles/dot.png" id="2_ji1vt"]
-[ext_resource type="PackedScene" uid="uid://b7wlu8lqxga7o" path="res://scenes/ui/ui_settings_panel.tscn" id="3_i64wq"]
+[ext_resource type="PackedScene" uid="uid://b7wlu8lqxga7o" path="res://scenes/util/ui_settings_panel.tscn" id="3_i64wq"]
+[ext_resource type="PackedScene" uid="uid://dbf00c8xe6687" path="res://scenes/ui/panels/panel_stats.tscn" id="3_vop16"]
 [ext_resource type="Texture2D" uid="uid://fq2lt45t4ph" path="res://assets/reticles/cross.png" id="4_kupv1"]
 [ext_resource type="Texture2D" uid="uid://da542fl87vpfk" path="res://assets/reticles/chevron.png" id="5_qntyo"]
 [ext_resource type="Texture2D" uid="uid://dusx8uygtsa3u" path="res://assets/reticles/hollow_dot.png" id="6_0f4bp"]
@@ -37,36 +38,9 @@ grow_vertical = 2
 mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="StatsPanel" parent="SettingsContainer" node_paths=PackedStringArray("pinned_container") instance=ExtResource("3_i64wq")]
-layout_mode = 1
-anchor_left = -0.805556
-anchor_top = 1.24691
-anchor_right = -0.472222
-anchor_bottom = 1.5679
-pinned_container = NodePath("../../PinnedContainer")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="SettingsContainer/StatsPanel"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.083
-anchor_right = 0.916665
-anchor_bottom = 0.999993
-offset_left = 0.127935
-offset_top = 34.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="HitCountLabel" type="Label" parent="SettingsContainer/StatsPanel/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Hits:"
-
-[node name="AccuracyLabel" type="Label" parent="SettingsContainer/StatsPanel/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Accuracy:"
+[node name="StatsPanel" parent="SettingsContainer" instance=ExtResource("3_vop16")]
+layout_mode = 0
+anchors_preset = 0
 
 [node name="ReticlePanel" parent="SettingsContainer" instance=ExtResource("3_i64wq")]
 layout_mode = 1
