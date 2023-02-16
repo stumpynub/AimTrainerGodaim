@@ -17,12 +17,12 @@ var recoil_offset = Vector3.ZERO
 @onready var hit_player = $SFXActionPlayer
 @onready var shot_timer = Timer.new()
 @onready var start_rot = Global.player.camera.rotation
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	curve.bake_resolution = shots_to_end
-	
-	shot_timer.one_shot = true
 	shot_timer.wait_time = shot_time
+	shot_timer.one_shot = true
 	
 	add_child(shot_timer)
 	

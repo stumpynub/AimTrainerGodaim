@@ -61,20 +61,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("menu"):
 		toggle_menu()
 		
-	if is_instance_valid(Global.current_scenario) and %HitCountLabel:
-		var hits: float = Global.current_scenario.hits
-		var misses: float = Global.current_scenario.misses 
-		var total: float = hits + misses
-		
-		if hits != 0 and total != 0 : 
-			
-			var p = (hits / total) * 100
-			%AccuracyLabel.text = "Accuracy: %.2f%%" %p
-		else: 
-			pass
-			
-		#var p = 100 if average == 0 else (10.0 / average) * 10.0
-		%HitCountLabel.text = "Hits: " + str(Global.current_scenario.hits)
+	
 
 func toggle_menu(): 
 	var s = $SettingsContainer
@@ -250,10 +237,6 @@ func _on_vsync_checkbox_toggled(button_pressed):
 
 func _on_stats_pressed():
 	select_panel($SettingsContainer/StatsPanel)
-
-
-#########################################
-
 
 
 ## SFX PANEL #############################################

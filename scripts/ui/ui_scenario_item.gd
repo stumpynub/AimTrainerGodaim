@@ -7,7 +7,7 @@ var mouse_hovered = false
 
 func _process(delta):
 	if mouse_hovered and Input.is_action_just_pressed("BUTTON_LEFT"): 
-		get_tree().change_scene_to_file(path)
+		Global.change_scene(path)
 
 func set_item(name, p):
 	path = p 

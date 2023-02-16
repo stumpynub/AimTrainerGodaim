@@ -1,13 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://c3p77ou65nmk3"]
+[gd_scene load_steps=8 format=3 uid="uid://ct0el8f4vujra"]
 
-[ext_resource type="Script" path="res://scripts/targets/target_random_radius.gd" id="1_kmbqb"]
-[ext_resource type="Texture2D" uid="uid://cqwy35syndtf4" path="res://assets/textures/icon.svg" id="2_10381"]
+[ext_resource type="Script" path="res://scripts/targets/target.gd" id="1_3gbb8"]
+[ext_resource type="Texture2D" uid="uid://cqwy35syndtf4" path="res://assets/images/textures/icon.svg" id="2_lg2rn"]
 [ext_resource type="Script" path="res://scripts/targets/target_behaviours/target_behaviour_hover_color.gd" id="3_bv823"]
+[ext_resource type="Script" path="res://scripts/targets/target_behaviours/target_behaviour_random_position.gd" id="3_oiqou"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kvrta"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xb3if"]
-albedo_texture = ExtResource("2_10381")
+albedo_texture = ExtResource("2_lg2rn")
 
 [sub_resource type="BoxMesh" id="BoxMesh_v0v0s"]
 material = SubResource("StandardMaterial3D_xb3if")
@@ -15,9 +16,7 @@ material = SubResource("StandardMaterial3D_xb3if")
 [node name="RigidBody3D" type="RigidBody3D" groups=["target"]]
 freeze = true
 freeze_mode = 1
-script = ExtResource("1_kmbqb")
-randomize_on_start = true
-area = Vector3(6, 3, 0)
+script = ExtResource("1_3gbb8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_kvrta")
@@ -34,3 +33,10 @@ hovered_color = Color(1, 0.533333, 0, 1)
 mesh = NodePath("../MeshInstance3D")
 color_on_hit = true
 hit_color = Color(1, 0, 0, 1)
+
+[node name="TargetBehaviourRandomPosition" type="Node" parent="."]
+script = ExtResource("3_oiqou")
+offset_type = 0
+distance_check = 4.0
+randomize_on_start = true
+range = Vector3(7, 7, 0)

@@ -75,55 +75,7 @@ func _process(delta):
 	if get_slide_collision_count() > 0: 
 		velocity += get_last_slide_collision().get_normal() * 2
 	
-<<<<<<< HEAD
-	if interaction_ray.is_colliding():
-		if is_instance_valid(interaction_ray.get_collider()): 
-			if interaction_ray.get_collider().has_signal("hit"):
-				
-				if prev_target != null: 
-					if interaction_ray.get_collider() == prev_target: 
-						prev_target = interaction_ray.get_collider()
-						prev_target.hovered = true
-						
-					else: 
-						prev_target.hovered = false
-					prev_target = interaction_ray.get_collider()
-					
-				prev_target = interaction_ray.get_collider()
-	else: 
-		if is_instance_valid(prev_target):
-			prev_target.hovered = false 
-	if Input.is_action_pressed("action") and !ui_locked:
-		
-		var scenario = Global.current_scenario
-		
-		if interaction_ray.is_colliding():
-			if is_instance_valid(interaction_ray.get_collider()): 
-				if interaction_ray.get_collider().get_class() == "RigidBody3D": 
-					interaction_ray.get_collider().apply_central_impulse(
-						-camera.global_transform.basis.z.normalized() * 20, 
-					)
-					
-				if interaction_ray.get_collider().has_signal("hit"): 
-					
-					interaction_ray.get_collider().emit_signal("hit")
-					$SFXActionPlayer.play_hit()
-					if is_instance_valid(scenario): 
-						scenario.hits += 1
-					
-				else: 
-					if is_instance_valid(scenario): 
-						scenario.misses += 1
-					$SFXActionPlayer.play_miss()
-		else: 
-			if is_instance_valid(scenario): 
-				scenario.misses += 1
-			
-			$SFXActionPlayer.play_miss()
-			
-=======
 	
->>>>>>> dc9742988dd3446214b850db719008b3e75c5361
 		var place_offset = (interaction_ray.get_collision_normal() * delta)
 		emit_signal("action", interaction_ray.get_collision_point() + place_offset )
 	
@@ -203,7 +155,6 @@ func _crouch_move():
 		friction = start_friction
 
 func _ground_stick(): 
-
 	global_position.y = ground_ray.get_collision_point().y + -ground_ray.target_position.y - 0.1
 
 func is_grounded() -> bool: 

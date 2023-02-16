@@ -14,13 +14,13 @@ enum e_offset {
 @export var range: Vector3 = Vector3(7, 7, 7)
 @onready var targets: Array = get_tree().get_nodes_in_group("target")
 
-var start_position 
+var start_position
 
 var rand_iter = 0
 
 func _ready(): 
 	
-	set_deferred("start_position", target.global_position)
+	start_position = get_parent().global_position
 	
 	target.connect("hit", _hit)
 	

@@ -1,7 +1,7 @@
-[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://cgdkqar5mvrvw"]
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3]
 
-[ext_resource type="Texture2D" uid="uid://d2t16whq3d50n" path="res://assets/textures/tile.png" id="1_utinj"]
-[ext_resource type="Texture2D" uid="uid://ya7ux1ad73ul" path="res://assets/textures/r_tile.png" id="2_mtlsb"]
+[ext_resource type="Texture2D" uid="uid://d2t16whq3d50n" path="res://assets/images/textures/tile.png" id="1_utinj"]
+[ext_resource type="Texture2D" uid="uid://ya7ux1ad73ul" path="res://assets/images/textures/r_tile.png" id="2_mtlsb"]
 
 [resource]
 transparency = 1

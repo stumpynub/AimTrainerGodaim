@@ -1,12 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://dktcw1ufpwwdg"]
+[gd_scene load_steps=8 format=3 uid="uid://8oaoug1iopr4"]
 
-[ext_resource type="PackedScene" uid="uid://b7y5xmt660wt3" path="res://scenes/player.tscn" id="1_ck7b6"]
-[ext_resource type="Texture2D" uid="uid://sjaj8rlbbmm3" path="res://assets/backgrounds/sunset.exr" id="2_4eksj"]
+[ext_resource type="PackedScene" uid="uid://616fo1xakb26" path="res://scenes/player/player.tscn" id="1_ck7b6"]
+[ext_resource type="Texture2D" uid="uid://sjaj8rlbbmm3" path="res://assets/images/backgrounds/sunset.exr" id="2_bu28t"]
 [ext_resource type="PackedScene" uid="uid://c6sn1dsp2w22a" path="res://scenes/targets/spawner.tscn" id="2_wu5gn"]
-[ext_resource type="PackedScene" uid="uid://bcl8p8d1ld3o3" path="res://scenes/targets/target_waterfall.tscn" id="3_i8j34"]
+[ext_resource type="PackedScene" uid="uid://dbhbr3p2sxvem" path="res://scenes/targets/target_waterfall.tscn" id="3_i8j34"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_yr4i1"]
-panorama = ExtResource("2_4eksj")
+panorama = ExtResource("2_bu28t")
 
 [sub_resource type="Sky" id="Sky_6m5ik"]
 sky_material = SubResource("PanoramaSkyMaterial_yr4i1")

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcx7gh8xiduk2"
-path.bptc="res://.godot/imported/night.exr-9ae5f1baee592f6a7b89f1c2e6a71a98.bptc.ctex"
+uid="uid://ya7ux1ad73ul"
+path.s3tc="res://.godot/imported/r_tile.png-19dc9ebfe0ccd663b126df1f0fbeb7bb.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/backgrounds/night.exr"
-dest_files=["res://.godot/imported/night.exr-9ae5f1baee592f6a7b89f1c2e6a71a98.bptc.ctex"]
+source_file="res://assets/images/textures/r_tile.png"
+dest_files=["res://.godot/imported/r_tile.png-19dc9ebfe0ccd663b126df1f0fbeb7bb.s3tc.ctex"]
 
 [params]
 
@@ -20,12 +20,12 @@ compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+roughness/mode=1
+roughness/src_normal="res://assets/textures/r_tile.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

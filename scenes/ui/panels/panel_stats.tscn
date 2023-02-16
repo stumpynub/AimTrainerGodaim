@@ -1,0 +1,122 @@
+[gd_scene load_steps=8 format=3 uid="uid://c8cwnrporuyax"]
+
+[ext_resource type="Script" path="res://scripts/ui/panels/ui_panel_stats.gd" id="1_gpd5o"]
+[ext_resource type="Texture2D" uid="uid://d0mf1e1b2oenh" path="res://assets/images/ui/pin_open.png" id="2_tftxg"]
+[ext_resource type="Texture2D" uid="uid://bg0xxws686wm6" path="res://assets/images/ui/pin_closed.png" id="3_fubcq"]
+[ext_resource type="Texture2D" uid="uid://k5abksemmvlk" path="res://assets/images/ui/close.png" id="4_2g30e"]
+[ext_resource type="Texture2D" uid="uid://c4vrn1ihauj68" path="res://assets/images/grabber.png" id="5_hn15b"]
+[ext_resource type="Texture2D" uid="uid://daoej6u6cmh1k" path="res://assets/images/ui/scale.png" id="6_soc4c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_26vva"]
+bg_color = Color(0.388235, 0.388235, 0.388235, 0.956863)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+
+[node name="StatsPanel" type="Panel" node_paths=PackedStringArray("pinned_container")]
+custom_minimum_size = Vector2(200, 100)
+anchors_preset = -1
+anchor_left = -0.805556
+anchor_top = 1.24691
+anchor_right = -0.472222
+anchor_bottom = 1.5679
+theme_override_styles/panel = SubResource("StyleBoxFlat_26vva")
+script = ExtResource("1_gpd5o")
+pinned_container = NodePath("../../PinnedContainer")
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -112.0
+offset_right = -23.9996
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/separation = 20
+alignment = 2
+
+[node name="PinButton" type="TextureButton" parent="HBoxContainer"]
+custom_minimum_size = Vector2(15, 10)
+layout_mode = 2
+mouse_filter = 1
+toggle_mode = true
+texture_normal = ExtResource("2_tftxg")
+texture_pressed = ExtResource("3_fubcq")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="CloseButton" type="TextureButton" parent="HBoxContainer"]
+custom_minimum_size = Vector2(15, 0)
+layout_mode = 2
+texture_normal = ExtResource("4_2g30e")
+stretch_mode = 5
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 48.0
+offset_right = -71.9996
+offset_bottom = 24.0
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="GrabButton" type="TextureButton" parent="CenterContainer"]
+self_modulate = Color(0.505882, 0.505882, 0.505882, 1)
+layout_mode = 2
+button_mask = 3
+texture_normal = ExtResource("5_hn15b")
+
+[node name="SizeButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -23.9996
+offset_top = -23.9999
+offset_right = -8.99957
+offset_bottom = -8.99994
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("6_soc4c")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.083
+anchor_right = 0.916665
+anchor_bottom = 0.999993
+offset_left = 0.127935
+offset_top = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TimeLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "00:00:00"
+
+[node name="HitCountLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Hits:"
+
+[node name="AccuracyLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Accuracy:"
+
+[connection signal="toggled" from="HBoxContainer/PinButton" to="." method="_on_pin_button_toggled" flags=18]
+[connection signal="pressed" from="HBoxContainer/CloseButton" to="." method="_on_close_button_pressed" flags=18]
+[connection signal="button_down" from="CenterContainer/GrabButton" to="." method="_on_grab_button_button_down" flags=18]
+[connection signal="button_up" from="CenterContainer/GrabButton" to="." method="_on_grab_button_button_up" flags=18]
+[connection signal="button_down" from="SizeButton" to="." method="_on_size_button_button_down" flags=18]
+[connection signal="button_up" from="SizeButton" to="." method="_on_size_button_button_up" flags=18]

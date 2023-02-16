@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://da542fl87vpfk"
-path="res://.godot/imported/chevron.png-4c7ce529cbd8d443f5d23bc6349b397e.ctex"
+uid="uid://dusx8uygtsa3u"
+path="res://.godot/imported/hollow_dot.png-384a0e3de24a04876d3367ab0f83a931.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/reticles/chevron.png"
-dest_files=["res://.godot/imported/chevron.png-4c7ce529cbd8d443f5d23bc6349b397e.ctex"]
+source_file="res://assets/images/reticles/hollow_dot.png"
+dest_files=["res://.godot/imported/hollow_dot.png-384a0e3de24a04876d3367ab0f83a931.ctex"]
 
 [params]
 
