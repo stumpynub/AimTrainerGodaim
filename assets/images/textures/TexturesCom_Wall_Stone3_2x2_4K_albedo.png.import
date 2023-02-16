@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://sjaj8rlbbmm3"
-path.bptc="res://.godot/imported/sunset.exr-e544d92c102617e18bbe5ff58d60c4a8.bptc.ctex"
+uid="uid://dnd8vbf0wk7cr"
+path.s3tc="res://.godot/imported/TexturesCom_Wall_Stone3_2x2_4K_albedo.png-46cad7534ce448f67615bbd0f1246974.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/backgrounds/sunset.exr"
-dest_files=["res://.godot/imported/sunset.exr-e544d92c102617e18bbe5ff58d60c4a8.bptc.ctex"]
+source_file="res://assets/images/textures/TexturesCom_Wall_Stone3_2x2_4K_albedo.png"
+dest_files=["res://.godot/imported/TexturesCom_Wall_Stone3_2x2_4K_albedo.png-46cad7534ce448f67615bbd0f1246974.s3tc.ctex"]
 
 [params]
 

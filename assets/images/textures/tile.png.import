@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnd8vbf0wk7cr"
-path.s3tc="res://.godot/imported/TexturesCom_Wall_Stone3_2x2_4K_albedo.png-9e713444f3b479651199f30c6e3b8adc.s3tc.ctex"
+uid="uid://d2t16whq3d50n"
+path.s3tc="res://.godot/imported/tile.png-6d57b7c9dff690e8d666e18f226a1111.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/textures/TexturesCom_Wall_Stone3_2x2_4K_albedo.png"
-dest_files=["res://.godot/imported/TexturesCom_Wall_Stone3_2x2_4K_albedo.png-9e713444f3b479651199f30c6e3b8adc.s3tc.ctex"]
+source_file="res://assets/images/textures/tile.png"
+dest_files=["res://.godot/imported/tile.png-6d57b7c9dff690e8d666e18f226a1111.s3tc.ctex"]
 
 [params]
 

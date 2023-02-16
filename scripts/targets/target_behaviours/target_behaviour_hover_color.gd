@@ -28,7 +28,6 @@ func _ready():
 func _process(delta):
 	if target.hovered: 
 		hover_mat.albedo_color = hover_mat.albedo_color.lerp(hovered_color, delta * color_change_speed)
-		print("hover")
 	else: 
 		hover_mat.albedo_color = hover_mat.albedo_color.lerp(normal_color, delta * color_change_speed)
 

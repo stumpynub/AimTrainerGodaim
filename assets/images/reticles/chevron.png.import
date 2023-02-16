@@ -2,27 +2,26 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2t16whq3d50n"
-path.s3tc="res://.godot/imported/tile.png-27e54373a88319df6c3198d6d50ba615.s3tc.ctex"
+uid="uid://da542fl87vpfk"
+path="res://.godot/imported/chevron.png-949767fb8c2ab08456926cd4d295c3cb.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/tile.png"
-dest_files=["res://.godot/imported/tile.png-27e54373a88319df6c3198d6d50ba615.s3tc.ctex"]
+source_file="res://assets/images/reticles/chevron.png"
+dest_files=["res://.godot/imported/chevron.png-949767fb8c2ab08456926cd4d295c3cb.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -32,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

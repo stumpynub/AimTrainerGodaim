@@ -217,3 +217,7 @@ func get_jump_input():
 
 func can_swim() -> bool: 
 	return false 
+
+
+func _on_timer_timeout():
+	pass

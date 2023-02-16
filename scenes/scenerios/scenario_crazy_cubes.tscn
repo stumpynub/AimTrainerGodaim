@@ -1,9 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://djnvt8q7o7t4j"]
+[gd_scene load_steps=6 format=3 uid="uid://45vyscqhd3og"]
 
-[ext_resource type="PackedScene" uid="uid://c3p77ou65nmk3" path="res://scenes/targets/enemy.tscn" id="1_4yyky"]
+[ext_resource type="PackedScene" uid="uid://ct0el8f4vujra" path="res://scenes/targets/enemy.tscn" id="1_4yyky"]
 [ext_resource type="Script" path="res://scripts/scenario/scenario.gd" id="1_nd33e"]
 [ext_resource type="PackedScene" uid="uid://bk8jpi1clgffh" path="res://scenes/enviroment/scenario_enviorment.tscn" id="2_njeoa"]
-[ext_resource type="PackedScene" uid="uid://616fo1xakb26" path="res://scenes/player.tscn" id="2_tckui"]
+[ext_resource type="PackedScene" uid="uid://616fo1xakb26" path="res://scenes/player/player.tscn" id="2_tckui"]
 [ext_resource type="Material" uid="uid://br1cdjt2djlnr" path="res://assets/materials/scifi_material/scifi_material.tres" id="3_fkxhn"]
 
 [node name="CrazyCubes" type="Node3D"]
@@ -22,15 +22,9 @@ size = Vector3(16, 16, 16)
 
 [node name="box_enemy1" parent="." groups=["box_enemy"] instance=ExtResource("1_4yyky")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -7.06151)
-distance_check = 2.5
-area = Vector3(6, 6, 0)
 
 [node name="box_enemy2" parent="." groups=["box_enemy"] instance=ExtResource("1_4yyky")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -7.06151)
-distance_check = 2.5
-area = Vector3(6, 6, 0)
 
 [node name="box_enemy3" parent="." groups=["box_enemy"] instance=ExtResource("1_4yyky")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -7.06151)
-distance_check = 2.5
-area = Vector3(6, 6, 0)

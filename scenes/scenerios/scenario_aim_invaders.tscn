@@ -1,8 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://chcji27rdm1wa"]
+[gd_scene load_steps=10 format=3 uid="uid://55uaacdgcnik"]
 
-[ext_resource type="PackedScene" uid="uid://616fo1xakb26" path="res://scenes/player.tscn" id="1_vv3av"]
-[ext_resource type="Script" path="res://scripts/targets/target_behaviours/target_behaviour_random_position.gd" id="3_ss1p6"]
+[ext_resource type="PackedScene" uid="uid://b7y5xmt660wt3" path="res://scenes/player.tscn" id="1_vv3av"]
 [ext_resource type="Script" path="res://scripts/targets/target.gd" id="4_n22c5"]
+[ext_resource type="Script" path="res://scripts/targets/target_behaviours/target_behaviour_sin_position.gd" id="4_sivtb"]
 [ext_resource type="Script" path="res://scripts/targets/target_behaviours/target_behaviour_move_constant.gd" id="5_0j6sp"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5qu6x"]
@@ -56,9 +56,20 @@ skeleton = NodePath("../..")
 
 [node name="TargetBehaviourMoveConstant" type="Node" parent="Target"]
 script = ExtResource("5_0j6sp")
+<<<<<<< HEAD
+direction = Vector3(0, 1, 0)
+speed = 4.0
+
+[node name="TargetBehaviourSinPosition" type="Node" parent="Target"]
+script = ExtResource("4_sivtb")
+x = true
+distance = 1
+speed = 4.0
+=======
 direction = Vector3(0, 10, 0)
 speed = 15.0
 
 [node name="TargetBehaviourRandomPosition" type="Node" parent="Target"]
 script = ExtResource("3_ss1p6")
 distance_check = 0.0
+>>>>>>> dc9742988dd3446214b850db719008b3e75c5361

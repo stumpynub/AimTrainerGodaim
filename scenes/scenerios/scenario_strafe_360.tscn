@@ -1,8 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://6b7t6mowf5bt"]
+[gd_scene load_steps=11 format=3]
 
 [ext_resource type="Script" path="res://scripts/scenario/scenario.gd" id="1_thdtr"]
-[ext_resource type="Texture2D" uid="uid://bcx7gh8xiduk2" path="res://assets/backgrounds/night.exr" id="2_2bljm"]
-[ext_resource type="PackedScene" uid="uid://b7y5xmt660wt3" path="res://scenes/player.tscn" id="3_xk6eb"]
+[ext_resource type="Texture2D" uid="uid://bcx7gh8xiduk2" path="res://assets/images/backgrounds/night.exr" id="2_2bljm"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="3_xk6eb"]
 [ext_resource type="Script" path="res://scripts/targets/target_path_follower.gd" id="4_532c8"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_uispv"]
