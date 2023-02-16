@@ -78,8 +78,8 @@ func _process(delta):
 	else: 
 		if is_instance_valid(prev_target):
 			prev_target.hovered = false 
-	if Input.is_action_just_pressed("action") and !ui_locked: 
-	
+	if Input.is_action_pressed("action") and !ui_locked:
+		
 		var scenario = Global.current_scenario
 		
 		if interaction_ray.is_colliding():
@@ -89,7 +89,6 @@ func _process(delta):
 						-camera.global_transform.basis.z.normalized() * 20, 
 					)
 					
-		
 				if interaction_ray.get_collider().has_signal("hit"): 
 					
 					interaction_ray.get_collider().emit_signal("hit")
@@ -249,3 +248,7 @@ func get_jump_input():
 
 func can_swim() -> bool: 
 	return false 
+
+
+func _on_timer_timeout():
+	pass

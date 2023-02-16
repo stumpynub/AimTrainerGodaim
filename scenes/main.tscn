@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://bb366c8ktyxuu"]
+
+[ext_resource type="PackedScene" uid="uid://b7y5xmt660wt3" path="res://scenes/player.tscn" id="1_rm1mj"]
+[ext_resource type="PackedScene" uid="uid://bqq2t04u5vmfk" path="res://scenes/box_area.tscn" id="2_p32s3"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bvnyn"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_yr1fm"]
+sky_material = SubResource("ProceduralSkyMaterial_bvnyn")
+
+[sub_resource type="Environment" id="Environment_70xyv"]
+background_mode = 2
+sky = SubResource("Sky_yr1fm")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Node3D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0.408749, -0.325156, 0.852759, -0.287967, 0.840698, 0.458587, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_70xyv")
+
+[node name="Node3D" parent="." instance=ExtResource("1_rm1mj")]
+enable_movement = false
+
+[node name="box" parent="." instance=ExtResource("2_p32s3")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -1.5)

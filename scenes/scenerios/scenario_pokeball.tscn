@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bqewqq4rhmtyd"]
+[gd_scene load_steps=9 format=3 uid="uid://dp0s675ekgbka"]
 
 [ext_resource type="Script" path="res://scripts/scenario/scenario.gd" id="1_neotw"]
 [ext_resource type="Material" uid="uid://cgdkqar5mvrvw" path="res://assets/materials/environment_background/grid_transparent.tres" id="2_i1xwy"]
