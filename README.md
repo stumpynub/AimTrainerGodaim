@@ -1,1 +1,1 @@
-Aim trainer made in Godot! 
+# Aim trainer made with Godot
