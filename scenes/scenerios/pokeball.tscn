@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://ntk76gwfnasd"]
 
 [ext_resource type="Script" path="res://scripts/scenario/scenario.gd" id="1_5lra7"]
-[ext_resource type="Material" uid="uid://cgdkqar5mvrvw" path="res://assets/materials/environment_background/grid_transparent.tres" id="1_v853g"]
-[ext_resource type="PackedScene" uid="uid://b7y5xmt660wt3" path="res://scenes/player.tscn" id="2_2nrcp"]
-[ext_resource type="PackedScene" uid="uid://c3p77ou65nmk3" path="res://scenes/targets/enemy.tscn" id="3_rhu3x"]
+[ext_resource type="Material" path="res://assets/materials/environment_background/grid_transparent.tres" id="1_v853g"]
+[ext_resource type="PackedScene" uid="uid://ct0el8f4vujra" path="res://scenes/targets/enemy.tscn" id="3_rhu3x"]
 [ext_resource type="Script" path="res://scripts/targets/spawner.gd" id="4_2u5ye"]
+[ext_resource type="PackedScene" uid="uid://616fo1xakb26" path="res://scenes/player/player.tscn" id="5_k3gen"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1s4j1"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -35,11 +35,6 @@ flip_faces = true
 size = Vector3(20, 10, 30)
 material = ExtResource("1_v853g")
 
-[node name="Player" parent="." instance=ExtResource("2_2nrcp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 14.5)
-slide_on_ceiling = false
-enable_movement = false
-
 [node name="Spawner3" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.734764, 0, 7.04694)
 script = ExtResource("4_2u5ye")
@@ -60,3 +55,7 @@ script = ExtResource("4_2u5ye")
 amount = 5
 scene = ExtResource("3_rhu3x")
 spawn_on_start = true
+
+[node name="Player" parent="." instance=ExtResource("5_k3gen")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.4456)
+enable_movement = false

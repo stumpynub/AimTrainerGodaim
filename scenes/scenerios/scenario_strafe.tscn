@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3]
+[gd_scene load_steps=15 format=3 uid="uid://cdpbieehepaq"]
 
 [ext_resource type="Script" path="res://scripts/scenario/scenario.gd" id="1_8ra7p"]
 [ext_resource type="PackedScene" uid="uid://616fo1xakb26" path="res://scenes/player/player.tscn" id="1_rh3iq"]
@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scripts/targets/target.gd" id="5_qeo1i"]
 [ext_resource type="Script" path="res://scripts/targets/target_behaviours/target_behaviour_track_bot.gd" id="6_d27vd"]
 [ext_resource type="Script" path="res://scripts/targets/target_behaviours/target_behaviour_hover_color.gd" id="6_yrg3x"]
-[ext_resource type="Material" uid="uid://cgdkqar5mvrvw" path="res://assets/materials/environment_background/grid_transparent.tres" id="7_1ii7k"]
+[ext_resource type="Material" path="res://assets/materials/environment_background/grid_transparent.tres" id="7_1ii7k"]
 [ext_resource type="Script" path="res://scripts/targets/target_behaviours/target_behavior_health_delete.gd" id="7_s1jkt"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8qars"]
@@ -50,7 +50,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75879, 0, 0)
 curve = SubResource("Curve3D_dbo12")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(-0.650857, 0, -0.759155, 0, 0.999998, 0, 0.759156, 0, -0.650856, -3.72443, 0, 7.70824)
+transform = Transform3D(0.650857, 0, 0.759155, 0, 0.999998, 0, -0.759156, 0, 0.650856, -3.72443, 0, 7.70824)
 progress = 8.04141
 loop = false
 script = ExtResource("4_vt72q")
