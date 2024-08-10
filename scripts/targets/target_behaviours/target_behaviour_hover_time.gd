@@ -2,8 +2,6 @@ extends Node
 
 class_name TargetBehaviourTrackBot
 
-
-
 @onready var target: Target = get_parent()
 
 var hits = 0
@@ -18,10 +16,9 @@ func _physics_process(delta):
 	if target.hovered:
 		if Input.is_mouse_button_pressed(1):
 			hits += delta
-			print("hits: ", hits)
+			
 	if Input.is_mouse_button_pressed(1):
 			miss += delta
-			print("misses: ", miss)
 	
 	if max_time != 0: 
 		if hits >= max_time: 
@@ -30,4 +27,3 @@ func _physics_process(delta):
 func _process(delta):
 	if hits >= 1:
 		accuracy = hits * 100 / miss
-		print("accuracy: ", accuracy)

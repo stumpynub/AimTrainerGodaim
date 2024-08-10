@@ -18,4 +18,3 @@ func _ready():
 
 func _hit(): 
 	player.play(animation)
-	print(player)

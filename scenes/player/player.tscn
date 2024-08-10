@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://616fo1xakb26"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_6ya58"]
-[ext_resource type="PackedScene" uid="uid://bcqg276xgtikn" path="res://scenes/ui/Hud.tscn" id="2_30vct"]
+[ext_resource type="PackedScene" path="res://scenes/ui/Hud.tscn" id="2_30vct"]
 [ext_resource type="PackedScene" path="res://scenes/ui/settings.tscn" id="3_jq0ru"]
 [ext_resource type="Script" path="res://scripts/player/shot_ray.gd" id="3_kygci"]
 [ext_resource type="AudioStream" uid="uid://cualusturm6kh" path="res://assets/audio/sfx/action/teacup.ogg" id="4_yxbui"]
@@ -33,6 +33,7 @@ shape = SubResource("SphereShape3D_0gohi")
 target_position = Vector3(0, 0, -100)
 collision_mask = 5
 script = ExtResource("3_kygci")
+automatic = true
 shot_time = 0.08
 horizontal_intensity = 100.0
 vertical_intensity = 50.0

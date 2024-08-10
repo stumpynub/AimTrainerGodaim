@@ -5,10 +5,13 @@ class_name  Target
 var hovered = false 
 
 signal hit
+signal destroyed
 
 var start_position
 
 var hover_time = 1
 
-func _process(delta):
-	pass
+
+func destroy(): 
+	destroyed.emit()
+	queue_free()

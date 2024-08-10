@@ -8,4 +8,4 @@ func _ready():
 	target.hit.connect(_hit)
 	
 func _hit():
-	target.queue_free()
+	target.destroy()

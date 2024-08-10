@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://cfjhy0g7pp5kj"]
+
+[ext_resource type="Script" path="res://scripts/targets/target.gd" id="1_hjp32"]
+[ext_resource type="Script" path="res://scripts/targets/target_behaviours/target_behaviour_hover_color.gd" id="2_8nfeq"]
+[ext_resource type="Script" path="res://scripts/targets/target_behaviours/target_behaviour_track_bot.gd" id="3_it7a1"]
+[ext_resource type="Script" path="res://scripts/targets/target_behaviours/target_behavior_health_delete.gd" id="4_3vtlc"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_j83ur"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bbpre"]
+
+[node name="Target" type="RigidBody3D"]
+collision_layer = 4
+freeze = true
+freeze_mode = 1
+script = ExtResource("1_hjp32")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, -9.31323e-10, 2.98023e-08, -4.65661e-10, 1, -9.31323e-10, -2.98023e-08, -9.31323e-10, 1, -9.53674e-07, 1.01856, 0)
+mesh = SubResource("CapsuleMesh_j83ur")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, -6.98492e-10, 2.98023e-08, -2.32831e-10, 1, 0, -5.96046e-08, -1.39698e-09, 1, -9.53674e-07, 1.01856, 0)
+shape = SubResource("CapsuleShape3D_bbpre")
+
+[node name="TargetBehaviourHoverColor" type="Node" parent="." node_paths=PackedStringArray("mesh")]
+script = ExtResource("2_8nfeq")
+normal_color = Color(1, 1, 1, 1)
+hovered_color = Color(0.929412, 0.47451, 0, 1)
+mesh = NodePath("../MeshInstance3D")
+color_on_hit = true
+hit_color = Color(1, 0, 0, 1)
+
+[node name="TargetBehaviourTrackerBot" type="Node" parent="."]
+script = ExtResource("3_it7a1")
+
+[node name="TargetBehaviorHealthDelete" type="Node" parent="."]
+script = ExtResource("4_3vtlc")
+
+[node name="Timer2" type="Timer" parent="TargetBehaviorHealthDelete"]
+autostart = true
+
+[connection signal="timeout" from="TargetBehaviorHealthDelete/Timer2" to="TargetBehaviorHealthDelete" method="_on_timer_timeout"]

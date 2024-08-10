@@ -11,8 +11,5 @@ func _ready():
 
 func _hit(): 
 	health -= 1
-	print("hi")
-	print(health)
 	if health <= 0: 
-		print("no health")
-		target.queue_free()
+		target.destroy()
